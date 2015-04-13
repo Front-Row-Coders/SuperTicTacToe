@@ -1,6 +1,7 @@
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 /**
@@ -11,13 +12,38 @@ public class UIWindow implements WindowListener
 {
 	private final JFrame mainWindow;
 	
+	private JPanel currentPanel;
 	
-	public UIWindow()
+	private final History history;
+	
+	/**
+	 * This holds the running instance of the UIWindow.
+	 */
+	private static UIWindow currentInstance;
+	
+	private UIWindow()
 	{
 		mainWindow = new JFrame("Super Tic-Tac-Toe");
 		
 		mainWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		mainWindow.addWindowListener(this);
+		
+		this.history = new History();
+	}
+	
+	public static UIWindow getInstance()
+	{
+		if(currentInstance == null)
+		{
+			currentInstance = new UIWindow();
+		}
+		
+		return currentInstance;
+	}
+	
+	public static History getHistoryInstance()
+	{
+		return getInstance().history;
 	}
 	
 	public void show()
@@ -33,7 +59,7 @@ public class UIWindow implements WindowListener
 	 */
 	public static void main(String[] args) 
 	{
-		UIWindow program = new UIWindow();
+		UIWindow program = UIWindow.getInstance();
 		program.show();
 	}
 
