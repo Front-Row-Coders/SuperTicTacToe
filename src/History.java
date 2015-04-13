@@ -7,16 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Jonathan
+ */
 public class History
 {
 	private final List<Player> history;
 	
 	public static final String STORAGE_FILE = "Players.txt";
 	
+	/**
+	 * Creates a History object.
+	 */
 	public History ()
 	{
 		history = new ArrayList<>();
 	}
+	
 	public void displayHistory(Player player) throws Exception
 	{
 		if (player == null)
@@ -24,6 +32,7 @@ public class History
 		
 		//create history panel
 	}
+	
 	public void loadHistory()
 	{
 
@@ -49,7 +58,8 @@ public class History
 			System.err.format("Exception occurred trying to read '%s'.", STORAGE_FILE);
 			e.printStackTrace();
 		}
-	}	
+	}
+	
 	public void saveHistory() throws Exception
 	{
 		if(history.isEmpty())
@@ -85,6 +95,7 @@ public class History
 			e.printStackTrace();
 		}
 	}
+	
 	public Player getPlayer(String username)
 	{
 		for (Player player: history)
@@ -96,6 +107,7 @@ public class History
 			}
 			return null;
 	}
+	
 	public boolean createNewPlayer(String username)
 	{
 		if (getPlayer(username)!=null)
