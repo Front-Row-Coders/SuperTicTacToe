@@ -1,62 +1,135 @@
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 public class Game implements ActionListener
 {
 
-	private Player playerOne;
-	private Player playerTwo;
+	private final Player playerOne;
+	private final Player playerTwo;
 	private boolean isPlayerOneTurn;
 	private boolean isGameOver;
 	private Timer gameTimer;
+	private final int initialTimeLimit;
 	private int timeLimit;
 
-
+	public static final short SECOND = 1000;
+	public static final String TIMER_EVENT_COMMAND = "TIMER_EVENT";
+	public static final int DEFAULT_TIME_LIMIT = 30*60;
+	public static final boolean DEFAULT_PLAYER_TURN = true;
+	public static final SkillLevel DEFAULT_AI_SKILL_LEVEL = SkillLevel.Easy;
+	public static final Color PLAYER_ONE_COLOR = Color.BLUE;
+	public static final Color PLAYER_TWO_COLOR = Color.RED;
+	//Reserved Usernames.
+	public static final String AI_NAME = "AI";
+	public static final String GUEST_NAME = "Guest";
+	
 	public Game()
 	{
-
-		playerOne = new Player();
-
-		playerTwo = new Player();
-
-		isPlayerOneTurn = true;
-
-		isGameOver = false;
-
-		// timeLimit = some default
-
-		gameTimer = new Timer(); // call with delay (timeLimit)
-
+		this(GUEST_NAME, DEFAULT_AI_SKILL_LEVEL, DEFAULT_TIME_LIMIT, DEFAULT_PLAYER_TURN);
 	}
-	public Game(string username1, SkillLevel skillLevel, int timeLimit, boolean isPlayerOneTurn)
+	public Game(String username1, SkillLevel skillLevel, int timeLimit, boolean isPlayerOneTurn)
 	{
 		// Call to History, find players, assign references to the existing
 		// Player objects so updates to stats will be automatically reflected
 		// in History 
-
-		playerTwo = new AI(skillLevel);
-
-		this.timeLimit = timeLimit;
-
-		gameTimer = new Timer(); // call with delay (timeLimit)
+		
+		if(username1 == null)
+			throw new IllegalArgumentException("username1 is null");
+		
+		if(username1.equals(GUEST_NAME))
+		{
+			this.playerOne = new Player(GUEST_NAME);
+			this.playerOne.setColor(PLAYER_ONE_COLOR);
+		}
+		else
+		{
+			//Get the player one from History.
+			Player player = UIWindow.getHistoryInstance().getPlayer(username1);
+			if(player == null)
+			{
+				throw new IllegalArgumentException("username1 is invalid");
+			}
+			this.playerOne = player;
+		}
+		
+		if(timeLimit < 0)
+		{
+			throw new IllegalArgumentException("timeLimit is below 0");
+		}
+		
+		this.playerTwo = new AI(skillLevel);
+		
+		this.timeLimit = this.initialTimeLimit = timeLimit;
+		
+		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
+		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
-
-		isGameOver = false;
+		
+		this.isGameOver = false;
 		
 	}
-	public Game(string username1, string username2, boolean isPlayerOneTurn, int timeLimit)
+	
+	public Game(String username1, String username2, boolean isPlayerOneTurn, int timeLimit)
 	{
 		// Call to History, find players, assign references to the existing
 		// Player objects so updates to stats will be automatically reflected
 		// in History 
 		// playerOne = new Player(username1);
 		// playerTwo = new PLayer(username2); 
-
+		
+		if(username1 == null)
+			throw new IllegalArgumentException("username1 is null");
+		
+		if(timeLimit < 0)
+		{
+			throw new IllegalArgumentException("timeLimit is below 0");
+		}
+		
+		if(username1.equals(GUEST_NAME))
+		{
+			this.playerOne = new Player(GUEST_NAME);
+		}
+		else
+		{
+			//Get the player one from History.
+			Player player = UIWindow.getHistoryInstance().getPlayer(username1);
+			if(player == null)
+			{
+				throw new IllegalArgumentException("username1 is invalid");
+			}
+			this.playerOne = player;
+		}
+		
+		if(username2 == null)
+			throw new IllegalArgumentException("username2 is null");
+		
+		if(username2.equals(GUEST_NAME))
+		{
+			this.playerTwo = new Player(GUEST_NAME);
+		}
+		else
+		{
+			//Get the player one from History.
+			Player player = UIWindow.getHistoryInstance().getPlayer(username2);
+			if(player == null)
+			{
+				throw new IllegalArgumentException("username2 is invalid");
+			}
+			this.playerTwo = player;
+		}
+		
 		this.isPlayerOneTurn = isPlayerOneTurn;
 
-		this.timeLimit = timeLimit; 
+		this.timeLimit = this.initialTimeLimit = timeLimit;
 		
-		gameTimer = new Timer(); // call with delay (timeLimit)
-
-		isGameOver = false;
+		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
+		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
+		
+		this.isGameOver = false;
 		
 	}
 
@@ -68,9 +141,9 @@ public class Game implements ActionListener
 	}	
 				
 	
-	public boolean Move(Location location)
+	public boolean move(Location location)
 	{
-		if(!isMoveValid)
+		if(!this.isMoveValid(location))
 			return false; // error
 		else
 		{
@@ -82,7 +155,7 @@ public class Game implements ActionListener
 				isPlayerOneTurn = false;
 				
 				if(wasPointScored())
-					playerOne.increasePoint();
+					playerOne.increaseScore();
 				
 			}
 			else
@@ -92,7 +165,7 @@ public class Game implements ActionListener
 				isPlayerOneTurn = true;
 				
 				if(wasPointScored());
-					playerTwo.increasePoint(); 
+					playerTwo.increaseScore();
 
 			}
 
@@ -105,8 +178,11 @@ public class Game implements ActionListener
 
 	public String getWinner()
 	{
-		if(!isGameOver)
+		if(!this.isGameOver)
+		{
 			//error
+			return null;
+		}
 		else
 		{
 			if(playerOne.getScore() > playerTwo.getScore())
@@ -130,30 +206,59 @@ public class Game implements ActionListener
 	public boolean isMoveValid(Location location)
 	{
 		//return(Location exists in board AND Location is  NOT taken by another stone);
+		return false;
 	}
+	
 	public boolean isGridFull()
 	{
 		// UI
+		return false;
 	}
 	public boolean wasPointScored()
 	{
 		// UI
+		return false;
 	}
 
 	public Player getPlayerOne()
 	{
-		return playerOne;
+		return this.playerOne;
 	}
 	public Player getPlayerTwo()
 	{
-		return playerTwo; 
+		return this.playerTwo; 
 	}
 	public boolean getIsPlayerOnesTurn()
 	{
-		 return isPlayerOnesTurn;
+		 return this.isPlayerOneTurn;
 	}
 	public boolean getIsGameOver()
 	{
-	 	 return isGameOver;
+	 	 return this.isGameOver;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		String command = e.getActionCommand();
+		
+		if(command == null)
+		{
+			throw new NullPointerException("action command is null");
+		}
+		
+		if(command.equals(TIMER_EVENT_COMMAND))
+		{
+			//Do timer second event.
+			timeLimit--;
+			
+			if(timeLimit <= 0)
+			{
+				//Game over.
+				
+			}
+		}
+		
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }
