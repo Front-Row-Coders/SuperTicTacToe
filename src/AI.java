@@ -26,41 +26,40 @@ public class AI extends Player
 	
 	public void makeMove()
 	{
+		Location moveLoc = null;
 		switch(this.skillLevel)
 		{
 			case Easy: 
-				this.determineNextEasyMove();
+				moveLoc = this.determineNextEasyMove();
 			break;
 			case Medium: 
-				this.determineNextMediumMove();
+				moveLoc = this.determineNextMediumMove();
 			break;
 			case Hard: 
-				this.determineNextHardMove();
+				moveLoc = this.determineNextHardMove();
 			break;
 			default:
 				System.err.println("Invalid SkillLevel entered in AI.");
 		}
+		
+		this.makeMove(moveLoc);
 	}
 	
-	@Override
-	public boolean makeMove(Location loc)
-	{
-		this.makeMove();
-		return true;
-	}
-	
-	private void determineNextEasyMove()
+	private Location determineNextEasyMove()
 	{
 		//Placeholder for easy moves.
+		return null;
 	}
 	
-	private void determineNextMediumMove()
+	private Location determineNextMediumMove()
 	{
 		//Placeholder for easy moves.
+		return null;
 	}
 	
-	private void determineNextHardMove()
+	private Location determineNextHardMove()
 	{
 		//Placeholder for easy moves.
+		return null;
 	}
 }
