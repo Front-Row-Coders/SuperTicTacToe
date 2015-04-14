@@ -15,7 +15,7 @@ public class History
 {
 	private final List<Player> history;
 	
-	public static final String STORAGE_FILE = "Players.txt";
+	public static final String STORAGE_FILE = "players.txt";
 	
 	/**
 	 * Creates a History object.
@@ -25,21 +25,32 @@ public class History
 		history = new ArrayList<>();
 	}
 	
-	public void displayHistory(Player player) throws Exception
+	public void displayHistory(Player player)
 	{
 		if (player == null)
-			throw new Exception("Player argument is null");
+		{
+			throw new IllegalArgumentException("Player argument is null");
+		}
 		
 		//create history panel
+		
 	}
 	
 	public void loadHistory()
 	{
-
 		history.clear();
+		
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader(STORAGE_FILE));
+			File file = new File(STORAGE_FILE);
+ 
+			//If file doesn't exist, then create it
+			if (!file.exists()) 
+			{
+				file.createNewFile();
+			}
+			
+			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			while ((line = reader.readLine()) != null)
 			{
@@ -51,11 +62,11 @@ public class History
 				Player player = new Player(username,wins, losses,ties);
 				history.add(player);
 			}
-				reader.close();
+			reader.close();
 		}
 		catch (Exception e)
 		{
-			System.err.format("Exception occurred trying to read '%s'.", STORAGE_FILE);
+			System.err.format("Exception occurred trying to read '%s'.\n", STORAGE_FILE);
 			e.printStackTrace();
 		}
 	}
@@ -63,11 +74,12 @@ public class History
 	public void saveHistory() throws Exception
 	{
 		if(history.isEmpty())
-			throw new Exception ("List is empty");
+		{
+			return;
+		}
+		
 		try
 		{
-			Player content;
- 
 			File file = new File(STORAGE_FILE);
  
 			// if file doesn't exist, then create it
@@ -89,7 +101,8 @@ public class History
 				bw.println(player.getTies());		
 			}
 			bw.close();
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			System.err.format("Exception occurred trying to write to '%s'.", STORAGE_FILE);
 			e.printStackTrace();
@@ -110,7 +123,7 @@ public class History
 	
 	public boolean createNewPlayer(String username)
 	{
-		if (getPlayer(username)!=null)
+		if (this.getPlayer(username)!=null)
 		{
 			return false;
 		}
