@@ -23,10 +23,12 @@ public class UIWindow implements WindowListener
 	
 	private UIWindow()
 	{
-		mainWindow = new JFrame("Super Tic-Tac-Toe");
+		this.mainWindow = new JFrame("Super Tic-Tac-Toe");
 		
-		mainWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		mainWindow.addWindowListener(this);
+		this.mainWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.mainWindow.addWindowListener(this);
+		
+		this.currentPanel = (JPanel)this.mainWindow.getContentPane();
 		
 		this.history = new History();
 	}
@@ -46,11 +48,39 @@ public class UIWindow implements WindowListener
 		return getInstance().history;
 	}
 	
+	public void setCurrentPanel(JPanel panel)
+	{
+		if(panel == null)
+		{
+			throw new IllegalArgumentException("panel is null");
+		}
+		
+		this.currentPanel = panel;
+		
+		this.mainWindow.setContentPane(this.currentPanel);
+		this.mainWindow.pack();
+	}
+	
+	public JPanel getCurrentPanel()
+	{
+		return this.currentPanel;
+	}
+	
 	public void show()
 	{
 		if(this.mainWindow != null && !this.mainWindow.isVisible())
 		{
 			this.mainWindow.setVisible(true);
+		}
+	}
+	
+	public void close()
+	{
+		if(this.mainWindow != null && this.mainWindow.isVisible())
+		{
+			//Acts like the red X (close) button on the form was clicked.
+			this.mainWindow.getToolkit().getSystemEventQueue().postEvent(
+					new WindowEvent(this.mainWindow, WindowEvent.WINDOW_CLOSING));
 		}
 	}
 	
@@ -66,21 +96,39 @@ public class UIWindow implements WindowListener
 	@Override
 	public void windowOpened(WindowEvent e)
 	{
-		//Not Used Currently.
+		//Load initial menu panel.
+		this.setCurrentPanel(new MenuPanel());
+		
+		//Call history load function.
+		try
+		{
+			this.history.loadHistory();
+		}
+		catch (Exception err)
+		{
+			System.err.println("Exception caught while loading history: "+err);
+		}
+		
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e)
 	{
-		//Call history save function.
-		
-		this.mainWindow.setVisible(false);
+		this.mainWindow.dispose();
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e)
 	{
-		//Not Used Currently.
+		//Call history save function.
+		try
+		{
+			this.history.saveHistory();
+		}
+		catch (Exception err)
+		{
+			System.err.println("Exceptionc caught while saving history: "+err);
+		}
 	}
 
 	@Override
