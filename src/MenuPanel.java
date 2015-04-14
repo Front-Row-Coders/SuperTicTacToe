@@ -1,3 +1,7 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,9 +12,12 @@
  *
  * @author Jonathan
  */
-public class MenuPanel extends UIPanel
+public class MenuPanel extends UIPanel implements ActionListener
 {
+	private static final long serialVersionUID = 1L;
 
+	private static final String EXIT_COMMAND = "exit";
+	
 	/**
 	 * Creates new form MenuPanel
 	 */
@@ -31,28 +38,46 @@ public class MenuPanel extends UIPanel
 
         jButton1 = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Exit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jButton1)
-                .addContainerGap(172, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(299, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(266, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jButton1.setActionCommand(EXIT_COMMAND);
+        jButton1.addActionListener(this);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		String command = e.getActionCommand();
+		if(command == null)
+		{
+			return;
+		}
+		
+		if(command.equals(EXIT_COMMAND))
+		{
+			UIWindow.getInstance().close();
+		}
+	}
 }
