@@ -48,6 +48,7 @@ public class AI extends Player
 	private Location determineNextEasyMove()
 	{
 		//Placeholder for easy moves.
+		//Eloy was here and Ngan, and Alice, and Michael.
 		return null;
 	}
 	
