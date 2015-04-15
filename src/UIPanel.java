@@ -1,5 +1,3 @@
-package SuperTicTacToe.src;
-
 
 import javax.swing.JPanel;
 

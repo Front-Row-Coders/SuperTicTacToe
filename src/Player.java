@@ -1,5 +1,3 @@
-package SuperTicTacToe.src;
-
 
 import java.awt.Color;
 
