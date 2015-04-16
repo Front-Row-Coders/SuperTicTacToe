@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package SuperTicTacToe.src;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author alice
  */
-public class RegisterFormPanel extends javax.swing.JPanel {
+public class RegisterFormPanel extends javax.swing.JPanel
+{
+	private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form RegisterFormPanel
@@ -25,7 +23,8 @@ public class RegisterFormPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         returnButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -36,15 +35,19 @@ public class RegisterFormPanel extends javax.swing.JPanel {
         errorLabel = new javax.swing.JLabel();
 
         returnButton.setText("Return");
-        returnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        returnButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 returnButtonActionPerformed(evt);
             }
         });
 
         exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 exitButtonActionPerformed(evt);
             }
         });
@@ -54,49 +57,48 @@ public class RegisterFormPanel extends javax.swing.JPanel {
 
         usernameLabel.setText("Enter a username:");
 
-        usernameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        usernameTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 usernameTxtFieldActionPerformed(evt);
             }
         });
 
         submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        submitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 submitButtonActionPerformed(evt);
             }
         });
-
-        errorLabel.setText("That username is taken. Please enter a new username.");
-        errorLabel.setVisible(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(titleLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(errorLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(usernameLabel)
-                                .addGap(12, 12, 12)
-                                .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(submitButton)))
-                        .addGap(0, 45, Short.MAX_VALUE))))
+                .addGap(74, 74, 74)
+                .addComponent(titleLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(returnButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exitButton)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(usernameLabel)
+                        .addGap(12, 12, 12)
+                        .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(submitButton)))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,8 +111,8 @@ public class RegisterFormPanel extends javax.swing.JPanel {
                     .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitButton))
                 .addGap(48, 48, 48)
-                .addComponent(errorLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(returnButton)
                     .addComponent(exitButton)))
@@ -118,16 +120,42 @@ public class RegisterFormPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTxtFieldActionPerformed
-        // TODO add your handling code here:
+		this.registerUser();
     }//GEN-LAST:event_usernameTxtFieldActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-        
-        // IF username is taken
-        // errorLabel.setVisible(true);
+        this.registerUser();
     }//GEN-LAST:event_submitButtonActionPerformed
 
+	private void registerUser()
+	{
+		String username = usernameTxtField.getText();
+		errorLabel.setText("");
+		if(username == null || username.length() <= 0)
+		{
+			errorLabel.setText("No username entered.");
+			return;
+		}
+		
+		History history = UIWindow.getHistoryInstance();
+		if(history.createNewPlayer(username) != false)
+		{
+			JOptionPane.showMessageDialog(null, "Successfully created your player account \""+username+"\"");
+			UIWindow.getInstance().setCurrentPanel(new MenuPanel());
+		}
+		else
+		{
+			if(username.equals(Game.AI_NAME) || username.equals(Game.GUEST_NAME))
+			{
+				errorLabel.setText("\""+Game.AI_NAME +"\" and \""+Game.GUEST_NAME +"\" are reserved.");
+			}
+			else
+			{
+				errorLabel.setText("The username is already taken.");
+			}
+		}
+	}
+	
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         UIWindow.getInstance().setCurrentPanel(new MenuPanel());
     }//GEN-LAST:event_returnButtonActionPerformed
