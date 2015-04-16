@@ -91,23 +91,23 @@ public class AI extends Player
              for(i=1; i<grid[0].length-1; i++)
              {
                  if(grid[0][i]==null)
-                     return grid[0][i].getLocation();
+                     return grid[0][i].getStoneLocation();
              }
 
              // Check left and right sides in between top and bottom sides
              for(i=1; i<grid.length-1; i++)
              {
                  if(grid[i][0]==null)
-                     return grid[i][0].getLocation();
+                     return grid[i][0].getStoneLocation();
                  else if(grid[i][grid[i].length-1]==null)
-                     return grid[i][grid[i].length-1].getLocation();
+                     return grid[i][grid[i].length-1].getStoneLocation();
              }
 
              // Check non-corners of bottom side
              for(i=1; i<grid[grid.length-1].length-1; i++)
              {
                  if(grid[grid.length-1][i]==null)
-                     return grid[grid.length-1][i].getLocation();
+                     return grid[grid.length-1][i].getStoneLocation();
              }
 
              return null;
@@ -119,9 +119,9 @@ public class AI extends Player
             for(i=0; i<grid.length; i++)
             {
                 if(grid[i][0]==null)
-                    return grid[i][0].getLocation();
+                    return grid[i][0].getStoneLocation();
                 else if(grid[i][grid[i].length-1]==null)
-                    return grid[i][grid[i].length-1].getLocation();
+                    return grid[i][grid[i].length-1].getStoneLocation();
             }
             
             return null;
@@ -135,22 +135,22 @@ public class AI extends Player
             if(grid[0][0]!=null && grid[0][0].getColor()!=this.getColor())
             {
                 if(grid[grid.length-1][grid[0].length-1]==null)
-                    return grid[grid.length-1][grid[0].length-1].getLocation();
+                    return grid[grid.length-1][grid[0].length-1].getStoneLocation();
             }
             else if(grid[0][0]!=null && grid[0][grid[0].length-1].getColor()!=this.getColor())
             {
                 if(grid[grid.length-1][0]==null)
-                    return grid[grid.length-1][0].getLocation();
+                    return grid[grid.length-1][0].getStoneLocation();
             }
             else if(grid[grid.length-1][0]!=null && grid[grid.length-1][0].getColor()!=this.getColor())
             {
                 if(grid[0][grid[0].length-1]==null)
-                    return grid[0][grid[0].length-1].getLocation();
+                    return grid[0][grid[0].length-1].getStoneLocation();
             }
             else if(grid[grid.length-1][grid[0].length-1]!=null && grid[grid.length-1][grid[0].length-1].getColor()!=this.getColor())
             {
                 if(grid[0][0]==null)
-                    return grid[0][0].getLocation();
+                    return grid[0][0].getStoneLocation();
             }
             return null;
         }
