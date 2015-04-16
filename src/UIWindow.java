@@ -31,6 +31,9 @@ public class UIWindow implements WindowListener
 		this.currentPanel = (JPanel)this.mainWindow.getContentPane();
 		
 		this.history = new History();
+		
+		//Load initial menu panel.
+		this.setCurrentPanel(new MenuPanel());
 	}
 	
 	public static UIWindow getInstance()
@@ -48,7 +51,7 @@ public class UIWindow implements WindowListener
 		return getInstance().history;
 	}
 	
-	public void setCurrentPanel(JPanel panel)
+	public final void setCurrentPanel(JPanel panel)
 	{
 		if(panel == null)
 		{
@@ -95,10 +98,7 @@ public class UIWindow implements WindowListener
 
 	@Override
 	public void windowOpened(WindowEvent e)
-	{
-		//Load initial menu panel.
-		this.setCurrentPanel(new MenuPanel());
-		
+	{		
 		//Call history load function.
 		try
 		{
