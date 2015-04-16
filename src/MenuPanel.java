@@ -1,14 +1,5 @@
-package SuperTicTacToe.src;
 
-
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -16,10 +7,11 @@ import java.awt.event.ActionListener;
  */
 public class MenuPanel extends UIPanel implements ActionListener
 {
+
 	private static final long serialVersionUID = 1L;
 
 	private static final String EXIT_COMMAND = "exit";
-	
+
 	/**
 	 * Creates new form MenuPanel
 	 */
@@ -117,19 +109,19 @@ public class MenuPanel extends UIPanel implements ActionListener
     }// </editor-fold>//GEN-END:initComponents
 
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
-        // TODO add your handling code here:
+		UIWindow.getInstance().setCurrentPanel(new GameOptionsPanel());
     }//GEN-LAST:event_gameButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        UIWindow.getInstance().close();
+		UIWindow.getInstance().close();
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        UIWindow.getInstance().setCurrentPanel(new RegisterFormPanel());
+		UIWindow.getInstance().setCurrentPanel(new RegisterFormPanel());
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
-        UIWindow.getInstance().setCurrentPanel(new HistoryPanel());
+		UIWindow.getInstance().setCurrentPanel(new HistoryPanel());
     }//GEN-LAST:event_historyButtonActionPerformed
 
 
