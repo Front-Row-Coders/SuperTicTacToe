@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /****
 
@@ -65,13 +66,20 @@ import java.awt.Color;
 			throw new IllegalArgumentException("loc is null");
 		}
 		//Will create a Stone object that it will send to UI
- 		if(false){	/* Add code for Location */
- 			
- 			
- 			return true;
- 		}
- 		else
- 			return false;
+		Stone stone = new Stone(this.getColor(), loc);
+		
+		JPanel panel = UIWindow.getInstance().getCurrentPanel();
+		GridPanel gamePanel;
+		if(panel instanceof GridPanel)
+		{
+			gamePanel = (GridPanel)panel;
+		}
+		else
+		{
+			throw new IllegalStateException("Current panel is not an instance of GridPanel");
+		}
+		
+		 return gamePanel.placeStone(stone);
  	}
  	
  	public String getUsername()
