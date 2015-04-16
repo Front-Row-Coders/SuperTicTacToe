@@ -44,6 +44,7 @@ public class MenuPanel extends UIPanel implements ActionListener
         historyButton = new javax.swing.JButton();
 
         exitButton.setText("Exit");
+        exitButton.addActionListener(this);
 
         titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         titleLabel.setText("Super Tic-Tac-Toe");
@@ -52,8 +53,10 @@ public class MenuPanel extends UIPanel implements ActionListener
         gameButton.addActionListener(this);
 
         accountButton.setText("Create Account");
+        accountButton.addActionListener(this);
 
         historyButton.setText("View History");
+        historyButton.addActionListener(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,11 +105,32 @@ public class MenuPanel extends UIPanel implements ActionListener
         if (evt.getSource() == gameButton) {
             MenuPanel.this.gameButtonActionPerformed(evt);
         }
+        else if (evt.getSource() == exitButton) {
+            MenuPanel.this.exitButtonActionPerformed(evt);
+        }
+        else if (evt.getSource() == accountButton) {
+            MenuPanel.this.accountButtonActionPerformed(evt);
+        }
+        else if (evt.getSource() == historyButton) {
+            MenuPanel.this.historyButtonActionPerformed(evt);
+        }
     }// </editor-fold>//GEN-END:initComponents
 
     private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gameButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        UIWindow.getInstance().close();
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
+        UIWindow.getInstance().setCurrentPanel(new RegisterFormPanel());
+    }//GEN-LAST:event_accountButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+        UIWindow.getInstance().setCurrentPanel(new HistoryPanel());
+    }//GEN-LAST:event_historyButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -117,18 +141,18 @@ public class MenuPanel extends UIPanel implements ActionListener
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		String command = e.getActionCommand();
-		if(command == null)
-		{
-			return;
-		}
-		
-		if(command.equals(EXIT_COMMAND))
-		{
-			UIWindow.getInstance().close();
-		}
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e)
+//	{
+//		String command = e.getActionCommand();
+//		if(command == null)
+//		{
+//			return;
+//		}
+//		
+//		if(command.equals(EXIT_COMMAND))
+//		{
+//			UIWindow.getInstance().close();
+//		}
+//	}
 }

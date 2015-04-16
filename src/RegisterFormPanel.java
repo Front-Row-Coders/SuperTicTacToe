@@ -36,8 +36,18 @@ public class RegisterFormPanel extends javax.swing.JPanel {
         errorLabel = new javax.swing.JLabel();
 
         returnButton.setText("Return");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         titleLabel.setText("Create Account");
@@ -117,6 +127,14 @@ public class RegisterFormPanel extends javax.swing.JPanel {
         // IF username is taken
         // errorLabel.setVisible(true);
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        UIWindow.getInstance().setCurrentPanel(new MenuPanel());
+    }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        UIWindow.getInstance().close();
+    }//GEN-LAST:event_exitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

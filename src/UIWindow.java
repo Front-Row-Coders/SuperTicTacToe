@@ -127,7 +127,7 @@ public class UIWindow implements WindowListener
 		}
 		catch (Exception err)
 		{
-			System.err.println("Exceptionc caught while saving history: "+err);
+			System.err.println("Exception caught while saving history: "+err);
 		}
 	}
 
