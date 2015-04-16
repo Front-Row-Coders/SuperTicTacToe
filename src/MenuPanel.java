@@ -1,3 +1,5 @@
+package SuperTicTacToe.src;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,51 +35,124 @@ public class MenuPanel extends UIPanel implements ActionListener
 	 */
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
+        gameButton = new javax.swing.JButton();
+        accountButton = new javax.swing.JButton();
+        historyButton = new javax.swing.JButton();
 
-        jButton1.setText("Exit");
+        exitButton.setText("Exit");
+        exitButton.addActionListener(this);
+
+        titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        titleLabel.setText("Super Tic-Tac-Toe");
+
+        gameButton.setText("Start Game");
+        gameButton.addActionListener(this);
+
+        accountButton.setText("Create Account");
+        accountButton.addActionListener(this);
+
+        historyButton.setText("View History");
+        historyButton.addActionListener(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(299, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(titleLabel)
+                        .addGap(55, 55, 55))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(151, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(accountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(historyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGap(40, 40, 40)
+                .addComponent(titleLabel)
+                .addGap(48, 48, 48)
+                .addComponent(gameButton)
+                .addGap(18, 18, 18)
+                .addComponent(accountButton)
+                .addGap(18, 18, 18)
+                .addComponent(historyButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(exitButton)
                 .addContainerGap())
         );
 
-        jButton1.setActionCommand(EXIT_COMMAND);
-        jButton1.addActionListener(this);
+        exitButton.setActionCommand(EXIT_COMMAND);
+        exitButton.addActionListener(this);
+    }
+
+    // Code for dispatching events from components to event handlers.
+
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        if (evt.getSource() == gameButton) {
+            MenuPanel.this.gameButtonActionPerformed(evt);
+        }
+        else if (evt.getSource() == exitButton) {
+            MenuPanel.this.exitButtonActionPerformed(evt);
+        }
+        else if (evt.getSource() == accountButton) {
+            MenuPanel.this.accountButtonActionPerformed(evt);
+        }
+        else if (evt.getSource() == historyButton) {
+            MenuPanel.this.historyButtonActionPerformed(evt);
+        }
     }// </editor-fold>//GEN-END:initComponents
+
+    private void gameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gameButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        UIWindow.getInstance().close();
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
+        UIWindow.getInstance().setCurrentPanel(new RegisterFormPanel());
+    }//GEN-LAST:event_accountButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+        UIWindow.getInstance().setCurrentPanel(new HistoryPanel());
+    }//GEN-LAST:event_historyButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton accountButton;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JButton gameButton;
+    private javax.swing.JButton historyButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		String command = e.getActionCommand();
-		if(command == null)
-		{
-			return;
-		}
-		
-		if(command.equals(EXIT_COMMAND))
-		{
-			UIWindow.getInstance().close();
-		}
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e)
+//	{
+//		String command = e.getActionCommand();
+//		if(command == null)
+//		{
+//			return;
+//		}
+//		
+//		if(command.equals(EXIT_COMMAND))
+//		{
+//			UIWindow.getInstance().close();
+//		}
+//	}
 }
