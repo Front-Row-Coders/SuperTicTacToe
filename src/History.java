@@ -123,6 +123,14 @@ public class History
 	
 	public boolean createNewPlayer(String username)
 	{
+		if(username.equals(Game.AI_NAME))
+		{
+			return false;
+		}
+		if(username.equals(Game.GUEST_NAME))
+		{
+			return false;
+		}
 		if (this.getPlayer(username)!=null)
 		{
 			return false;
