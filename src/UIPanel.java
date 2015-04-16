@@ -2,11 +2,12 @@
 import javax.swing.JPanel;
 
 /**
- *
+ * Parent class for all UI Panels.
  * @author Jonathan
  */
 public class UIPanel extends JPanel
 {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Creates new form UIPanel
