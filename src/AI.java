@@ -3,6 +3,7 @@
  * @author Jonathan
  * @version 1.0
  */
+import java.awt.Color;
 public class AI extends Player
 {
 	private final SkillLevel skillLevel;
@@ -173,6 +174,13 @@ public class AI extends Player
         }
         private Location checkFork(Stone[][] grid)
         {
+            Location nextMove = null;
+            if((nextMove = checkFork(grid, this.getColor()))!=null)
+                return nextMove;
+            return null;
+        }
+        private Location checkFork(Stone[][] grid, Color playerColor)
+        {
             /* For efficiency, can check if this is at least the (something)th
                turn before checking any positions, since at least some turns would
                need to have been taken before fork could be possible. 
@@ -193,8 +201,8 @@ public class AI extends Player
                     if(gridCopy[i][j]==null)
                     {
                         // Place stone on grid copy to check if this creates a fork
-                        gridCopy[i][j] = new Stone(this.getColor(), new Location(i,j));
-                        /* if(there are at least 2 3-in-a-rows) // was a fork created
+                        gridCopy[i][j] = new Stone(playerColor, new Location(i,j));
+                        /* if(there are at least 2 3-in-a-rows for that color) // was a fork created
                          {    // Return the position that creates a fork
                               return grid[i][j].getLocation();
                          }
@@ -208,9 +216,17 @@ public class AI extends Player
         }
         private Location checkBlockOpponentFork(Stone[][] grid)
         {
-            // Check if opponent can fork: modify checkFork to take color argument?
-            // if(opponent can fork)
-            //      block the fork
+            // Check if opponent can fork using checkFork with opponent color
+            Location nextMove = null;
+            Color opponentColor;
+            
+            if(this.getColor()==Game.PLAYER_ONE_COLOR)
+                opponentColor = Game.PLAYER_TWO_COLOR;
+            else
+                opponentColor = Game.PLAYER_ONE_COLOR;
+            
+            if((nextMove = checkFork(grid, opponentColor))!=null)
+                return nextMove;
             return null;
         }
         
