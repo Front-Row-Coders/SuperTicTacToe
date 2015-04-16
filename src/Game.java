@@ -28,9 +28,9 @@ public class Game implements ActionListener
 	
 	public Game()
 	{
-		this(GUEST_NAME, DEFAULT_AI_SKILL_LEVEL, DEFAULT_TIME_LIMIT, DEFAULT_PLAYER_TURN);
+		this(GUEST_NAME, DEFAULT_AI_SKILL_LEVEL, DEFAULT_PLAYER_TURN);
 	}
-	public Game(String username1, SkillLevel skillLevel, int timeLimit, boolean isPlayerOneTurn)
+	public Game(String username1, SkillLevel skillLevel, boolean isPlayerOneTurn)
 	{
 		// Call to History, find players, assign references to the existing
 		// Player objects so updates to stats will be automatically reflected
@@ -55,14 +55,16 @@ public class Game implements ActionListener
 			this.playerOne = player;
 		}
 		
+		/*
 		if(timeLimit < 0)
 		{
 			throw new IllegalArgumentException("timeLimit is below 0");
 		}
+		*/
 		
 		this.playerTwo = new AI(skillLevel);
 		
-		this.timeLimit = this.initialTimeLimit = timeLimit;
+		this.timeLimit = this.initialTimeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
@@ -73,7 +75,7 @@ public class Game implements ActionListener
 		
 	}
 	
-	public Game(String username1, String username2, boolean isPlayerOneTurn, int timeLimit)
+	public Game(String username1, String username2, boolean isPlayerOneTurn)
 	{
 		// Call to History, find players, assign references to the existing
 		// Player objects so updates to stats will be automatically reflected
@@ -84,10 +86,12 @@ public class Game implements ActionListener
 		if(username1 == null)
 			throw new IllegalArgumentException("username1 is null");
 		
+		/*
 		if(timeLimit < 0)
 		{
 			throw new IllegalArgumentException("timeLimit is below 0");
 		}
+		*/
 		
 		if(username1.equals(GUEST_NAME))
 		{
@@ -124,7 +128,7 @@ public class Game implements ActionListener
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
 
-		this.timeLimit = this.initialTimeLimit = timeLimit;
+		this.timeLimit = this.initialTimeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
