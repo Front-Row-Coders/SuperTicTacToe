@@ -79,7 +79,7 @@ import javax.swing.JPanel;
 			throw new IllegalStateException("Current panel is not an instance of GridPanel");
 		}
 		
-		 return gamePanel.placeStone(stone);
+		return gamePanel.placeStone(stone);
  	}
  	
  	public String getUsername()
