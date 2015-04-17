@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
  *
  * @author alice
  */
-public class RegisterFormPanel extends javax.swing.JPanel
+public class RegisterFormPanel extends UIPanel
 {
 	private static final long serialVersionUID = 1L;
 
