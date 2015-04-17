@@ -1,15 +1,26 @@
 
 import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  *
  * @author Jonathan
  * @version 1.0
  */
-public class Stone
+public class Stone extends JButton
 {
+	private static final long serialVersionUID = 1L;
+	
 	private final Color color;
+	
+	public static final Color emptyStateColor = Color.GRAY;
+	
 	private final Location location;
+	
+	public Stone(Location location)
+	{
+		this(Stone.emptyStateColor, location);
+	}
 	
 	public Stone(Color color, Location location)
 	{
@@ -30,7 +41,12 @@ public class Stone
 		return this.color;
 	}
 	
-	public Location getLocation()
+	public boolean isEmptySpot()
+	{
+		return this.color.equals(Stone.emptyStateColor);
+	}
+	
+	public Location getStoneLocation()
 	{
 		return this.location;
 	}
