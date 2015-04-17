@@ -8,8 +8,9 @@
  *
  * @author alice
  */
-public class HistoryPanel extends javax.swing.JPanel
+public class HistoryPanel extends UIPanel
 {
+	private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form HistoryPanel
