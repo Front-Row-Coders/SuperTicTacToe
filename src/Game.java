@@ -37,7 +37,9 @@ public class Game implements ActionListener
 		// in History 
 		
 		if(username1 == null)
+		{
 			throw new IllegalArgumentException("username1 is null");
+		}
 		
 		if(username1.equals(GUEST_NAME))
 		{
@@ -84,7 +86,9 @@ public class Game implements ActionListener
 		// playerTwo = new PLayer(username2); 
 		
 		if(username1 == null)
+		{
 			throw new IllegalArgumentException("username1 is null");
+		}
 		
 		/*
 		if(timeLimit < 0)
@@ -109,7 +113,9 @@ public class Game implements ActionListener
 		}
 		
 		if(username2 == null)
+		{
 			throw new IllegalArgumentException("username2 is null");
+		}
 		
 		if(username2.equals(GUEST_NAME))
 		{
@@ -148,29 +154,38 @@ public class Game implements ActionListener
 	public boolean move(Location location)
 	{
 		if(!this.isMoveValid(location))
+		{
 			return false; // error
+		}
 		else
 		{
 			if(isPlayerOneTurn)
 			{
-
-				playerOne.makeMove(location);
+				if(!playerOne.makeMove(location))
+				{
+					System.err.println("Failed to make player one move");
+				}
 
 				isPlayerOneTurn = false;
 				
 				if(wasPointScored())
+				{
 					playerOne.increaseScore();
-				
+				}
 			}
 			else
 			{
-				playerTwo.makeMove(location);
+				if(!playerTwo.makeMove(location))
+				{
+					System.err.println("Failed to make player two move");
+				}
 
 				isPlayerOneTurn = true;
 				
-				if(wasPointScored());
+				if(wasPointScored())
+				{
 					playerTwo.increaseScore();
-
+				}
 			}
 
 			if(isGridFull())
@@ -210,6 +225,11 @@ public class Game implements ActionListener
 	public boolean isMoveValid(Location location)
 	{
 		//return(Location exists in board AND Location is  NOT taken by another stone);
+		GridPanel panel = this.getCurrentGridPanel();
+		if(panel != null)
+		{
+			return panel.isSpotOpen(location);
+		}
 		return false;
 	}
 	
@@ -239,6 +259,16 @@ public class Game implements ActionListener
 	public boolean getIsGameOver()
 	{
 	 	 return this.isGameOver;
+	}
+	
+	private GridPanel getCurrentGridPanel()
+	{
+		if(UIWindow.getInstance().getCurrentPanel() instanceof GridPanel)
+		{
+			return (GridPanel)UIWindow.getInstance().getCurrentPanel();
+		}
+		
+		return null;
 	}
 
 	@Override
