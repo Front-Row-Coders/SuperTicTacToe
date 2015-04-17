@@ -3,7 +3,7 @@
  *
  * @author alice
  */
-public class GameOptionsPanel extends javax.swing.JPanel
+public class GameOptionsPanel extends UIPanel
 {
 	private static final long serialVersionUID = 1L;
 
