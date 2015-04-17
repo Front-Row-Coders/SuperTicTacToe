@@ -1,11 +1,10 @@
 
-import java.awt.event.ActionListener;
 
 /**
  *
  * @author Jonathan
  */
-public class GridPanel extends javax.swing.JPanel implements ActionListener
+public class GridPanel extends UIPanel
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -107,54 +106,19 @@ public class GridPanel extends javax.swing.JPanel implements ActionListener
     private void initComponents()
     {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(this);
-
-        jButton2.setText("jButton2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(238, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(266, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
-    }
-
-    // Code for dispatching events from components to event handlers.
-
-    public void actionPerformed(java.awt.event.ActionEvent evt)
-    {
-        if (evt.getSource() == jButton1)
-        {
-            GridPanel.this.jButton1ActionPerformed(evt);
-        }
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
