@@ -10,13 +10,13 @@ public class AI extends Player
 	
 	public AI()
 	{
-		super(null);
+		super(Game.AI_NAME);
 		this.skillLevel = SkillLevel.Hard;
 	}
 	
 	public AI(SkillLevel level)
 	{
-		super(null);
+		super(Game.AI_NAME);
 		this.skillLevel = level;
 	}
 	
