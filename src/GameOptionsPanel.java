@@ -22,7 +22,8 @@ public class GameOptionsPanel extends UIPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         titleLabel = new javax.swing.JLabel();
@@ -46,8 +47,10 @@ public class GameOptionsPanel extends UIPanel
 
         buttonGroup1.add(singlePlayerRadioBtn);
         singlePlayerRadioBtn.setText("Single Player");
-        singlePlayerRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        singlePlayerRadioBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 singlePlayerRadioBtnActionPerformed(evt);
             }
         });
@@ -57,30 +60,38 @@ public class GameOptionsPanel extends UIPanel
 
         p1NameLabel.setText("Player 1 username:");
 
-        p1NameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1NameTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1NameTxtFieldActionPerformed(evt);
             }
         });
 
         p1GuestCheckBox.setText("Guest");
-        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1GuestCheckBoxActionPerformed(evt);
             }
         });
 
         p2NameLabel.setText("Player 2 username:");
 
-        p2NameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p2NameTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p2NameTxtFieldActionPerformed(evt);
             }
         });
 
         p2GuestCheckBox.setText("Guest");
-        p2GuestCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p2GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p2GuestCheckBoxActionPerformed(evt);
             }
         });
@@ -88,8 +99,10 @@ public class GameOptionsPanel extends UIPanel
         firstPlayerLabel.setText("First player:");
 
         p1RadioButton.setText("Player 1");
-        p1RadioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1RadioButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1RadioButtonActionPerformed(evt);
             }
         });
@@ -97,15 +110,31 @@ public class GameOptionsPanel extends UIPanel
         p2RadioButton.setText("Player 2");
 
         playButton.setText("Play Game");
+        playButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                playButtonActionPerformed(evt);
+            }
+        });
 
         returnButton.setText("Return");
-        returnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        returnButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 returnButtonActionPerformed(evt);
             }
         });
 
         exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -221,6 +250,20 @@ public class GameOptionsPanel extends UIPanel
     private void p1RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1RadioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_p1RadioButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitButtonActionPerformed
+    {//GEN-HEADEREND:event_exitButtonActionPerformed
+        UIWindow.getInstance().close();
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_playButtonActionPerformed
+    {//GEN-HEADEREND:event_playButtonActionPerformed
+        // TODO add your handling code here:
+		
+		
+		//For game board testing.
+		UIWindow.getInstance().setCurrentPanel(new GridPanel());
+    }//GEN-LAST:event_playButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
