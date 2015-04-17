@@ -1,5 +1,3 @@
-
-
 /**
  *
  * @author Jonathan
@@ -35,6 +33,23 @@ public class GridPanel extends UIPanel
 		{
 			throw new IllegalArgumentException("Game could not be created with set options");
 		}
+		
+		//Setup the gridSpots.
+		for(int row = 0; row < this.gridSpots.length; row++)
+		{
+			for(int col = 0; col < this.gridSpots.length; col++)
+			{
+				Stone gridSpot = this.gridSpots[row][col];
+				
+				if(gridSpot == null)
+				{
+					//Added empty stone.
+					this.gridSpots[row][col] = new Stone(new Location(row, col));
+				}
+			}
+		}
+		
+		this.displayStone(this.gridSpots[0][0]);
 	}
 	
 	/**
@@ -53,6 +68,23 @@ public class GridPanel extends UIPanel
 		{
 			throw new IllegalArgumentException("Game could not be created with set options");
 		}
+		
+		//Setup the gridSpots.
+		for(int row = 0; row < this.gridSpots.length; row++)
+		{
+			for(int col = 0; col < this.gridSpots.length; col++)
+			{
+				Stone gridSpot = this.gridSpots[row][col];
+				
+				if(gridSpot == null)
+				{
+					//Added empty stone.
+					this.gridSpots[row][col] = new Stone(new Location(row, col));
+				}
+			}
+		}
+		
+		this.displayStone(this.gridSpots[0][0]);
 	}
 
 	public Game getGame()
@@ -80,11 +112,12 @@ public class GridPanel extends UIPanel
 		int row = loc.getXPos();
 		int col = loc.getYPos();
 		
-		if(this.gridSpots[row][col] != null)
+		if(this.gridSpots[row][col] != null && !this.gridSpots[row][col].isEmptySpot())
 		{
 			return false;
 		}
 		
+		this.remove(this.gridSpots[row][col]);
 		this.gridSpots[row][col] = stone;
 		this.displayStone(stone);
 		return true;
@@ -94,7 +127,49 @@ public class GridPanel extends UIPanel
 	{
 		//TODO: Actually display the stone.
 		
+		this.add(stone);
+		
+		this.repaint();
 	}
+	
+	public boolean isSpotOpen(Location loc)
+	{
+		if(loc == null)
+		{
+			throw new IllegalArgumentException("loc is null");
+		}
+		
+		return (this.gridSpots[loc.getXPos()][loc.getYPos()] == null || 
+				this.gridSpots[loc.getXPos()][loc.getYPos()].isEmptySpot());
+	}
+
+	/*
+	@Override
+	public void repaint()
+	{
+		super.repaint(); //Call super version of repaint to paint regular components. 
+		
+		Graphics2D graphics = (Graphics2D)this.getGraphics();
+		
+		//Manually paint grid spots. 
+		for(int row = 0; row < this.gridSpots.length; row++)
+		{
+			for(int col = 0; col < this.gridSpots.length; col++)
+			{
+				Stone gridSpot = this.gridSpots[row][col];
+				
+				if(gridSpot == null)
+				{
+					//Added empty stone.
+					this.gridSpots[row][col] = new Stone(new Location(row, col));
+					gridSpot = this.gridSpots[row][col];
+				}
+				
+				pa
+			}
+		}
+	}
+	*/
 	
 	/**
 	 * This method is called from within the constructor to initialize the form.
