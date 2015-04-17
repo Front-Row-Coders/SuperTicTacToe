@@ -1,29 +1,39 @@
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Jonathan
  * @version 1.0
  */
-public class Stone extends JButton
+public class Stone extends JButton implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	
+	public static final int DEFAULT_WIDTH = 36;
+	public static final int DEFAULT_HEIGHT = 36;
+	
 	private final Color color;
 	
-	public static final Color emptyStateColor = Color.GRAY;
+	public static final Color EMPTY_STATE_COLOR = Color.GRAY;
 	
 	private final Location location;
 	
 	public Stone(Location location)
 	{
-		this(Stone.emptyStateColor, location);
+		this(Stone.EMPTY_STATE_COLOR, location);
 	}
 	
 	public Stone(Color color, Location location)
 	{
+		super();
 		if(color == null)
 		{
 			throw new IllegalArgumentException("color is null");
@@ -34,6 +44,40 @@ public class Stone extends JButton
 		}
 		this.color = color;
 		this.location = location;
+		
+		//Perform necessary component setup.
+		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		
+		if(this.color.equals(EMPTY_STATE_COLOR))
+		{
+			setFocusable(true);
+			setEnabled(true);
+		}
+		else
+		{
+			setFocusable(false);
+			setEnabled(false);
+		}
+		
+		addActionListener(this);
+	}
+
+	@Override
+	public Dimension getPreferredSize()
+	{
+		return new Dimension(this.getWidth(), this.getHeight());
+	}
+
+	@Override
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		Graphics2D graphics = (Graphics2D)g;
+		
+		//Draw the color. 
+		graphics.setColor(this.getColor());
+		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
 	
 	public Color getColor()
@@ -43,11 +87,30 @@ public class Stone extends JButton
 	
 	public boolean isEmptySpot()
 	{
-		return this.color.equals(Stone.emptyStateColor);
+		return this.color.equals(Stone.EMPTY_STATE_COLOR);
 	}
 	
 	public Location getStoneLocation()
 	{
 		return this.location;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource() == this)
+		{
+			JPanel panel = UIWindow.getInstance().getCurrentPanel();
+			if(panel instanceof GridPanel)
+			{
+				GridPanel gridPanel = (GridPanel)panel;
+				
+				gridPanel.getGame().move(location);
+			}
+			else
+			{
+				throw new IllegalStateException("Invalid program state");
+			}
+		}
 	}
 }
