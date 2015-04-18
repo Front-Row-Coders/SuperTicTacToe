@@ -43,17 +43,20 @@ public class AI extends Player
 				System.err.println("Invalid SkillLevel entered in AI.");
 		}
 		
-		this.makeMove(moveLoc);
+		this.makeMove(moveLoc); // calls makeMove(Location loc) defined in Player
 	}
 	
 	private Location determineNextEasyMove()
 	{
-                 Stone[][] grid = {{null, null, null, null, null, null},
+                Stone [][] grid = new Stone[6][6];
+                /* Stone[][] grid = {{null, null, null, null, null, null},
                               {null, null, null, null, null, null},
                               {null, null, null, null, null, null},
                               {null, null, null, null, null, null},
                               {null, null, null, null, null, null},
-                              {null, null, null, null, null, null}};
+                              {null, null, null, null, null, null}}; */
+                
+                // Need to get current gridSpots
                  
                  Location nextMove = null;
                  if((nextMove = checkSides(grid))!=null)
@@ -188,10 +191,8 @@ public class AI extends Player
             
             int i, j;
             
-            /* Create copy of grid
-            Going to come back and check if this is necessary 
-            (i.e., does Java pass by reference/would grid be modified if I modified it here) */
-            Stone[][] gridCopy = grid;
+            Stone[][] gridCopy = new Stone[6][6];
+            System.arraycopy(grid, 0, gridCopy, 0, grid.length);
             
             // Check every empty position
             for(i=0; i<gridCopy.length; i++)
