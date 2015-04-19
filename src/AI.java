@@ -1,12 +1,21 @@
-/**
- *
- * @author Jonathan
- * @version 1.0
- */
 import java.awt.Color;
 
+/**
+ *This class extends the Player class to include decision-making
+ * capabilities for the AI in Single Player gameplay mode.
+ * 
+ * @author Jonathan
+ * @author Alice
+ * @version 1.0
+ */
 public class AI extends Player
 {
+        /**
+         * An enum indicating the mode of game play. Used to determine which
+         * decision-making function will be called to determine the next move
+         * of the AI.
+         * @see SkillLevel
+         */
 	private final SkillLevel skillLevel;
 	
         /**
