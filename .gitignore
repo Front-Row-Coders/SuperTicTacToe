@@ -1,0 +1,8 @@
+/build/
+build.xml
+*.mf
+nbproject/build-impl.xml
+*.properties
+nbproject/private/private.xml
+nbproject/project.xml
+players.txt
