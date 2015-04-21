@@ -20,11 +20,16 @@ public class Stone extends JButton implements ActionListener
 	public static final int DEFAULT_WIDTH = 36;
 	public static final int DEFAULT_HEIGHT = 36;
 	
-	private final Color color;
+	private Color color;
 	
 	public static final Color EMPTY_STATE_COLOR = Color.GRAY;
 	
-	private final Location location;
+	private Location location;
+	
+	public Stone()
+	{
+		this(Stone.EMPTY_STATE_COLOR, null);
+	}
 	
 	public Stone(Location location)
 	{
@@ -38,15 +43,18 @@ public class Stone extends JButton implements ActionListener
 		{
 			throw new IllegalArgumentException("color is null");
 		}
+		/*
 		if(location == null)
 		{
 			throw new IllegalArgumentException("location is null");
 		}
+		*/
 		this.color = color;
 		this.location = location;
 		
 		//Perform necessary component setup.
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		setText("");
 		
 		if(this.color.equals(EMPTY_STATE_COLOR))
 		{
@@ -80,6 +88,18 @@ public class Stone extends JButton implements ActionListener
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
 	
+	public void setColor(Color color)
+	{
+		if(color == null)
+		{
+			throw new IllegalArgumentException("color argument is null");
+		}
+		
+		this.color = color;
+		
+		this.repaint();
+	}
+	
 	public Color getColor()
 	{
 		return this.color;
@@ -88,6 +108,11 @@ public class Stone extends JButton implements ActionListener
 	public boolean isEmptySpot()
 	{
 		return this.color.equals(Stone.EMPTY_STATE_COLOR);
+	}
+	
+	public void setStoneLocation(Location loc)
+	{
+		this.location = loc;
 	}
 	
 	public Location getStoneLocation()
@@ -105,7 +130,7 @@ public class Stone extends JButton implements ActionListener
 			{
 				GridPanel gridPanel = (GridPanel)panel;
 				
-				gridPanel.getGame().move(location);
+				gridPanel.getGame().move(this.location);
 			}
 			else
 			{
