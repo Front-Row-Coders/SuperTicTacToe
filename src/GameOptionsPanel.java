@@ -262,7 +262,7 @@ public class GameOptionsPanel extends UIPanel
 		
 		
 		//For game board testing.
-		UIWindow.getInstance().setCurrentPanel(new GridPanel());
+		UIWindow.getInstance().setCurrentPanel(new GridPanel(Game.GUEST_NAME, Game.GUEST_NAME, false));
     }//GEN-LAST:event_playButtonActionPerformed
 
 

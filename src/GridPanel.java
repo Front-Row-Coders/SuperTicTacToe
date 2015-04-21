@@ -1,3 +1,5 @@
+
+
 /**
  *
  * @author Jonathan
@@ -35,21 +37,42 @@ public class GridPanel extends UIPanel
 		}
 		
 		//Setup the gridSpots.
-		for(int row = 0; row < this.gridSpots.length; row++)
-		{
-			for(int col = 0; col < this.gridSpots.length; col++)
-			{
-				Stone gridSpot = this.gridSpots[row][col];
-				
-				if(gridSpot == null)
-				{
-					//Added empty stone.
-					this.gridSpots[row][col] = new Stone(new Location(row, col));
-				}
-			}
-		}
-		
-		this.displayStone(this.gridSpots[0][0]);
+		this.gridSpots[0][0] = stone0;
+		this.gridSpots[0][1] = stone1;
+		this.gridSpots[0][2] = stone2;
+		this.gridSpots[0][3] = stone3;
+		this.gridSpots[0][4] = stone4;
+		this.gridSpots[0][5] = stone5;
+		this.gridSpots[1][0] = stone6;
+		this.gridSpots[1][1] = stone7;
+		this.gridSpots[1][2] = stone8;
+		this.gridSpots[1][3] = stone9;
+		this.gridSpots[1][4] = stone10;
+		this.gridSpots[1][5] = stone11;
+		this.gridSpots[2][0] = stone12;
+		this.gridSpots[2][1] = stone13;
+		this.gridSpots[2][2] = stone14;
+		this.gridSpots[2][3] = stone15;
+		this.gridSpots[2][4] = stone16;
+		this.gridSpots[2][5] = stone17;
+		this.gridSpots[3][0] = stone18;
+		this.gridSpots[3][1] = stone19;
+		this.gridSpots[3][2] = stone20;
+		this.gridSpots[3][3] = stone21;
+		this.gridSpots[3][4] = stone22;
+		this.gridSpots[3][5] = stone23;
+		this.gridSpots[4][0] = stone24;
+		this.gridSpots[4][1] = stone25;
+		this.gridSpots[4][2] = stone26;
+		this.gridSpots[4][3] = stone27;
+		this.gridSpots[4][4] = stone28;
+		this.gridSpots[4][5] = stone29;
+		this.gridSpots[5][0] = stone30;
+		this.gridSpots[5][1] = stone31;
+		this.gridSpots[5][2] = stone32;
+		this.gridSpots[5][3] = stone33;
+		this.gridSpots[5][4] = stone34;
+		this.gridSpots[5][5] = stone35;
 	}
 	
 	/**
@@ -70,21 +93,42 @@ public class GridPanel extends UIPanel
 		}
 		
 		//Setup the gridSpots.
-		for(int row = 0; row < this.gridSpots.length; row++)
-		{
-			for(int col = 0; col < this.gridSpots.length; col++)
-			{
-				Stone gridSpot = this.gridSpots[row][col];
-				
-				if(gridSpot == null)
-				{
-					//Added empty stone.
-					this.gridSpots[row][col] = new Stone(new Location(row, col));
-				}
-			}
-		}
-		
-		this.displayStone(this.gridSpots[0][0]);
+		this.gridSpots[0][0] = stone0;
+		this.gridSpots[0][1] = stone1;
+		this.gridSpots[0][2] = stone2;
+		this.gridSpots[0][3] = stone3;
+		this.gridSpots[0][4] = stone4;
+		this.gridSpots[0][5] = stone5;
+		this.gridSpots[1][0] = stone6;
+		this.gridSpots[1][1] = stone7;
+		this.gridSpots[1][2] = stone8;
+		this.gridSpots[1][3] = stone9;
+		this.gridSpots[1][4] = stone10;
+		this.gridSpots[1][5] = stone11;
+		this.gridSpots[2][0] = stone12;
+		this.gridSpots[2][1] = stone13;
+		this.gridSpots[2][2] = stone14;
+		this.gridSpots[2][3] = stone15;
+		this.gridSpots[2][4] = stone16;
+		this.gridSpots[2][5] = stone17;
+		this.gridSpots[3][0] = stone18;
+		this.gridSpots[3][1] = stone19;
+		this.gridSpots[3][2] = stone20;
+		this.gridSpots[3][3] = stone21;
+		this.gridSpots[3][4] = stone22;
+		this.gridSpots[3][5] = stone23;
+		this.gridSpots[4][0] = stone24;
+		this.gridSpots[4][1] = stone25;
+		this.gridSpots[4][2] = stone26;
+		this.gridSpots[4][3] = stone27;
+		this.gridSpots[4][4] = stone28;
+		this.gridSpots[4][5] = stone29;
+		this.gridSpots[5][0] = stone30;
+		this.gridSpots[5][1] = stone31;
+		this.gridSpots[5][2] = stone32;
+		this.gridSpots[5][3] = stone33;
+		this.gridSpots[5][4] = stone34;
+		this.gridSpots[5][5] = stone35;
 	}
 
 	public Game getGame()
@@ -101,6 +145,7 @@ public class GridPanel extends UIPanel
 		return copy;
 	}
 	
+	/*
 	public boolean placeStone(Stone stone)
 	{
 		if(stone == null)
@@ -117,7 +162,7 @@ public class GridPanel extends UIPanel
 			return false;
 		}
 		
-		this.remove(this.gridSpots[row][col]);
+		//this.remove(this.gridSpots[row][col]);
 		this.gridSpots[row][col] = stone;
 		this.displayStone(stone);
 		return true;
@@ -126,10 +171,36 @@ public class GridPanel extends UIPanel
 	private void displayStone(Stone stone)
 	{
 		//TODO: Actually display the stone.
-		
-		this.add(stone);
+		//this.add(stone);
 		
 		this.repaint();
+	}
+	*/
+	
+	public boolean isGridFull()
+	{
+		for(int row=0; row < this.gridSpots.length; row++)
+		{
+			for(int col=0; col < this.gridSpots[row].length; col++)
+			{
+				if(this.gridSpots[row][col].isEmptySpot())
+				{
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	public Stone getStone(Location loc)
+	{
+		if(loc == null)
+		{
+			throw new IllegalArgumentException("loc is null");
+		}
+		
+		return this.gridSpots[loc.getXPos()][loc.getYPos()];
 	}
 	
 	public boolean isSpotOpen(Location loc)
@@ -181,19 +252,288 @@ public class GridPanel extends UIPanel
     private void initComponents()
     {
 
+        stone1 = new Stone();
+        stone0 = new Stone();
+        stone2 = new Stone();
+        stone3 = new Stone();
+        stone4 = new Stone();
+        stone5 = new Stone();
+        stone6 = new Stone();
+        stone7 = new Stone();
+        stone8 = new Stone();
+        stone9 = new Stone();
+        stone10 = new Stone();
+        stone11 = new Stone();
+        stone12 = new Stone();
+        stone13 = new Stone();
+        stone14 = new Stone();
+        stone15 = new Stone();
+        stone16 = new Stone();
+        stone17 = new Stone();
+        stone18 = new Stone();
+        stone19 = new Stone();
+        stone20 = new Stone();
+        stone21 = new Stone();
+        stone22 = new Stone();
+        stone23 = new Stone();
+        stone24 = new Stone();
+        stone25 = new Stone();
+        stone26 = new Stone();
+        stone27 = new Stone();
+        stone28 = new Stone();
+        stone29 = new Stone();
+        stone30 = new Stone();
+        stone31 = new Stone();
+        stone32 = new Stone();
+        stone33 = new Stone();
+        stone34 = new Stone();
+        stone35 = new Stone();
+
+        stone1.setStoneLocation(new Location(0,1));
+
+        stone0.setStoneLocation(new Location(0,0));
+
+        stone2.setStoneLocation(new Location(0,2));
+
+        stone3.setStoneLocation(new Location(0,3));
+
+        stone4.setStoneLocation(new Location(0,4));
+
+        stone5.setStoneLocation(new Location(0,5));
+
+        stone6.setStoneLocation(new Location(1,0));
+
+        stone7.setStoneLocation(new Location(1,1));
+
+        stone8.setStoneLocation(new Location(1,2));
+
+        stone9.setStoneLocation(new Location(1,3));
+
+        stone10.setStoneLocation(new Location(1,4));
+
+        stone11.setStoneLocation(new Location(1,5));
+
+        stone12.setStoneLocation(new Location(2,0));
+
+        stone13.setStoneLocation(new Location(2,1));
+
+        stone14.setStoneLocation(new Location(2,2));
+
+        stone15.setStoneLocation(new Location(2,3));
+
+        stone16.setStoneLocation(new Location(2,4));
+
+        stone17.setStoneLocation(new Location(2,5));
+
+        stone18.setStoneLocation(new Location(3,0));
+
+        stone19.setStoneLocation(new Location(3,1));
+
+        stone20.setStoneLocation(new Location(3,2));
+
+        stone21.setStoneLocation(new Location(3,3));
+
+        stone22.setStoneLocation(new Location(3,4));
+
+        stone23.setStoneLocation(new Location(3,5));
+
+        stone24.setStoneLocation(new Location(4,0));
+
+        stone25.setStoneLocation(new Location(4,1));
+
+        stone26.setStoneLocation(new Location(4,2));
+
+        stone27.setStoneLocation(new Location(4,3));
+
+        stone28.setStoneLocation(new Location(4,4));
+
+        stone29.setStoneLocation(new Location(4,5));
+
+        stone30.setStoneLocation(new Location(5,0));
+
+        stone31.setStoneLocation(new Location(5,1));
+
+        stone32.setStoneLocation(new Location(5,2));
+
+        stone33.setStoneLocation(new Location(5,3));
+
+        stone34.setStoneLocation(new Location(5,4));
+
+        stone35.setStoneLocation(new Location(5,5));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stone0, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stone6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stone12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone16, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stone18, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone19, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone20, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone21, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone23, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stone24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone25, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone26, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone27, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone28, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stone30, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone31, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone32, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone33, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone34, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(stone35, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stone5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stone11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stone17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stone23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stone29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(stone35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stone31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Stone stone0;
+    private Stone stone1;
+    private Stone stone10;
+    private Stone stone11;
+    private Stone stone12;
+    private Stone stone13;
+    private Stone stone14;
+    private Stone stone15;
+    private Stone stone16;
+    private Stone stone17;
+    private Stone stone18;
+    private Stone stone19;
+    private Stone stone2;
+    private Stone stone20;
+    private Stone stone21;
+    private Stone stone22;
+    private Stone stone23;
+    private Stone stone24;
+    private Stone stone25;
+    private Stone stone26;
+    private Stone stone27;
+    private Stone stone28;
+    private Stone stone29;
+    private Stone stone3;
+    private Stone stone30;
+    private Stone stone31;
+    private Stone stone32;
+    private Stone stone33;
+    private Stone stone34;
+    private Stone stone35;
+    private Stone stone4;
+    private Stone stone5;
+    private Stone stone6;
+    private Stone stone7;
+    private Stone stone8;
+    private Stone stone9;
     // End of variables declaration//GEN-END:variables
 }

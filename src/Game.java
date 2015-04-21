@@ -65,11 +65,6 @@ public class Game implements ActionListener
 	private Timer gameTimer;
         
         /**
-         * ?
-         */
-	private final int initialTimeLimit;
-        
-        /**
          * The time limit to be enforced for this game.
          */
 	private int timeLimit;
@@ -165,7 +160,6 @@ public class Game implements ActionListener
 		if(username1.equals(GUEST_NAME))
 		{
 			this.playerOne = new Player(GUEST_NAME);
-			this.playerOne.setColor(PLAYER_ONE_COLOR);
 		}
 		else
 		{
@@ -178,16 +172,13 @@ public class Game implements ActionListener
 			this.playerOne = player;
 		}
 		
-		/*
-		if(timeLimit < 0)
-		{
-			throw new IllegalArgumentException("timeLimit is below 0");
-		}
-		*/
-		
 		this.playerTwo = new AI(skillLevel);
 		
-		this.timeLimit = this.initialTimeLimit = DEFAULT_TIME_LIMIT;
+		
+		this.playerOne.setColor(PLAYER_ONE_COLOR);
+		this.playerTwo.setColor(PLAYER_TWO_COLOR);
+		
+		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
@@ -196,6 +187,11 @@ public class Game implements ActionListener
 		
 		this.isGameOver = false;
 		
+		if(!this.isPlayerOneTurn)
+		{
+			((AI)this.playerTwo).makeMove();
+			this.isPlayerOneTurn = true;
+		}
 	}
 	
         /**
@@ -218,13 +214,6 @@ public class Game implements ActionListener
 			throw new IllegalArgumentException("username1 is null");
 		}
 		
-		/*
-		if(timeLimit < 0)
-		{
-			throw new IllegalArgumentException("timeLimit is below 0");
-		}
-		*/
-		
 		if(username1.equals(GUEST_NAME))
 		{
 			this.playerOne = new Player(GUEST_NAME);
@@ -238,6 +227,7 @@ public class Game implements ActionListener
 				throw new IllegalArgumentException("username1 is invalid");
 			}
 			this.playerOne = player;
+			
 		}
 		
 		if(username2 == null)
@@ -260,9 +250,12 @@ public class Game implements ActionListener
 			this.playerTwo = player;
 		}
 		
+		this.playerOne.setColor(PLAYER_ONE_COLOR);
+		this.playerTwo.setColor(PLAYER_TWO_COLOR);
+		
 		this.isPlayerOneTurn = isPlayerOneTurn;
 
-		this.timeLimit = this.initialTimeLimit = DEFAULT_TIME_LIMIT;
+		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
@@ -300,6 +293,13 @@ public class Game implements ActionListener
 				{
 					playerOne.increaseScore();
 				}
+				
+				//Incase of AI being player two.
+				if(this.playerTwo instanceof AI)
+				{
+					((AI)this.playerTwo).makeMove();
+					isPlayerOneTurn = true;
+				}
 			}
 			else
 			{
@@ -316,8 +316,10 @@ public class Game implements ActionListener
 				}
 			}
 
-			if(isGridFull())
-				gameOver();
+			if(this.isGridFull())
+			{
+				this.gameOver();
+			}
 
 			return true;
 		}
@@ -347,11 +349,15 @@ public class Game implements ActionListener
 		else
 			playerTwo.increaseLosses();
 		
-		gameOver();
+		this.gameOver();
 	}
 
 	public boolean isMoveValid(Location location)
 	{
+		if(this.isGameOver)
+		{
+			return false;
+		}
 		//return(Location exists in board AND Location is  NOT taken by another stone);
 		GridPanel panel = this.getCurrentGridPanel();
 		if(panel != null)
@@ -363,7 +369,11 @@ public class Game implements ActionListener
 	
 	public boolean isGridFull()
 	{
-		// UI
+		GridPanel panel = this.getCurrentGridPanel();
+		if(panel != null)
+		{
+			return panel.isGridFull();
+		}
 		return false;
 	}
 	public boolean wasPointScored()
@@ -417,7 +427,7 @@ public class Game implements ActionListener
 			if(timeLimit <= 0)
 			{
 				//Game over.
-				
+				this.gameOver();
 			}
 		}
 		
