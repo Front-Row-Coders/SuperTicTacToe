@@ -71,8 +71,8 @@ import javax.swing.JPanel;
  
         /**
          * Class constructor accepting values for the player username and
-         * game stats. Called from History to create Player object from
-         * stored values when that player logs in.
+         * game stats. Called from History to create Player object representing
+         * a player whose information is stored in a file.
          * @param username player ID of the player or reserved value
          * @param wins     number of games won in the player's history
          * @param losses   number of games lost in the player's history
@@ -138,81 +138,152 @@ import javax.swing.JPanel;
 		return true;
  	}
  
+        /**
+         * Clears the score attribute. Used to ensure this player has 0 points
+         * at the start of every game.
+         */
         public void clearScore()
 	{
  		this.score = 0;
  	}
         
+        /**
+         * Increments the wins attribute. Called from Game to update the number
+         * of wins this player has if, at the end of a game, Game determines
+         * that this player won.
+         */
         public void increaseWins()
 	{
  		this.wins += 1;
  	}
  	
+        /**
+         * Increments the losses attribute. Serves same purpose as
+         * increaseWins() if this player loses a game.
+         * @see #increaseWins() 
+         */
  	public void increaseLosses()
 	{
  		this.losses += 1;
  	}
  	
+        /**
+         * Increments the ties attribute. Serves same purpose as
+         * increaseWins() if this player ties in a game. This will be called
+         * for both players in the game if a tie occurs.
+         * @see #increaseWins() 
+         */
  	public void increaseTies()
 	{
  		this.ties += 1;
  	}
 	
+        /**
+         * Increments the score attribute. Called from Game during a game
+         * after any turn during which this player scores a point (see Game
+         * for details).
+         * @see Game#wasPointScored() 
+         */
 	public void increaseScore()
 	{
 		this.score += 1;
 	}
         
+        /**
+         * Getter function for color.
+         * @return this player's stone color
+         */
 	public Color getColor()
 	{
 		return this.color;
 	}
         
+        /**
+         * Getter function for username.
+         * @return this player's player ID
+         */
  	public String getUsername()
 	{
  		return this.username;
  	}
  	
+        /**
+         * Getter function for wins.
+         * @return the number of games this player has won
+         */
  	public int getWins()
 	{
  		return this.wins;
  	}
  	
+        /**
+         * Getter function for losses.
+         * @return the number of games this player has lost
+         */
  	public int getLosses()
 	{
  		return this.losses;
  	}
  	
+        /**
+         * Getter function for ties.
+         * @return the number of games this player has tied in
+         */
  	public int getTies()
 	{
  		return this.ties;
  	}
  	
+        /**
+         * Getter function for score.
+         * @return the number of points this player has. Should return zero
+         *         if a game is not in progress.
+         */
  	public int getScore()
 	{
  		return this.score;
  	}
  	
+        /**
+         * Setter function for color.
+         * @param color the color to set for this player's stones
+         */
         public void setColor(Color color)
 	{
 		this.color = color;
 	}
         
+        /**
+         * Setter function for wins.
+         * @param wins 
+         */
  	public void setWins(int wins)
 	{
  		this.wins = wins;
  	}
  	
+        /**
+         * Setter function for losses.
+         * @param losses 
+         */
  	public void setLosses(int losses)
 	{
  		this.losses = losses;
  	}
  	
+        /**
+         * Setter function for ties.
+         * @param ties 
+         */
  	public void setTies(int ties)
 	{
  		this.ties = ties;
  	}
  	
+        /**
+         * Setter function for score.
+         * @param score 
+         */
  	public void setScore(int score)
 	{
  		this.score = score;

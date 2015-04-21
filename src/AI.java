@@ -3,10 +3,29 @@ import java.awt.Color;
 /**
  *This class extends the Player class to include decision-making
  * capabilities for the AI in Single Player gameplay mode.
- * 
+ * Attributes:
+ *      skillLevel: SkillLevel
+ * Methods:
+ *      AI()
+ *      AI(SkillLevel)
+ *      checkBlockOpponent(Stone[][]): Location
+ *      checkBlockOpponentFork(Stone[][]): Location
+ *      checkCorners(Stone[][]): Location
+ *      checkFork(Stone[][]): Location
+ *      checkFork(Stone[][], Color): Location
+ *      checkOppositeCorner(Stone[][]): Location
+ *      checkSides(Stone[][]): Location  
+ *      checkScorePoint(Stone[][]): Location
+ *      determineNextEasyMove(Stone[][]): Location
+ *      determineNextHardMove(Stone[][]): Location
+ *      determineNextMediumMove(Stone[][]): Location
+ *      getCurrentGridPanel: GridPanel
+ *      getSkillLevel(): skillLevel
+ *      makeMove(): void
  * @author Jonathan
  * @author Alice
  * @version 1.0
+ * @see 
  */
 public class AI extends Player
 {
@@ -35,15 +54,6 @@ public class AI extends Player
 	{
 		super(Game.AI_NAME);
 		this.skillLevel = level;
-	}
-	
-        /**
-         *Getter method for skillLevel.
-         * @return the skill level
-         */
-        public SkillLevel getSkillLevel()
-	{
-		return this.skillLevel;
 	}
 	
         /**
@@ -419,5 +429,14 @@ public class AI extends Player
 		}
 
 		return null;
+	}
+        
+        /**
+         *Getter method for skillLevel.
+         * @return the skill level
+         */
+        public SkillLevel getSkillLevel()
+	{
+		return this.skillLevel;
 	}
 }
