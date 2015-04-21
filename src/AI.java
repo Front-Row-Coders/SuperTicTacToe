@@ -25,7 +25,7 @@ import java.awt.Color;
  * @author Jonathan
  * @author Alice
  * @version 1.0
- * @see 
+ * @see #super
  */
 public class AI extends Player
 {
