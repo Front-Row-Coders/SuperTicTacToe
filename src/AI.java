@@ -246,8 +246,31 @@ public class AI extends Player
 			}
 		}
                 
-                // Diagonals
-            
+                // Left to Right Diagonals
+            		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (i + 2 < size && j + 2 < size) {
+					if ((grid[i][j].getColor() == value.getColor())&& (grid[i][j].getColor() == grid[i + 1][j + 1].getColor())
+							&& (grid[i + 1][j + 1].getColor() == grid[i + 2][j + 2].getColor())) {
+						counter++;
+					}
+				}
+			}
+		}
+		
+                // Right to Left Diagonals
+		for (int i = 0; i < size; i++) {
+			for (int j = size-1; j > 0; j--) {
+				if (i + 2 < size && j - 2 > -1) {
+					if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j].getColor() == grid[i + 1][j - 1].getColor())
+							&& (grid[i + 1][j - 1].getColor() == grid[i + 2][j - 2].getColor())) {
+						counter++;
+					}
+				}
+			}
+		}
+		
+
             return counter;
         }
 	
