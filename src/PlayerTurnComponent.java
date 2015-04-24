@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import javax.swing.JComponent;
 
 /**
- *
+ * Component that display a specified color for displaying player's turns.
  * @author Jonathan
  * @version 1.0
  */
@@ -15,11 +15,18 @@ public class PlayerTurnComponent extends JComponent
 	
 	private Color turnColor = Color.WHITE;
 	
+	/**
+	 * Creates an instance of PlayerTurnComponent.
+	 */
 	public PlayerTurnComponent()
 	{
 		
 	}
 	
+	/**
+	 * Sets a new turn color.
+	 * @param color A non-null color to be set.
+	 */
 	public void setTurnColor(Color color)
 	{
 		if(color == null)
@@ -29,11 +36,19 @@ public class PlayerTurnComponent extends JComponent
 		this.turnColor = color;
 	}
 	
+	/**
+	 * Gets the current turn color.
+	 * @return The current turn color.
+	 */
 	public Color getTurnColor()
 	{
 		return this.turnColor;
 	}
 	
+	/**
+	 * Paints the component the specified color. (Called by Java UI)
+	 * @param g The graphics object.
+	 */
 	@Override
 	public void paintComponent(Graphics g)
 	{
