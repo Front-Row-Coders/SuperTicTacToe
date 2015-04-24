@@ -34,6 +34,7 @@ public class PlayerTurnComponent extends JComponent
 			throw new IllegalArgumentException("color argument is null");
 		}
 		this.turnColor = color;
+		this.repaint();
 	}
 	
 	/**
