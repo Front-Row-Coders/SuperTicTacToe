@@ -270,7 +270,12 @@ public class Game implements ActionListener
 		isGameOver = true;
 		//tells UI game is over
 		//send UI getWinner()
-	}	
+	}
+        
+        public Color getCurrentPlayersColor()
+	{
+		return (this.isPlayerOneTurn?PLAYER_ONE_COLOR:PLAYER_TWO_COLOR);
+	}
 				
 	/**
          * Method to handle player moves. Called from UI with the location of 
@@ -301,6 +306,7 @@ public class Game implements ActionListener
 
                                 // Set this to false once playerOne has completed the move.
 				isPlayerOneTurn = false; 
+                                this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
 				
                                 // If playerOne scored a point, update its score attribute.
 				if(wasPointScored())
@@ -321,7 +327,8 @@ public class Game implements ActionListener
                                             ((AI)this.playerTwo).makeMove();
                                             
                                             // Set this back to true once playerTwo has completed the move.
-                                            isPlayerOneTurn = true; 
+                                            isPlayerOneTurn = true;
+                                            this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
 
                                             // If playerTwo scored a point, update its score attribute.
                                             if(wasPointScored())
@@ -529,4 +536,3 @@ public class Game implements ActionListener
 		
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-}
