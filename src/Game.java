@@ -12,7 +12,6 @@ import javax.swing.Timer;
  *      DEFAULT_TIME_LIMIT: int
  *      gameTimer: Timer
  *      GUEST_NAME: String
- *      initialTimeLimit: int
  *      isGameOver: boolean
  *      isPlayerOneTurn: boolean
  *      PLAYER_ONE_COLOR: Color
@@ -141,7 +140,8 @@ public class Game implements ActionListener
          * either creating a new Player with default values if username1 has
          * the reserved value GUEST_NAME, or assigns a reference to the
          * Player object corresponding with username1 from the History list.
-         * It then initializes the class attributes with default values.
+         * It then initializes playerTwo as the AI and sets up the gameTimer.
+         * Finally, if it is the AI's turn, Game calls AI to make a move. 
          * @param username1 the player ID of the human player
          * @param skillLevel the skill level to set for the AI
          * @param isPlayerOneTurn flag indicating which player goes first
@@ -180,7 +180,7 @@ public class Game implements ActionListener
 		
 		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
-		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
+		this.gameTimer = new Timer(SECOND, this);
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
@@ -196,19 +196,15 @@ public class Game implements ActionListener
 	
         /**
          * Parametrized constructor to be called when the gameplay mode is
-         * Multiplayer.
+         * Multiplayer. Similar to the Single Player mode constructor, except
+         * that both players are human and will be initialized either with
+         * objects from History or as new Players if they play as guests.
          * @param username1 the player ID of the first human player
          * @param username2 the player ID of the second human player
          * @param isPlayerOneTurn flag indicating which player goes first
          */
 	public Game(String username1, String username2, boolean isPlayerOneTurn)
-	{
-		// Call to History, find players, assign references to the existing
-		// Player objects so updates to stats will be automatically reflected
-		// in History 
-		// playerOne = new Player(username1);
-		// playerTwo = new PLayer(username2); 
-		
+	{	
 		if(username1 == null)
 		{
 			throw new IllegalArgumentException("username1 is null");
@@ -254,7 +250,7 @@ public class Game implements ActionListener
 		this.playerTwo.setColor(PLAYER_TWO_COLOR);
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
-		
+
 		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
@@ -264,23 +260,40 @@ public class Game implements ActionListener
 		
 	}
 
+        /**
+         * Close-out method to be called when the game has ended. This method
+         * sets the flag isGameOver to true and notifies the UI to end the game
+         * and display the winner.
+         */
 	private void gameOver()
 	{
 		isGameOver = true;
 		//tells UI game is over
 		//send UI getWinner()
-	}	
-	
-	public Color getCurrentPlayersColor()
+	}
+        
+        public Color getCurrentPlayersColor()
 	{
 		return (this.isPlayerOneTurn?PLAYER_ONE_COLOR:PLAYER_TWO_COLOR);
 	}
-	
+				
+	/**
+         * Method to handle player moves. Called from UI with the location of 
+         * a game board position clicked by a human player. This method checks
+         * whether the move is valid; if it is, asks the appropriate player
+         * (based on the isPlayerOneTurn flag) to make the move; if one of the
+         * players is the AI, calls the AI to make a move; updates each
+         * player's score if necessary. If the grid becomes full, calls
+         * gameOver().
+         * @param location the position selected by a human player through the
+         *                 GridPanel
+         * @return a flag indicating whether the move has successfully been made
+         */
 	public boolean move(Location location)
 	{
 		if(!this.isMoveValid(location))
 		{
-			return false; // error
+			return false;
 		}
 		else
 		{
@@ -291,20 +304,39 @@ public class Game implements ActionListener
 					System.err.println("Failed to make player one move");
 				}
 
-				isPlayerOneTurn = false;
-				this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
+                                // Set this to false once playerOne has completed the move.
+				isPlayerOneTurn = false; 
+                                this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
 				
+                                // If playerOne scored a point, update its score attribute.
 				if(wasPointScored())
 				{
 					playerOne.increaseScore();
 				}
 				
-				//Incase of AI being player two.
-				if(this.playerTwo instanceof AI)
-				{
-					((AI)this.playerTwo).makeMove();
-					isPlayerOneTurn = true;
-				}
+                                // If the game board has become full as a result of the move, call gameOver().
+                                if(this.isGridFull())
+                                {
+                                    this.gameOver();
+                                }
+                                else // If there are still empty positions on the game board, check if the second player is the AI.
+                                {
+                                    // If the second player is the AI, call it to make a move.
+                                    if(this.playerTwo instanceof AI)
+                                    {
+                                            ((AI)this.playerTwo).makeMove();
+                                            
+                                            // Set this back to true once playerTwo has completed the move.
+                                            isPlayerOneTurn = true;
+                                            this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
+
+                                            // If playerTwo scored a point, update its score attribute.
+                                            if(wasPointScored())
+                                            {
+                                                playerTwo.increaseScore();
+                                            }
+                                    }
+                                }
 			}
 			else
 			{
@@ -313,15 +345,17 @@ public class Game implements ActionListener
 					System.err.println("Failed to make player two move");
 				}
 
+                                // Set this back to true once playerTwo has completed the move.
 				isPlayerOneTurn = true;
-				this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
 				
+                                // If playerTwo scored a point, update its score attribute.
 				if(wasPointScored())
 				{
 					playerTwo.increaseScore();
 				}
 			}
 
+                        // If the game board has become full as a result of the move, call gameOver().
 			if(this.isGridFull())
 			{
 				this.gameOver();
@@ -331,15 +365,25 @@ public class Game implements ActionListener
 		}
 	}
 
+        /**
+         * A method which compares the score attributes of the players to
+         * determine the winner of the game. Used by gameOver() to
+         * send the winner to be displayed by the UI.
+         * @return the player ID of the winner, or the empty string if there
+         *         has been a tie
+         */
 	public String getWinner()
 	{
+                
 		if(!this.isGameOver)
 		{
-			//error
+                        // If the game has not ended, return null to signify an error (there cannot be a winner yet).
 			return null;
 		}
-		else
+                else 
 		{
+                        // If the game is over, return the player ID of the winner, or the empty string if there was a tie.
+                    
 			if(playerOne.getScore() > playerTwo.getScore())
 				return playerOne.getUsername();
 			else if(playerOne.getScore() < playerTwo.getScore())
@@ -348,23 +392,37 @@ public class Game implements ActionListener
 				return "";
 		}
 	}
+        
+        /**
+         * A method to be called if a player forfeits the game. This method
+         * increases the losses attribute of the player who forfeited and
+         * calls gameOver().
+         */
 	public void forfeit()
 	{
 		if(isPlayerOneTurn)
-			playerOne.increaseLosses(); // update stats in player object in list
+			playerOne.increaseLosses();
 		else
 			playerTwo.increaseLosses();
 		
 		this.gameOver();
 	}
 
+        /**
+         * A method to determine if a move at the location parameter is valid.
+         * First checks if the game is over; if not, it gets the
+         * current GridPanel and asks it to check that the spot is open.
+         * @param location the location of the desired move
+         * @return a flag indicating whether the move at location can be made
+         * @see GridPanel#isSpotOpen(Location) 
+         */
 	public boolean isMoveValid(Location location)
 	{
 		if(this.isGameOver)
 		{
 			return false;
 		}
-		//return(Location exists in board AND Location is  NOT taken by another stone);
+
 		GridPanel panel = this.getCurrentGridPanel();
 		if(panel != null)
 		{
@@ -373,6 +431,12 @@ public class Game implements ActionListener
 		return false;
 	}
 	
+        /**
+         * A method to check if the game board is full (has no empty spots
+         * left). Gets the current GridPanel and asks it to check the grid.
+         * @return a flag indicating whether the grid is full
+         * @see GridPanel#isGridFull() 
+         */
 	public boolean isGridFull()
 	{
 		GridPanel panel = this.getCurrentGridPanel();
@@ -382,29 +446,62 @@ public class Game implements ActionListener
 		}
 		return false;
 	}
+        
+        /**
+         * A method to check if either player has scored a point. Used by the
+         * move() function to check if the appropriate player's score 
+         * attribute needs to be updated.
+         * @return a flag indicating whether a point has been scored
+         */
 	public boolean wasPointScored()
 	{
 		// UI
 		return false;
 	}
 
+        /**
+         * Getter function for playerOne.
+         * @return the object representing the first player
+         */
 	public Player getPlayerOne()
 	{
 		return this.playerOne;
 	}
+        
+        /**
+         * Getter function for playerTwo.
+         * @return the object representing the second player
+         */
 	public Player getPlayerTwo()
 	{
 		return this.playerTwo; 
 	}
-	public boolean getIsPlayerOnesTurn()
+        
+        /**
+         * Getter function for isPlayerOneTurn.
+         * @return a flag indicating whether it is playerOne's turn
+         */
+	public boolean getIsPlayerOneTurn()
 	{
 		 return this.isPlayerOneTurn;
 	}
+        
+        /**
+         * Getter function for isGameOver.
+         * @return a flag indicating whether the game is over
+         */
 	public boolean getIsGameOver()
 	{
 	 	 return this.isGameOver;
 	}
 	
+        /**
+         * Gets the current gridPanel. Allows isMoveValid() and isGridFull()
+         * to use GridPanel methods.
+         * @return the current gridPanel instance. If the current panel is not
+         *         an instance of gridPanel (that is, there is no game currently in
+         *         progress), returns null.
+         */
 	private GridPanel getCurrentGridPanel()
 	{
 		if(UIWindow.getInstance().getCurrentPanel() instanceof GridPanel)
@@ -436,9 +533,6 @@ public class Game implements ActionListener
 				this.gameOver();
 			}
 		}
-		else
-		{
-			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-		}
+		
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-}
