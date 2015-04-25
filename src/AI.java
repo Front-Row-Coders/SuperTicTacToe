@@ -356,13 +356,13 @@ public class AI extends Player
 		return null;
 	}
         
-        private int countThreeInARow(Stone[][] grid, int size, Stone value){
+        private int countThreeInARow(Stone[][] grid, Stone value){
             
             int counter = 0;
             
                 // Rows
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size - 2; j++) {
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length - 2; j++) {
                             if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j].getColor() == grid[i][j + 1].getColor())
 						&& (grid[i][j + 1].getColor() == grid[i][j + 2].getColor())) {
 					counter++;
@@ -372,8 +372,8 @@ public class AI extends Player
 		}
 
 		// Columns
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size - 2; j++) {
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length - 2; j++) {
 				if ((grid[j][i].getColor() == value.getColor()) && (grid[j][i].getColor() == grid[j + 1][i].getColor())
 						&& (grid[j + 1][i].getColor() == grid[j + 2][i].getColor())) {
 					counter++;
@@ -382,8 +382,31 @@ public class AI extends Player
 			}
 		}
                 
-                // Diagonals
-            
+                // Left to Right Diagonals
+            		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length; j++) {
+				if (i + 2 < grid.length && j + 2 < grid.length) {
+					if ((grid[i][j].getColor() == value.getColor())&& (grid[i][j].getColor() == grid[i + 1][j + 1].getColor())
+							&& (grid[i + 1][j + 1].getColor() == grid[i + 2][j + 2].getColor())) {
+						counter++;
+					}
+				}
+			}
+		}
+		
+                // Right to Left Diagonals
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = grid.length-1; j > 0; j--) {
+				if (i + 2 < grid.length && j - 2 > -1) {
+					if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j].getColor() == grid[i + 1][j - 1].getColor())
+							&& (grid[i + 1][j - 1].getColor() == grid[i + 2][j - 2].getColor())) {
+						counter++;
+					}
+				}
+			}
+		}
+		
+
             return counter;
         }
 	
