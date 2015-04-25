@@ -339,11 +339,12 @@ public class AI extends Player
 		{
 			for(j=0; j<gridCopy.length; j++)
 			{
-				if(gridCopy[i][j]==null)
+				if(gridCopy[i][j]==null) // Change to check for empty spot
 				{
 					// Place stone on grid copy to check if this creates a fork
-					gridCopy[i][j] = new Stone(playerColor, new Location(i,j));
-					/* if(there are at least 2 3-in-a-rows for that color) // was a fork created
+					gridCopy[i][j] = new Stone(playerColor, new Location(i,j)); // Change to paint stone
+					
+                                        /* if(countThreeInARow >= 2) // was a fork created
 					 {    // Return the position that creates a fork
 						  return grid[i][j].getLocation();
 					 }
