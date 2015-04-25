@@ -254,7 +254,7 @@ public class Game implements ActionListener
 		this.playerTwo.setColor(PLAYER_TWO_COLOR);
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
-
+		
 		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
@@ -270,7 +270,11 @@ public class Game implements ActionListener
 		//tells UI game is over
 		//send UI getWinner()
 	}	
-				
+	
+	public Color getCurrentPlayersColor()
+	{
+		return (this.isPlayerOneTurn?PLAYER_ONE_COLOR:PLAYER_TWO_COLOR);
+	}
 	
 	public boolean move(Location location)
 	{
@@ -288,6 +292,7 @@ public class Game implements ActionListener
 				}
 
 				isPlayerOneTurn = false;
+				this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
 				
 				if(wasPointScored())
 				{
@@ -309,6 +314,7 @@ public class Game implements ActionListener
 				}
 
 				isPlayerOneTurn = true;
+				this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
 				
 				if(wasPointScored())
 				{
@@ -430,7 +436,9 @@ public class Game implements ActionListener
 				this.gameOver();
 			}
 		}
-		
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		else
+		{
+			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		}
 	}
 }
