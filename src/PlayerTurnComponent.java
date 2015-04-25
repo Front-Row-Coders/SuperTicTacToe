@@ -13,7 +13,15 @@ public class PlayerTurnComponent extends JComponent
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Color turnColor = Color.WHITE;
+	/**
+	 * Default color for the component.
+	 */
+	public static final Color DEFAULT_COLOR = new Color(240,240,240);
+	
+	/**
+	 * The current turn color to be displayed.
+	 */
+	private Color turnColor = DEFAULT_COLOR;
 	
 	/**
 	 * Creates an instance of PlayerTurnComponent.
@@ -25,15 +33,19 @@ public class PlayerTurnComponent extends JComponent
 	
 	/**
 	 * Sets a new turn color.
-	 * @param color A non-null color to be set.
+	 * @param color A color to be set. Null value will set the color to 
+	 * the default color.
 	 */
 	public void setTurnColor(Color color)
 	{
 		if(color == null)
 		{
-			throw new IllegalArgumentException("color argument is null");
+			this.turnColor = DEFAULT_COLOR;
 		}
-		this.turnColor = color;
+		else
+		{
+			this.turnColor = color;
+		}
 		this.repaint();
 	}
 	
