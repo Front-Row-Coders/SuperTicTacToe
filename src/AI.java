@@ -220,6 +220,9 @@ public class AI extends Player
 		return null;
 	}
         
+        /*
+            Count all three in a rows for 
+        */
         private int countThreeInARow(Stone[][] grid, Stone value){
             
             int counter = 0;
@@ -273,7 +276,83 @@ public class AI extends Player
 
             return counter;
         }
-	
+        
+	private int countScoringOptions(Stone[][] grid, Stone value){
+            int counter = 0;
+            
+            
+            
+            return counter;
+        }
+        
+        private Location findScoringLocation(Stone[][] grid, Stone value){
+            Location loc = null;
+            
+            
+            
+            return loc;
+        }
+        
+        /*
+        private int pointsScored(Stone[][] grid, Stone value){
+            int totalPoints = 0;
+            
+             // Rows
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length - 3; j++) {
+                            if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j].getColor() == grid[i][j + 1].getColor())
+						&& (grid[i][j + 1].getColor() == grid[i][j + 2].getColor()) 
+                                                && (grid[i][j+2].getColor() == grid[i][j+3].getColor())){
+					totalPoints++;
+
+				}
+			}
+		}
+
+		// Columns
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length - 3; j++) {
+				if ((grid[j][i].getColor() == value.getColor()) && (grid[j][i].getColor() == grid[j + 1][i].getColor())
+						&& (grid[j + 1][i].getColor() == grid[j + 2][i].getColor())
+                                                && (grid[i][j+2].getColor() == grid[i][j+3].getColor())) {
+					totalPoints++;
+
+				}
+			}
+		}
+                
+                // Left to Right Diagonals
+            		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid.length; j++) {
+				if (i + 3 < grid.length && j + 3 < grid.length) {
+					if ((grid[i][j].getColor() == value.getColor())&& (grid[i][j].getColor() == grid[i + 1][j + 1].getColor())
+							&& (grid[i + 1][j + 1].getColor() == grid[i + 2][j + 2].getColor())
+                                                        && (grid[i+2][j+2].getColor() == grid[i+3][j+3].getColor())){
+						totalPoints++;
+					}
+				}
+			}
+		}
+		
+                // Right to Left Diagonals
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = grid.length-1; j > 0; j--) {
+				if (i + 3 < grid.length && j - 3 > -1) {
+					if ((grid[i][j].getColor() == value.getColor()) 
+                                                        && (grid[i][j].getColor() == grid[i + 1][j - 1].getColor())
+							&& (grid[i + 1][j - 1].getColor() == grid[i + 2][j - 2].getColor())
+                                                        && (grid[i+2][j-2].getColor() == grid[i+3][j-3].getColor()))
+                                        
+                                        {
+						totalPoints++;
+					}
+				}
+			}
+		}
+            
+            return totalPoints;
+        }
+        */
 	private Location checkBlockOpponentFork(Stone[][] grid)
 	{
 		// Check if opponent can fork using checkFork with opponent color
