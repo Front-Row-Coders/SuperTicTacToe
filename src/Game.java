@@ -363,6 +363,20 @@ public class Game implements ActionListener
 		isGameOver = true;
 		//tells UI game is over
 		GridPanel gridUI = this.getCurrentGridPanel();
+		
+		String usernameOne;
+		String usernameTwo;
+		if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+		{
+			usernameOne = playerOne.getUsername();
+			usernameTwo = playerTwo.getUsername();
+		}
+		else
+		{
+			usernameOne = "One";
+			usernameTwo = "Two";
+		}
+		
 		if(isForfiet)
 		{
 			//send UI forfeiter message
