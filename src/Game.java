@@ -480,7 +480,7 @@ public class Game implements ActionListener
 		
 		if(milliseconds / HOUR > 0)
 		{
-			if(milliseconds / HOUR < 0)
+			if(milliseconds / HOUR < 10)
 			{
 				time.append("0");
 			}
@@ -495,7 +495,7 @@ public class Game implements ActionListener
 		
 		if(milliseconds / MINUTE > 0)
 		{
-			if(milliseconds / MINUTE < 0)
+			if(milliseconds / MINUTE < 10)
 			{
 				time.append("0");
 			}
@@ -510,7 +510,7 @@ public class Game implements ActionListener
 		
 		if(milliseconds / SECOND > 0)
 		{
-			if(milliseconds / SECOND < 0)
+			if(milliseconds / SECOND < 10)
 			{
 				time.append("0");
 			}
