@@ -481,67 +481,7 @@ public class Game implements ActionListener
 		
 		return null;
 	}
-<<<<<<< HEAD
 	
-	/**
-	 * Converts milliseconds to a string representation of HH::MM:SS.
-	 * @param milliseconds 
-	 * @return A string representation of the time left.
-	 */
-	public static String getTimeString(int milliseconds)
-	{
-		StringBuilder time = new StringBuilder();
-		
-		if(milliseconds / HOUR > 0)
-		{
-			if(milliseconds / HOUR < 10)
-			{
-				time.append("0");
-			}
-			time.append((milliseconds / HOUR));
-			time.append(":");
-			milliseconds = milliseconds % HOUR;
-		}
-		else
-		{
-			time.append("00:");
-		}
-		
-		if(milliseconds / MINUTE > 0)
-		{
-			if(milliseconds / MINUTE < 10)
-			{
-				time.append("0");
-			}
-			time.append((milliseconds / MINUTE));
-			time.append(":");
-			milliseconds = milliseconds % MINUTE;
-		}
-		else
-		{
-			time.append("00:");
-		}
-		
-		if(milliseconds / SECOND > 0)
-		{
-			if(milliseconds / SECOND < 10)
-			{
-				time.append("0");
-			}
-			time.append((milliseconds / SECOND));
-			//time.append(":");
-			//milliseconds = milliseconds % SECOND;
-		}
-		else
-		{
-			time.append("00");
-		}
-		
-		return time.toString();
-	}
-=======
->>>>>>> parent of a707db9... Added timer countdown code. Changed game over method implementation (gameOver() and gameOver(false) is for player win game over case and gameOver(true) is for forfeit game over case).
-
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
