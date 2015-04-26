@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -269,6 +270,38 @@ public class GridPanel extends UIPanel implements ActionListener
 		}
 		
 		this.playerTurnComponent.setTurnColor(color);
+	}
+	
+	/**
+	 * Display an end game message and return to the main menu afterwards.
+	 * @param message The end game message to display.
+	 */
+	public void displayEndGame(String message)
+	{
+		if(message == null)
+		{
+			message = "Someone won the game.";
+		}
+		
+		if(!this.gameInstance.getIsGameOver())
+		{
+			throw new IllegalStateException("displayEndGame is called while game is not over.");
+		}
+		
+		//Turn off all the stones
+		for(Stone[] stones : this.gridSpots)
+		{
+			for(Stone stone : stones)
+			{
+				stone.setEnabled(false);
+			}
+		}
+		
+		//Display a message to the user about the game status (Code waits here till they close the message)
+		JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		
+		//End the game by going back to the main menu
+		UIWindow.getInstance().setCurrentPanel(new MenuPanel());
 	}
 	
 	/**
