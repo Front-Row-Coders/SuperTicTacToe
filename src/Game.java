@@ -362,23 +362,43 @@ public class Game implements ActionListener
 	{
 		isGameOver = true;
 		//tells UI game is over
-		//send UI getWinner()
+		GridPanel gridUI = this.getCurrentGridPanel();
 		if(isForfiet)
 		{
+			//send UI forfeiter message
 			if(isPlayerOneTurn)
 			{
 				//Player One forfieted
-				
+				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+				{
+					gridUI.displayEndGame("Player \""+this.playerOne.getUsername()+"\" forfieted the game."+
+							"\nPlayer \""+this.playerTwo.getUsername()+"\" Wins!");
+				}
+				else
+				{
+					gridUI.displayEndGame("Player One forfieted the game."+
+							"\nPlayer Two Wins!");
+				}
 			}
 			else
 			{
 				//Player Two forfieted
-				
+				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+				{
+					gridUI.displayEndGame("Player \""+this.playerTwo.getUsername()+"\" forfieted the game."+
+							"\nPlayer \""+this.playerOne.getUsername()+"\" Wins!");
+				}
+				else
+				{
+					gridUI.displayEndGame("Player Two forfieted the game."+
+							"\nPlayer One Wins!");
+				}
 			}
 		}
 		else
 		{
-			
+			//send UI getWinner()
+			gridUI.displayEndGame("Player \""+this.getWinner()+"\" Wins!");
 		}
 	}
 	
