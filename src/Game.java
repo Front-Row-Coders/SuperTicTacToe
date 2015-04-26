@@ -28,124 +28,134 @@ import javax.swing.Timer;
  */
 public class Game implements ActionListener
 {
-        /**
-         * An instance of Player or AI representing one of two players in this
-         * game. If a Player instance, when it is playerOne's turn, Game sends
-         * the location of each move from UI to PlayerOne to be placed on the
-         * game board. If an AI instance, when it is playerOne's turn, Game
-         * asks PlayerOne to make a move.
-         */
+	/**
+	 * An instance of Player or AI representing one of two players in this
+	 * game. If a Player instance, when it is playerOne's turn, Game sends
+	 * the location of each move from UI to PlayerOne to be placed on the
+	 * game board. If an AI instance, when it is playerOne's turn, Game
+	 * asks PlayerOne to make a move.
+	 */
 	private final Player playerOne;
         
-        /**
-         * An instance of Player or AI representing one of two players in this game.
-         * @see #playerOne
-         */
+	/**
+	 * An instance of Player or AI representing one of two players in this game.
+	 * @see #playerOne
+	 */
 	private final Player playerTwo;
         
-        /**
-         * A flag indicating whether it is playerOne's or playerTwo's turn to
-         * make a move in the game.
-         */
+	/**
+	 * A flag indicating whether it is playerOne's or playerTwo's turn to
+	 * make a move in the game.
+	 */
 	private boolean isPlayerOneTurn;
         
-        /**
-         * A flag indicating whether the game is over. Set to true when the
-         * time limit is reached, the game board becomes full, or a player
-         * forfeits or exits.
-         */
+	/**
+	 * A flag indicating whether the game is over. Set to true when the
+	 * time limit is reached, the game board becomes full, or a player
+	 * forfeits or exits.
+	 */
 	private boolean isGameOver;
         
-        /**
-         * A Timer object to enforce a time limit for each game. This time
-         * limit is determined by the value of DEFAULT_TIME_LIMIT. gameTimer is
-         * also used to update a countdown clock in GridPanel which displays
-         * the time remaining.
-         */
+	/**
+	 * A Timer object to enforce a time limit for each game. This time
+	 * limit is determined by the value of DEFAULT_TIME_LIMIT. gameTimer is
+	 * also used to update a countdown clock in GridPanel which displays
+	 * the time remaining.
+	 */
 	private Timer gameTimer;
         
-        /**
-         * The time limit to be enforced for this game.
-         */
+	/**
+	 * The time limit to be enforced for this game in milliseconds.
+	 */
 	private int timeLimit;
 
-        /**
-         * A variable to hold the length of one second. Used to set the delay
-         * between calls to actionPerformed for gameTimer.
-         */
-	public static final short SECOND = 1000;
+	/**
+	 * A variable to hold the length of one second. Used to set the delay
+	 * between calls to actionPerformed for gameTimer and convert from milliseconds.
+	 */
+	public static final int SECOND = 1000;
+	
+	/**
+	 * A variable to hold the length of one minute. Used to convert from milliseconds.
+	 */
+	public static final int MINUTE = SECOND * 60;
+	
+	/**
+	 * A variable to hold the length of one hour. Used to convert from milliseconds.
+	 */
+	public static final int HOUR = MINUTE * 60;
         
-        /**
-         * The message sent to actionPerformed to indicate a gameTimer event.
-         */
+	/**
+	 * The message sent to actionPerformed to indicate a gameTimer event.
+	 */
 	public static final String TIMER_EVENT_COMMAND = "TIMER_EVENT";
         
-        /**
-         * The default time limit for a game. Used to set timeLimit if no
-         * other value is given.
-         */
-	public static final int DEFAULT_TIME_LIMIT = 30*60;
+	/**
+	 * The default time limit for a game in milliseconds. Used to set timeLimit if no
+	 * other value is given.
+	 */
+	public static final int DEFAULT_TIME_LIMIT = 30 * MINUTE;
         
-        /**
-         * The default value for isPlayerOneTurn. Passed by the default
-         * constructor to the parametrized constructor.
-         */
+	/**
+	 * The default value for isPlayerOneTurn. Passed by the default
+	 * constructor to the parametrized constructor.
+	 */
 	public static final boolean DEFAULT_PLAYER_TURN = true;
         
-        /**
-         * The default skill level for the AI. 
-         */
+	/**
+	 * The default skill level for the AI. 
+	 */
 	public static final SkillLevel DEFAULT_AI_SKILL_LEVEL = SkillLevel.Easy;
         
-        /**
-         * The default stone color for playerOne. Used to set the color
-         * attribute of playerOne.
-         */
+	/**
+	 * The default stone color for playerOne. Used to set the color
+	 * attribute of playerOne.
+	 */
 	public static final Color PLAYER_ONE_COLOR = Color.BLUE;
         
-        /**
-         * The default stone color for playerTwo. Used to set the color
-         * attribute of playerTwo.
-         */
+	/**
+	 * The default stone color for playerTwo. Used to set the color
+	 * attribute of playerTwo.
+	 */
 	public static final Color PLAYER_TWO_COLOR = Color.RED;
 	
         //Reserved Usernames.
-        /**
-         * Reserved username for the AI. Used to set the username attribute
-         * of an instance of AI. A player who is not the AI is not permitted
-         * to choose a string matching AI_NAME as a username.
-         */
+	/**
+	 * Reserved username for the AI. Used to set the username attribute
+	 * of an instance of AI. A player who is not the AI is not permitted
+	 * to choose a string matching AI_NAME as a username.
+	 */
 	public static final String AI_NAME = "AI";
         
-        /**
-         * Reserved username for a guest. Used to set the username of a 
-         * Player object if the player chooses to play the game as a guest. A
-         * player is not permitted to choose a string matching GUEST_NAME as a
-         * username.
-         */
+	/**
+	 * Reserved username for a guest. Used to set the username of a 
+	 * Player object if the player chooses to play the game as a guest. A
+	 * player is not permitted to choose a string matching GUEST_NAME as a
+	 * username.
+	 */
 	public static final String GUEST_NAME = "Guest";
 	
-        /**
-         * Default class constructor. Passes default values to the
-         * parametrized constructor for Single Player mode.
-         * @see #Game(java.lang.String, SkillLevel, boolean) 
-         */
+	/**
+	 * Default class constructor. Passes default values to the
+	 * parametrized constructor for Single Player mode.
+	 * @see #Game(java.lang.String, SkillLevel, boolean) 
+	 */
 	public Game()
 	{
 		this(GUEST_NAME, DEFAULT_AI_SKILL_LEVEL, DEFAULT_PLAYER_TURN);
 	}
         
-        /**
-         * Parametrized constructor to be called when the gameplay mode is
-         * Single Player. This constructor first initializes playerOne by 
-         * either creating a new Player with default values if username1 has
-         * the reserved value GUEST_NAME, or assigns a reference to the
-         * Player object corresponding with username1 from the History list.
-         * It then initializes the class attributes with default values.
-         * @param username1 the player ID of the human player
-         * @param skillLevel the skill level to set for the AI
-         * @param isPlayerOneTurn flag indicating which player goes first
-         */
+	/**
+	 * Parametrized constructor to be called when the gameplay mode is
+	 * Single Player. This constructor first initializes playerOne by 
+	 * either creating a new Player with default values if username1 has
+	 * the reserved value GUEST_NAME, or assigns a reference to the
+	 * Player object corresponding with username1 from the History list.
+	 * It then initializes the class attributes with default values.
+	 * @param username1 the player ID of the human player
+	 * @param skillLevel the skill level to set for the AI
+	 * @param isPlayerOneTurn flag indicating which player goes first
+	 */
 	public Game(String username1, SkillLevel skillLevel, boolean isPlayerOneTurn)
 	{
 		// Call to History, find players, assign references to the existing
@@ -180,12 +190,13 @@ public class Game implements ActionListener
 		
 		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
-		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
-		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
-		
 		this.isPlayerOneTurn = isPlayerOneTurn;
 		
 		this.isGameOver = false;
+		
+		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
+		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
+		this.gameTimer.start();
 		
 		if(!this.isPlayerOneTurn)
 		{
@@ -194,13 +205,13 @@ public class Game implements ActionListener
 		}
 	}
 	
-        /**
-         * Parametrized constructor to be called when the gameplay mode is
-         * Multiplayer.
-         * @param username1 the player ID of the first human player
-         * @param username2 the player ID of the second human player
-         * @param isPlayerOneTurn flag indicating which player goes first
-         */
+	/**
+	 * Parametrized constructor to be called when the gameplay mode is
+	 * Multiplayer.
+	 * @param username1 the player ID of the first human player
+	 * @param username2 the player ID of the second human player
+	 * @param isPlayerOneTurn flag indicating which player goes first
+	 */
 	public Game(String username1, String username2, boolean isPlayerOneTurn)
 	{
 		// Call to History, find players, assign references to the existing
@@ -257,18 +268,11 @@ public class Game implements ActionListener
 		
 		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
-		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
-		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
-		
 		this.isGameOver = false;
 		
-	}
-
-	private void gameOver()
-	{
-		isGameOver = true;
-		//tells UI game is over
-		//send UI getWinner()
+		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
+		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
+		this.gameTimer.start();
 	}	
 	
 	public Color getCurrentPlayersColor()
@@ -348,6 +352,36 @@ public class Game implements ActionListener
 				return "";
 		}
 	}
+	
+	private void gameOver()
+	{
+		this.gameOver(false);
+	}
+	
+	private void gameOver(boolean isForfiet)
+	{
+		isGameOver = true;
+		//tells UI game is over
+		//send UI getWinner()
+		if(isForfiet)
+		{
+			if(isPlayerOneTurn)
+			{
+				//Player One forfieted
+				
+			}
+			else
+			{
+				//Player Two forfieted
+				
+			}
+		}
+		else
+		{
+			
+		}
+	}
+	
 	public void forfeit()
 	{
 		if(isPlayerOneTurn)
@@ -355,7 +389,7 @@ public class Game implements ActionListener
 		else
 			playerTwo.increaseLosses();
 		
-		this.gameOver();
+		this.gameOver(true);
 	}
 
 	public boolean isMoveValid(Location location)
@@ -414,6 +448,63 @@ public class Game implements ActionListener
 		
 		return null;
 	}
+	
+	/**
+	 * Converts milliseconds to a string representation of HH::MM:SS.
+	 * @param milliseconds 
+	 * @return A string representation of the time left.
+	 */
+	public static String getTimeString(int milliseconds)
+	{
+		StringBuilder time = new StringBuilder();
+		
+		if(milliseconds / HOUR > 0)
+		{
+			if(milliseconds / HOUR < 0)
+			{
+				time.append("0");
+			}
+			time.append((milliseconds / HOUR));
+			time.append(":");
+			milliseconds = milliseconds % HOUR;
+		}
+		else
+		{
+			time.append("00:");
+		}
+		
+		if(milliseconds / MINUTE > 0)
+		{
+			if(milliseconds / MINUTE < 0)
+			{
+				time.append("0");
+			}
+			time.append((milliseconds / MINUTE));
+			time.append(":");
+			milliseconds = milliseconds % MINUTE;
+		}
+		else
+		{
+			time.append("00:");
+		}
+		
+		if(milliseconds / SECOND > 0)
+		{
+			if(milliseconds / SECOND < 0)
+			{
+				time.append("0");
+			}
+			time.append((milliseconds / SECOND));
+			//time.append(":");
+			//milliseconds = milliseconds % SECOND;
+		}
+		else
+		{
+			time.append("00");
+		}
+		
+		return time.toString();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -427,13 +518,27 @@ public class Game implements ActionListener
 		
 		if(command.equals(TIMER_EVENT_COMMAND))
 		{
-			//Do timer second event.
-			timeLimit--;
-			
-			if(timeLimit <= 0)
+			if(!this.isGameOver)
 			{
-				//Game over.
-				this.gameOver();
+				//Do timer second event.
+				timeLimit -= SECOND;
+
+				if(timeLimit <= 0)
+				{
+					this.gameTimer.stop();
+					this.getCurrentGridPanel().setTimerText("0:0:0");
+
+					//Game over.
+					this.gameOver();
+				}
+				else
+				{
+					this.getCurrentGridPanel().setTimerText(getTimeString(timeLimit));
+				}
+			}
+			else
+			{
+				this.gameTimer.stop();
 			}
 		}
 		else
