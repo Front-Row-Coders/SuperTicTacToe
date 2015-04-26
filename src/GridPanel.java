@@ -35,6 +35,9 @@ public class GridPanel extends UIPanel implements ActionListener
 		this.gridSpots = new Stone[6][6];
 		this.gameInstance = new Game(username1, skillLevel, isPlayerOneTurn);
 		
+		//Set the player score labels to their respective turn colors.
+		this.lblPlayerOneName.setForeground(this.gameInstance.getPlayerOne().getColor());
+		this.lblPlayerTwoName.setForeground(this.gameInstance.getPlayerTwo().getColor());
 		this.setTurnColor(this.gameInstance.getCurrentPlayersColor());
 		
 		
@@ -94,6 +97,10 @@ public class GridPanel extends UIPanel implements ActionListener
 		
 		this.gridSpots = new Stone[6][6];
 		this.gameInstance = new Game(username1, username2, isPlayerOneTurn);
+		
+		//Set the player score labels to their respective turn colors.
+		this.lblPlayerOneName.setForeground(this.gameInstance.getPlayerOne().getColor());
+		this.lblPlayerTwoName.setForeground(this.gameInstance.getPlayerTwo().getColor());
 		
 		this.setTurnColor(this.gameInstance.getCurrentPlayersColor());
 		
@@ -358,8 +365,8 @@ public class GridPanel extends UIPanel implements ActionListener
         jLabel3 = new javax.swing.JLabel();
         btnForfeit = new javax.swing.JButton();
         playerTurnComponent = new PlayerTurnComponent();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblPlayerOneName = new javax.swing.JLabel();
+        lblPlayerTwoName = new javax.swing.JLabel();
 
         stone1.setStoneLocation(new Location(0,1));
 
@@ -456,9 +463,9 @@ public class GridPanel extends UIPanel implements ActionListener
         btnForfeit.setText("Forfiet");
         btnForfeit.addActionListener(this);
 
-        jLabel4.setText("Player One:");
+        lblPlayerOneName.setText("Player One:");
 
-        jLabel5.setText("Player Two:");
+        lblPlayerTwoName.setText("Player Two:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -551,8 +558,8 @@ public class GridPanel extends UIPanel implements ActionListener
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
+                                            .addComponent(lblPlayerOneName)
+                                            .addComponent(lblPlayerTwoName))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(lblPlayerTwoScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
@@ -622,11 +629,11 @@ public class GridPanel extends UIPanel implements ActionListener
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPlayerOneScore)
-                            .addComponent(jLabel4))
+                            .addComponent(lblPlayerOneName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPlayerTwoScore)
-                            .addComponent(jLabel5))
+                            .addComponent(lblPlayerTwoName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(1, 1, 1)
@@ -669,9 +676,9 @@ public class GridPanel extends UIPanel implements ActionListener
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblPlayerOneName;
     private javax.swing.JLabel lblPlayerOneScore;
+    private javax.swing.JLabel lblPlayerTwoName;
     private javax.swing.JLabel lblPlayerTwoScore;
     private javax.swing.JLabel lblTimer;
     private PlayerTurnComponent playerTurnComponent;
