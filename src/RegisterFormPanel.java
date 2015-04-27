@@ -140,7 +140,7 @@ public class RegisterFormPanel extends UIPanel
 		History history = UIWindow.getHistoryInstance();
 		if(history.createNewPlayer(username) != false)
 		{
-			JOptionPane.showMessageDialog(null, "Successfully created your player account \""+username+"\"");
+			JOptionPane.showMessageDialog(this, "Successfully created your player account \""+username+"\"");
 			UIWindow.getInstance().setCurrentPanel(new MenuPanel());
 		}
 		else
