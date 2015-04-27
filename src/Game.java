@@ -296,6 +296,11 @@ public class Game implements ActionListener
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
         
+        private boolean pointsScored(Stone value){
+            
+            return false;
+        }
+        
         private int pointsScored(Stone[][] grid, Stone value){
             int totalPoints = 0;
             
