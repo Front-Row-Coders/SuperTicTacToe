@@ -348,7 +348,7 @@ public class Game implements ActionListener
 				return "";
 		}
 	}
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 	
 	private void gameOver()
 	{
@@ -415,6 +415,7 @@ public class Game implements ActionListener
 	
 =======
 >>>>>>> parent of a707db9... Added timer countdown code. Changed game over method implementation (gameOver() and gameOver(false) is for player win game over case and gameOver(true) is for forfeit game over case).
+*/
 	public void forfeit()
 	{
 		if(isPlayerOneTurn)
