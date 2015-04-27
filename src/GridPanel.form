@@ -538,7 +538,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnForfeit">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Forfiet"/>
+        <Property name="text" type="java.lang.String" value="Forfeit"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForfeitActionPerformed"/>

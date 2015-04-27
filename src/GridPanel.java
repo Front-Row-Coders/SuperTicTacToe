@@ -475,7 +475,7 @@ public class GridPanel extends UIPanel implements ActionListener
         jLabel3.setText("Turn");
         jLabel3.setToolTipText("");
 
-        btnForfeit.setText("Forfiet");
+        btnForfeit.setText("Forfeit");
         btnForfeit.addActionListener(this);
 
         lblPlayerOneName.setText("Player One:");
