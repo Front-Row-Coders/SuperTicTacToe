@@ -117,6 +117,8 @@ public class AI extends Player
                      return nextMove;
                  else if((nextMove = checkScorePoint(grid))!=null)
                      return nextMove;
+				 else if((nextMove = checkBlockOpponent(grid))!=null)
+					 return nextMove;
                  else if((nextMove = checkFork(grid))!=null)
                      return nextMove;
                  else if((nextMove = checkBlockOpponentFork(grid))!=null)
@@ -198,15 +200,14 @@ public class AI extends Player
          */
 	private Location checkCorners(Stone[][] grid)
 	{
-		int i;
-
-		for(i=0; i<grid.length; i++)
-		{
-			if(grid[i][0]==null || grid[i][0].isEmptySpot())
-				return grid[i][0].getStoneLocation();
-			else if(grid[i][grid[i].length-1]==null || grid[i][grid[i].length-1].isEmptySpot())
-				return grid[i][grid[i].length-1].getStoneLocation();
-		}
+		if(grid[0][0].isEmptySpot())
+			return grid[0][0].getStoneLocation();
+		else if(grid[0][grid.length-1].isEmptySpot())
+			return grid[0][grid.length-1].getStoneLocation();
+		else if(grid[grid.length-1][0].isEmptySpot())
+			return grid[grid.length-1][0].getStoneLocation();
+		else if(grid[grid.length-1][grid.length-1].isEmptySpot())
+			return grid[grid.length-1][grid.length-1].getStoneLocation();
 
 		return null;
 	}
@@ -254,12 +255,12 @@ public class AI extends Player
          */
 	private Location checkScorePoint(Stone[][] grid)
 	{
-		// if(at least 1 3-in-a-row in this.getColor())
-		//      return location to complete that 4-in-a-row
+		Location move = null;
+		
+		if((move=findScoringOpportunity(grid, this.getColor()))!=null)
+			return move;
 
-		// TODO: account for 5/6 in a row
-
-		return null;
+		return move;
 	}
 	
         /**
@@ -282,12 +283,12 @@ public class AI extends Player
 		else
 			opponentColor = Game.PLAYER_ONE_COLOR;
                 
-		// if(at least 1 3-in-a-row in opponentColor)
-		//      return location to complete that 4-in-a-row
+		Location move = null;
+		
+		if((move=findScoringOpportunity(grid, opponentColor))!=null)
+			return move;
 
-		// TODO: account for 5/6 in a row
-
-		return null;
+		return move;
 	}
 	
         /**
@@ -331,24 +332,24 @@ public class AI extends Player
 
 		int i, j;
 
-		Stone[][] gridCopy = new Stone[6][6];
-                System.arraycopy(grid, 0, gridCopy, 0, grid.length);
+//		Stone[][] gridCopy = new Stone[6][6];
+//                System.arraycopy(grid, 0, gridCopy, 0, grid.length);
 
 		// Check every empty position
-		for(i=0; i<gridCopy.length; i++)
+		for(i=0; i<grid.length; i++)
 		{
-			for(j=0; j<gridCopy.length; j++)
+			for(j=0; j<grid.length; j++)
 			{
-				if(gridCopy[i][j]==null) // Change to check for empty spot
+				if(grid[i][j].isEmptySpot())
 				{
 					// Place stone on grid copy to check if this creates a fork
-					gridCopy[i][j] = new Stone(playerColor, new Location(i,j)); // Change to paint stone
+					grid[i][j].setColor(playerColor); // Change to paint stone
 					
-                                        /* if(countThreeInARow >= 2) // was a fork created
-					 {    // Return the position that creates a fork
-						  return grid[i][j].getLocation();
-					 }
-					*/
+					if(countScoringOpportunities(grid, playerColor)>=2) // was a fork created
+						return grid[i][j].getStoneLocation();
+                    
+					// if fork was not created
+					grid[i][j].setColor(null); // paint the stone empty
 				}
 
 			}
@@ -360,14 +361,14 @@ public class AI extends Player
                /*
             Count all three in a rows for 
         */
-        private int countThreeInARow(Stone[][] grid, Stone value){
+        private int countThreeInARow(Stone[][] grid, Color color){
             
             int counter = 0;
             
                 // Rows
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length - 2; j++) {
-                            if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j].getColor() == grid[i][j + 1].getColor())
+                            if ((grid[i][j].getColor().equals(color)) && (grid[i][j].getColor() == grid[i][j + 1].getColor())
 						&& (grid[i][j + 1].getColor() == grid[i][j + 2].getColor())) {
 					counter++;
 
@@ -378,7 +379,7 @@ public class AI extends Player
 		// Columns
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length - 2; j++) {
-				if ((grid[j][i].getColor() == value.getColor()) && (grid[j][i].getColor() == grid[j + 1][i].getColor())
+				if ((grid[j][i].getColor().equals(color)) && (grid[j][i].getColor() == grid[j + 1][i].getColor())
 						&& (grid[j + 1][i].getColor() == grid[j + 2][i].getColor())) {
 					counter++;
 
@@ -390,7 +391,7 @@ public class AI extends Player
             		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length; j++) {
 				if (i + 2 < grid.length && j + 2 < grid.length) {
-					if ((grid[i][j].getColor() == value.getColor())&& (grid[i][j].getColor() == grid[i + 1][j + 1].getColor())
+					if ((grid[i][j].getColor().equals(color))&& (grid[i][j].getColor() == grid[i + 1][j + 1].getColor())
 							&& (grid[i + 1][j + 1].getColor() == grid[i + 2][j + 2].getColor())) {
 						counter++;
 					}
@@ -402,7 +403,7 @@ public class AI extends Player
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = grid.length-1; j > 0; j--) {
 				if (i + 2 < grid.length && j - 2 > -1) {
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j].getColor() == grid[i + 1][j - 1].getColor())
+					if ((grid[i][j].getColor().equals(color)) && (grid[i][j].getColor() == grid[i + 1][j - 1].getColor())
 							&& (grid[i + 1][j - 1].getColor() == grid[i + 2][j - 2].getColor())) {
 						counter++;
 					}
@@ -414,7 +415,8 @@ public class AI extends Player
             return counter;
         }
         
-                	private static Location returnt4InARowOpportunity(Stone[][] grid, Stone value) {
+        private static Location findScoringOpportunity(Stone[][] grid, Color color) 
+		{
 
 		//int returnValue;
 
@@ -423,15 +425,15 @@ public class AI extends Player
 			for (int j = 0; j < grid.length - 3; j++) {
                             
                             
-				if ((grid[i][j].getColor() == value.getColor()) || (value.getColor() == grid[i][j + 1].getColor()) || (grid[i][j + 2].getColor() == value.getColor()) || (grid[i][j + 3].getColor() == value.getColor())) {
+				if ((grid[i][j].getColor().equals(color)) || (color.equals(grid[i][j + 1].getColor()) || (grid[i][j + 2].getColor().equals(color)) || (grid[i][j + 3].getColor().equals(color)))) {
 
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor()) && (grid[i][j + 3].getColor() == value.getColor())) {
+					if ((grid[i][j].getColor().equals(color)) && (grid[i][j + 1].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color)) && (grid[i][j + 3].getColor().equals(color))) {
 						return new Location(i, j); // grid location [i][j].getColor()
-					} else if ((grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor()) && (grid[i][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i][j + 1].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color)) && (grid[i][j + 3].getColor().equals(color))) {
 						return new Location(i, j+1); // grid location [i][j+1]
-					} else if ((grid[i][j + 2].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i][j + 2].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i][j + 1].getColor().equals(color)) && (grid[i][j + 3].getColor().equals(color))) {
 						return new Location(i, j+2); // grid location [i][j+2]
-					} else if ((grid[i][j + 3].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor())) {
+					} else if ((grid[i][j + 3].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i][j + 1].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color))) {
 						return new Location(i, j+3); // grid location [i][j+3]
 					}
 				}
@@ -443,15 +445,15 @@ public class AI extends Player
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length - 3; j++) {
 
-                            if ((grid[j][i].getColor() == value.getColor()) || (value.getColor() == grid[j + 1][i].getColor()) || (grid[j + 2][i].getColor() == value.getColor()) || (grid[j + 3][i].getColor() == value.getColor())) {
+                            if ((grid[j][i].getColor().equals(color)) || (color.equals(grid[j + 1][i].getColor())) || (grid[j + 2][i].getColor().equals(color)) || (grid[j + 3][i].getColor().equals(color))) {
 
-					if ((grid[j][i].getColor() == value.getColor()) && (grid[j + 1][i].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor()) && (grid[j + 3][i].getColor() == value.getColor())) {
+					if ((grid[j][i].getColor().equals(color)) && (grid[j + 1][i].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color)) && (grid[j + 3][i].getColor().equals(color))) {
 						return new Location(j, i); // grid location [i][j].getColor()
-					} else if ((grid[j + 1][i].getColor() == value.getColor()) && (grid[j][i].getColor() == value.getColor()) && (grid[j + 2][i].getColor() == value.getColor()) && (grid[j + 3][i].getColor() == value.getColor())) {
+					} else if ((grid[j + 1][i].getColor().equals(color)) && (grid[j][i].getColor().equals(color)) && (grid[j + 2][i].getColor().equals(color)) && (grid[j + 3][i].getColor().equals(color))) {
 						return new Location(j+1, i); // grid location [i][j+1]
-					} else if ((grid[j + 2][i].getColor() == value.getColor()) && (grid[j][i].getColor() == value.getColor()) && (grid[j + 1][i].getColor() == value.getColor()) && (grid[j + 3][i].getColor() == value.getColor())) {
+					} else if ((grid[j + 2][i].getColor().equals(color)) && (grid[j][i].getColor().equals(color)) && (grid[j + 1][i].getColor().equals(color)) && (grid[j + 3][i].getColor().equals(color))) {
 						return new Location(j+2, i); // grid location [i][j+3]
-					} else if ((grid[j + 3][i].getColor() == value.getColor()) && (grid[j][i].getColor() == value.getColor()) && (grid[j + 1][i].getColor() == value.getColor()) && (grid[j + 2][i].getColor() == value.getColor())) {
+					} else if ((grid[j + 3][i].getColor().equals(color)) && (grid[j][i].getColor().equals(color)) && (grid[j + 1][i].getColor().equals(color)) && (grid[j + 2][i].getColor().equals(color))) {
 						return new Location(j+3, i); // grid location [i][j+3]
 					}
 				}
@@ -463,15 +465,15 @@ public class AI extends Player
 			for (int j = 0; j < grid.length; j++) {
 				if (i + 3 < grid.length && j + 3 < grid.length) {
                                     
-                                if ((grid[i][j].getColor() == value.getColor()) || (value.getColor() == grid[i + 1][j + 1].getColor()) || (grid[i + 2][j + 2].getColor() == value.getColor()) || (grid[i + 3][j + 3].getColor() == value.getColor())) {
+                                if ((grid[i][j].getColor().equals(color)) || (color.equals(grid[i + 1][j + 1].getColor()) || (grid[i + 2][j + 2].getColor().equals(color)) || (grid[i + 3][j + 3].getColor().equals(color)))) {
 
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i + 2][j + 2].getColor() == value.getColor()) && (grid[i + 3][j + 3].getColor() == value.getColor())) {
+					if ((grid[i][j].getColor().equals(color)) && (grid[i + 1][j + 1].getColor().equals(color)) && (grid[i + 2][j + 2].getColor().equals(color)) && (grid[i + 3][j + 3].getColor().equals(color))) {
 						return new Location(i, j); // grid location [i][j].getColor()
-					} else if ((grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 2][j + 2].getColor() == value.getColor()) && (grid[i + 3][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 1][j + 1].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 2][j + 2].getColor().equals(color)) && (grid[i + 3][j + 3].getColor().equals(color))) {
 						return new Location(i+1, j+1); // grid location [i][j+1]
-					} else if ((grid[i + 2][j + 2].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i + 3][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 2][j + 2].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j + 1].getColor().equals(color)) && (grid[i + 3][j + 3].getColor().equals(color))) {
 						return new Location(i+2, j+2); // grid location [i][j+3]
-					} else if ((grid[i + 3][j + 3].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i + 2][j + 2].getColor() == value.getColor())) {
+					} else if ((grid[i + 3][j + 3].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j + 1].getColor().equals(color)) && (grid[i + 2][j + 2].getColor().equals(color))) {
 						return new Location(i+3, j+3); // grid location [i][j+3]
 					}
 				}
@@ -485,15 +487,15 @@ public class AI extends Player
 			for (int j = grid.length - 1; j > 0; j--) {
 				if (i + 3 < grid.length && j - 3 > -1) {
                                     
-                                     if ((grid[i][j].getColor() == value.getColor()) || (value.getColor() == grid[i + 1][j - 1].getColor()) || (grid[i + 2][j - 2].getColor() == value.getColor()) || (grid[i + 3][j - 3].getColor() == value.getColor())) {
+                                     if ((grid[i][j].getColor().equals(color)) || (color.equals(grid[i + 1][j - 1].getColor()) || (grid[i + 2][j - 2].getColor().equals(color)) || (grid[i + 3][j - 3].getColor().equals(color)))) {
 
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i + 2][j - 2].getColor() == value.getColor()) && (grid[i + 3][j - 3].getColor() == value.getColor())) {
+					if ((grid[i][j].getColor().equals(color)) && (grid[i + 1][j - 1].getColor().equals(color)) && (grid[i + 2][j - 2].getColor().equals(color)) && (grid[i + 3][j - 3].getColor().equals(color))) {
 						return new Location(i, j); // grid location [i][j].getColor()
-					} else if ((grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 2][j - 2].getColor() == value.getColor()) && (grid[i + 3][j - 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 1][j - 1].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 2][j - 2].getColor().equals(color)) && (grid[i + 3][j - 3].getColor().equals(color))) {
 						return new Location(i+1, j-1); // grid location [i][j+1]
-					} else if ((grid[i + 2][j - 2].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i + 3][j - 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 2][j - 2].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j - 1].getColor().equals(color)) && (grid[i + 3][j - 3].getColor().equals(color))) {
 						return new Location(i+2, j-2); // grid location [i][j+3]
-					} else if ((grid[i + 3][j - 3].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i + 2][j - 2].getColor() == value.getColor())) {
+					} else if ((grid[i + 3][j - 3].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j - 1].getColor().equals(color)) && (grid[i + 2][j - 2].getColor().equals(color))) {
 						return new Location(i+3, j-3); // grid location [i][j+3]
 					}
 				}
@@ -504,7 +506,7 @@ public class AI extends Player
 		return null;
 	}
                 
-        private static int count4InARowOpportunities(Stone[][] grid, Stone value) {
+        private static int countScoringOpportunities(Stone[][] grid, Color color) {
 
 		int counter = 0;
 
@@ -513,15 +515,15 @@ public class AI extends Player
 			for (int j = 0; j < grid.length - 3; j++) {
                             
                             
-				if ((grid[i][j].getColor() == value.getColor()) || (value.getColor() == grid[i][j + 1].getColor()) || (grid[i][j + 2].getColor() == value.getColor()) || (grid[i][j + 3].getColor() == value.getColor())) {
+				if ((grid[i][j].getColor().equals(color)) || (color.equals(grid[i][j + 1].getColor()) || (grid[i][j + 2].getColor().equals(color)) || (grid[i][j + 3].getColor().equals(color)))) {
 
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor()) && (grid[i][j + 3].getColor() == value.getColor())) {
+					if ((grid[i][j].getColor().equals(color)) && (grid[i][j + 1].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color)) && (grid[i][j + 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor()) && (grid[i][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i][j + 1].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color)) && (grid[i][j + 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i][j + 2].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i][j + 2].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i][j + 1].getColor().equals(color)) && (grid[i][j + 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i][j + 3].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i][j + 1].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor())) {
+					} else if ((grid[i][j + 3].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i][j + 1].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color))) {
 						counter++;
 					}
 				}
@@ -533,15 +535,15 @@ public class AI extends Player
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid.length - 3; j++) {
 
-                            if ((grid[j][i].getColor() == value.getColor()) || (value.getColor() == grid[j + 1][i].getColor()) || (grid[j + 2][i].getColor() == value.getColor()) || (grid[j + 3][i].getColor() == value.getColor())) {
+                            if ((grid[j][i].getColor().equals(color)) || (color.equals(grid[j + 1][i].getColor()) || (grid[j + 2][i].getColor().equals(color)) || (grid[j + 3][i].getColor().equals(color)))) {
 
-					if ((grid[j][i].getColor() == value.getColor()) && (grid[j + 1][i].getColor() == value.getColor()) && (grid[i][j + 2].getColor() == value.getColor()) && (grid[j + 3][i].getColor() == value.getColor())) {
+					if ((grid[j][i].getColor().equals(color)) && (grid[j + 1][i].getColor().equals(color)) && (grid[i][j + 2].getColor().equals(color)) && (grid[j + 3][i].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[j + 1][i].getColor() == value.getColor()) && (grid[j][i].getColor() == value.getColor()) && (grid[j + 2][i].getColor() == value.getColor()) && (grid[j + 3][i].getColor() == value.getColor())) {
+					} else if ((grid[j + 1][i].getColor().equals(color)) && (grid[j][i].getColor().equals(color)) && (grid[j + 2][i].getColor().equals(color)) && (grid[j + 3][i].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[j + 2][i].getColor() == value.getColor()) && (grid[j][i].getColor() == value.getColor()) && (grid[j + 1][i].getColor() == value.getColor()) && (grid[j + 3][i].getColor() == value.getColor())) {
+					} else if ((grid[j + 2][i].getColor().equals(color)) && (grid[j][i].getColor().equals(color)) && (grid[j + 1][i].getColor().equals(color)) && (grid[j + 3][i].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[j + 3][i].getColor() == value.getColor()) && (grid[j][i].getColor() == value.getColor()) && (grid[j + 1][i].getColor() == value.getColor()) && (grid[j + 2][i].getColor() == value.getColor())) {
+					} else if ((grid[j + 3][i].getColor().equals(color)) && (grid[j][i].getColor().equals(color)) && (grid[j + 1][i].getColor().equals(color)) && (grid[j + 2][i].getColor().equals(color))) {
 						counter++;
 					}
 				}
@@ -553,15 +555,15 @@ public class AI extends Player
 			for (int j = 0; j < grid.length; j++) {
 				if (i + 3 < grid.length && j + 3 < grid.length) {
                                     
-                                if ((grid[i][j].getColor() == value.getColor()) || (value.getColor() == grid[i + 1][j + 1].getColor()) || (grid[i + 2][j + 2].getColor() == value.getColor()) || (grid[i + 3][j + 3].getColor() == value.getColor())) {
+                                if ((grid[i][j].getColor().equals(color)) || (color.equals(grid[i + 1][j + 1].getColor()) || (grid[i + 2][j + 2].getColor().equals(color)) || (grid[i + 3][j + 3].getColor().equals(color)))) {
 
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i + 2][j + 2].getColor() == value.getColor()) && (grid[i + 3][j + 3].getColor() == value.getColor())) {
+					if ((grid[i][j].getColor().equals(color)) && (grid[i + 1][j + 1].getColor().equals(color)) && (grid[i + 2][j + 2].getColor().equals(color)) && (grid[i + 3][j + 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 2][j + 2].getColor() == value.getColor()) && (grid[i + 3][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 1][j + 1].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 2][j + 2].getColor().equals(color)) && (grid[i + 3][j + 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i + 2][j + 2].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i + 3][j + 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 2][j + 2].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j + 1].getColor().equals(color)) && (grid[i + 3][j + 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i + 3][j + 3].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j + 1].getColor() == value.getColor()) && (grid[i + 2][j + 2].getColor() == value.getColor())) {
+					} else if ((grid[i + 3][j + 3].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j + 1].getColor().equals(color)) && (grid[i + 2][j + 2].getColor().equals(color))) {
 						counter++;
 					}
 				}
@@ -575,15 +577,15 @@ public class AI extends Player
 			for (int j = grid.length - 1; j > 0; j--) {
 				if (i + 3 < grid.length && j - 3 > -1) {
                                     
-                                     if ((grid[i][j].getColor() == value.getColor()) || (value.getColor() == grid[i + 1][j - 1].getColor()) || (grid[i + 2][j - 2].getColor() == value.getColor()) || (grid[i + 3][j - 3].getColor() == value.getColor())) {
+                                     if ((grid[i][j].getColor().equals(color)) || (color.equals(grid[i + 1][j - 1].getColor()) || (grid[i + 2][j - 2].getColor().equals(color)) || (grid[i + 3][j - 3].getColor().equals(color)))) {
 
-					if ((grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i + 2][j - 2].getColor() == value.getColor()) && (grid[i + 3][j - 3].getColor() == value.getColor())) {
+					if ((grid[i][j].getColor().equals(color)) && (grid[i + 1][j - 1].getColor().equals(color)) && (grid[i + 2][j - 2].getColor().equals(color)) && (grid[i + 3][j - 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 2][j - 2].getColor() == value.getColor()) && (grid[i + 3][j - 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 1][j - 1].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 2][j - 2].getColor().equals(color)) && (grid[i + 3][j - 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i + 2][j - 2].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i + 3][j - 3].getColor() == value.getColor())) {
+					} else if ((grid[i + 2][j - 2].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j - 1].getColor().equals(color)) && (grid[i + 3][j - 3].getColor().equals(color))) {
 						counter++;
-					} else if ((grid[i + 3][j - 3].getColor() == value.getColor()) && (grid[i][j].getColor() == value.getColor()) && (grid[i + 1][j - 1].getColor() == value.getColor()) && (grid[i + 2][j - 2].getColor() == value.getColor())) {
+					} else if ((grid[i + 3][j - 3].getColor().equals(color)) && (grid[i][j].getColor().equals(color)) && (grid[i + 1][j - 1].getColor().equals(color)) && (grid[i + 2][j - 2].getColor().equals(color))) {
 						counter++;
 					}
 				}
