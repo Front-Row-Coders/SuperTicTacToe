@@ -25,7 +25,8 @@ public class GameOptionsPanel extends UIPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         titleLabel = new javax.swing.JLabel();
@@ -34,8 +35,8 @@ public class GameOptionsPanel extends UIPanel
         returnButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         displayPanel = new javax.swing.JPanel();
-        singlePlayer = new SuperTicTacToe.src.SinglePlayer();
-        multiplayer = new SuperTicTacToe.src.Multiplayer();
+        singlePlayer2 = new SinglePlayer();
+        multiplayer2 = new Multiplayer();
 
         titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         titleLabel.setText("Game Options");
@@ -43,37 +44,45 @@ public class GameOptionsPanel extends UIPanel
         buttonGroup1.add(singlePlayerRadioBtn);
         singlePlayerRadioBtn.setText("Single Player");
         singlePlayerRadioBtn.setSelected(true);
-        singlePlayerRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        singlePlayerRadioBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 selectedSinglePlayer(evt);
             }
         });
 
         buttonGroup1.add(multiplayerRadioBtn);
         multiplayerRadioBtn.setText("Multiplayer");
-        multiplayerRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        multiplayerRadioBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 selectedMultiplayer(evt);
             }
         });
 
         returnButton.setText("Return");
-        returnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        returnButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 returnButtonActionPerformed(evt);
             }
         });
 
         exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 exitButtonActionPerformed(evt);
             }
         });
 
         displayPanel.setLayout(new java.awt.CardLayout());
-        displayPanel.add(singlePlayer, "first");
-        displayPanel.add(multiplayer, "second");
+        displayPanel.add(singlePlayer2, "first");
+        displayPanel.add(multiplayer2, "second");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,7 +127,7 @@ public class GameOptionsPanel extends UIPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        // TODO add your handling code here:
+        UIWindow.getInstance().setCurrentPanel(new MenuPanel());
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitButtonActionPerformed
@@ -143,10 +152,10 @@ public class GameOptionsPanel extends UIPanel
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton exitButton;
-    private SuperTicTacToe.src.Multiplayer multiplayer;
+    private Multiplayer multiplayer2;
     private javax.swing.JRadioButton multiplayerRadioBtn;
     private javax.swing.JButton returnButton;
-    private SuperTicTacToe.src.SinglePlayer singlePlayer;
+    private SinglePlayer singlePlayer2;
     private javax.swing.JRadioButton singlePlayerRadioBtn;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
