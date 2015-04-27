@@ -275,69 +275,6 @@ public class Game implements ActionListener
 		this.gameTimer.start();
 	}
 	
-	private void gameOver()
-	{
-		this.gameOver(false);
-	}
-	
-	private void gameOver(boolean isForfiet)
-	{
-		isGameOver = true;
-		//tells UI game is over
-		GridPanel gridUI = this.getCurrentGridPanel();
-		
-		String usernameOne;
-		String usernameTwo;
-		if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
-		{
-			usernameOne = playerOne.getUsername();
-			usernameTwo = playerTwo.getUsername();
-		}
-		else
-		{
-			usernameOne = "One";
-			usernameTwo = "Two";
-		}
-		
-		if(isForfiet)
-		{
-			//send UI forfeiter message
-			if(isPlayerOneTurn)
-			{
-				//Player One forfieted
-				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
-				{
-					gridUI.displayEndGame("Player \""+this.playerOne.getUsername()+"\" forfieted the game."+
-							"\nPlayer \""+this.playerTwo.getUsername()+"\" Wins!");
-				}
-				else
-				{
-					gridUI.displayEndGame("Player One forfieted the game."+
-							"\nPlayer Two Wins!");
-				}
-			}
-			else
-			{
-				//Player Two forfieted
-				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
-				{
-					gridUI.displayEndGame("Player \""+this.playerTwo.getUsername()+"\" forfieted the game."+
-							"\nPlayer \""+this.playerOne.getUsername()+"\" Wins!");
-				}
-				else
-				{
-					gridUI.displayEndGame("Player Two forfieted the game."+
-							"\nPlayer One Wins!");
-				}
-			}
-		}
-		else
-		{
-			//send UI getWinner()
-			gridUI.displayEndGame("Player \""+this.getWinner()+"\" Wins!");
-		}
-	}
-	
 	public Color getCurrentPlayersColor()
 	{
 		return (this.isPlayerOneTurn?PLAYER_ONE_COLOR:PLAYER_TWO_COLOR);
@@ -408,20 +345,109 @@ public class Game implements ActionListener
 		else
 		{
 			if(playerOne.getScore() > playerTwo.getScore())
+			{
 				return playerOne.getUsername();
+			}
 			else if(playerOne.getScore() < playerTwo.getScore())
+			{
 				return playerTwo.getUsername();
+			}
 			else
-				return "";
+			{
+				return ""; // Tie.
+			}
+		}
+	}
+	
+	private void gameOver()
+	{
+		this.gameOver(false);
+	}
+	
+	private void gameOver(boolean isForfeit)
+	{
+		isGameOver = true;
+		//tells UI game is over
+		GridPanel gridUI = this.getCurrentGridPanel();
+		
+		String usernameOne;
+		String usernameTwo;
+		if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+		{
+			usernameOne = "\""+playerOne.getUsername()+"\"";
+			usernameTwo = "\""+playerTwo.getUsername()+"\"";
+		}
+		else
+		{
+			usernameOne = "One";
+			usernameTwo = "Two";
+		}
+		
+		if(isForfeit)
+		{
+			//Forfeit.
+			//send UI forfeiter message
+			if(isPlayerOneTurn)
+			{
+				//Player One forfieted
+				gridUI.displayEndGame("Player "+usernameOne+" forfeited the game."+
+						"\nPlayer "+usernameTwo+" Wins!");
+			}
+			else
+			{
+				//Player Two forfieted
+				gridUI.displayEndGame("Player "+usernameTwo+" forfeited the game."+
+						"\nPlayer "+usernameOne+" Wins!");
+			}
+		}
+		else
+		{
+			//Regular win.
+			//send UI getWinner()
+			String winner = this.getWinner();
+			if(winner != null)
+			{
+				if(winner.length() > 0)
+				{
+					if(winner.equals(this.playerOne.getUsername()))
+					{
+						this.playerOne.increaseWins();
+						this.playerTwo.increaseLosses();
+						gridUI.displayEndGame("Player \""+usernameOne+"\" Wins!");
+					}
+					else
+					{
+						this.playerOne.increaseLosses();
+						this.playerTwo.increaseWins();
+						gridUI.displayEndGame("Player \""+usernameTwo+"\" Wins!");
+					}
+				}
+				else
+				{
+					this.playerOne.increaseTies();
+					this.playerTwo.increaseTies();
+					gridUI.displayEndGame("The game ends in a tie!");
+				}
+			}
+			else
+			{
+				System.err.println("Invalid winner state");
+			}
 		}
 	}
 	
 	public void forfeit()
 	{
 		if(isPlayerOneTurn)
+		{
 			playerOne.increaseLosses(); // update stats in player object in list
+			playerTwo.increaseWins();
+		}
 		else
+		{
+			playerOne.increaseWins();
 			playerTwo.increaseLosses();
+		}
 		
 		this.gameOver(true);
 	}
