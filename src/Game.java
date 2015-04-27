@@ -263,13 +263,69 @@ public class Game implements ActionListener
 		this.isGameOver = false;
 		
 	}
-
+	
 	private void gameOver()
+	{
+		this.gameOver(false);
+	}
+	
+	private void gameOver(boolean isForfiet)
 	{
 		isGameOver = true;
 		//tells UI game is over
-		//send UI getWinner()
-	}	
+		GridPanel gridUI = this.getCurrentGridPanel();
+		
+		String usernameOne;
+		String usernameTwo;
+		if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+		{
+			usernameOne = playerOne.getUsername();
+			usernameTwo = playerTwo.getUsername();
+		}
+		else
+		{
+			usernameOne = "One";
+			usernameTwo = "Two";
+		}
+		
+		if(isForfiet)
+		{
+			//send UI forfeiter message
+			if(isPlayerOneTurn)
+			{
+				//Player One forfieted
+				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+				{
+					gridUI.displayEndGame("Player \""+this.playerOne.getUsername()+"\" forfieted the game."+
+							"\nPlayer \""+this.playerTwo.getUsername()+"\" Wins!");
+				}
+				else
+				{
+					gridUI.displayEndGame("Player One forfieted the game."+
+							"\nPlayer Two Wins!");
+				}
+			}
+			else
+			{
+				//Player Two forfieted
+				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
+				{
+					gridUI.displayEndGame("Player \""+this.playerTwo.getUsername()+"\" forfieted the game."+
+							"\nPlayer \""+this.playerOne.getUsername()+"\" Wins!");
+				}
+				else
+				{
+					gridUI.displayEndGame("Player Two forfieted the game."+
+							"\nPlayer One Wins!");
+				}
+			}
+		}
+		else
+		{
+			//send UI getWinner()
+			gridUI.displayEndGame("Player \""+this.getWinner()+"\" Wins!");
+		}
+	}
 	
 	public Color getCurrentPlayersColor()
 	{
@@ -348,74 +404,7 @@ public class Game implements ActionListener
 				return "";
 		}
 	}
-/*<<<<<<< HEAD
 	
-	private void gameOver()
-	{
-		this.gameOver(false);
-	}
-	
-	private void gameOver(boolean isForfiet)
-	{
-		isGameOver = true;
-		//tells UI game is over
-		GridPanel gridUI = this.getCurrentGridPanel();
-		
-		String usernameOne;
-		String usernameTwo;
-		if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
-		{
-			usernameOne = playerOne.getUsername();
-			usernameTwo = playerTwo.getUsername();
-		}
-		else
-		{
-			usernameOne = "One";
-			usernameTwo = "Two";
-		}
-		
-		if(isForfiet)
-		{
-			//send UI forfeiter message
-			if(isPlayerOneTurn)
-			{
-				//Player One forfieted
-				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
-				{
-					gridUI.displayEndGame("Player \""+this.playerOne.getUsername()+"\" forfieted the game."+
-							"\nPlayer \""+this.playerTwo.getUsername()+"\" Wins!");
-				}
-				else
-				{
-					gridUI.displayEndGame("Player One forfieted the game."+
-							"\nPlayer Two Wins!");
-				}
-			}
-			else
-			{
-				//Player Two forfieted
-				if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
-				{
-					gridUI.displayEndGame("Player \""+this.playerTwo.getUsername()+"\" forfieted the game."+
-							"\nPlayer \""+this.playerOne.getUsername()+"\" Wins!");
-				}
-				else
-				{
-					gridUI.displayEndGame("Player Two forfieted the game."+
-							"\nPlayer One Wins!");
-				}
-			}
-		}
-		else
-		{
-			//send UI getWinner()
-			gridUI.displayEndGame("Player \""+this.getWinner()+"\" Wins!");
-		}
-	}
-	
-=======
->>>>>>> parent of a707db9... Added timer countdown code. Changed game over method implementation (gameOver() and gameOver(false) is for player win game over case and gameOver(true) is for forfeit game over case).
-*/
 	public void forfeit()
 	{
 		if(isPlayerOneTurn)
