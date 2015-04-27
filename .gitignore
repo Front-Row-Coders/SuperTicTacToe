@@ -6,3 +6,6 @@ nbproject/build-impl.xml
 nbproject/private/private.xml
 nbproject/project.xml
 players.txt
+/SuperTicTacToe/nbproject/private/
+/nbproject/private/
+players.xml
