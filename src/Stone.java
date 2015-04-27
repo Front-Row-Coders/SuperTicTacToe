@@ -26,6 +26,8 @@ public class Stone extends JButton implements ActionListener
 	
 	private Location location;
 	
+	private boolean wasPlacedThisTurn;
+	
 	public Stone()
 	{
 		this(Stone.EMPTY_STATE_COLOR, null);
@@ -51,6 +53,7 @@ public class Stone extends JButton implements ActionListener
 		*/
 		this.color = color;
 		this.location = location;
+		this.wasPlacedThisTurn = false;
 		
 		//Perform necessary component setup.
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -86,6 +89,16 @@ public class Stone extends JButton implements ActionListener
 		//Draw the color. 
 		graphics.setColor(this.getColor());
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+	}
+	
+	public boolean isPlacedThisTurn()
+	{
+		return this.wasPlacedThisTurn;
+	}
+	
+	public void setPlacedThisTurn(boolean placedStatus)
+	{
+		this.wasPlacedThisTurn = placedStatus;
 	}
 	
 	public void setColor(Color color)

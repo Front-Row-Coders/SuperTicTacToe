@@ -220,6 +220,21 @@ public class GridPanel extends UIPanel implements ActionListener
 		return this.gridSpots[loc.getXPos()][loc.getYPos()];
 	}
 	
+	/**
+	 * Changes all stone's to old status (not moved this turn).
+	 * Is suppose to be called before place the new move.
+	 */
+	public void moveMade()
+	{
+		for(Stone[] row : this.gridSpots)
+		{
+			for(Stone stone : row)
+			{
+				stone.setPlacedThisTurn(false);
+			}
+		}
+	}
+	
 	public boolean isSpotOpen(Location loc)
 	{
 		if(loc == null)

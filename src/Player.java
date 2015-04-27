@@ -144,8 +144,21 @@ import javax.swing.JPanel;
 		}
 		
 		Stone stone = gamePanel.getStone(loc);
-		stone.setColor(this.color);
-		return true;
+		if(stone != null)
+		{
+			//Change all stones to old status
+			gamePanel.moveMade();
+			//Change color of this stone
+			stone.setColor(this.color);
+			//Change this stone to new status
+			stone.setPlacedThisTurn(true);
+			
+			return true;
+		}
+		else
+		{
+			throw new IllegalStateException("Stone was returned null");
+		}
  	}
  
         /**
