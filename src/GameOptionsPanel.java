@@ -1,4 +1,7 @@
 
+import java.awt.CardLayout;
+
+
 /**
  *
  * @author alice
@@ -22,119 +25,55 @@ public class GameOptionsPanel extends UIPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         titleLabel = new javax.swing.JLabel();
         singlePlayerRadioBtn = new javax.swing.JRadioButton();
         multiplayerRadioBtn = new javax.swing.JRadioButton();
-        p1NameLabel = new javax.swing.JLabel();
-        p1NameTxtField = new javax.swing.JTextField();
-        p1GuestCheckBox = new javax.swing.JCheckBox();
-        p2NameLabel = new javax.swing.JLabel();
-        p2NameTxtField = new javax.swing.JTextField();
-        p2GuestCheckBox = new javax.swing.JCheckBox();
-        firstPlayerLabel = new javax.swing.JLabel();
-        p1RadioButton = new javax.swing.JRadioButton();
-        p2RadioButton = new javax.swing.JRadioButton();
-        playButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        displayPanel = new javax.swing.JPanel();
+        singlePlayer = new SuperTicTacToe.src.SinglePlayer();
+        multiplayer = new SuperTicTacToe.src.Multiplayer();
 
         titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         titleLabel.setText("Game Options");
 
         buttonGroup1.add(singlePlayerRadioBtn);
         singlePlayerRadioBtn.setText("Single Player");
-        singlePlayerRadioBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                singlePlayerRadioBtnActionPerformed(evt);
+        singlePlayerRadioBtn.setSelected(true);
+        singlePlayerRadioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectedSinglePlayer(evt);
             }
         });
 
         buttonGroup1.add(multiplayerRadioBtn);
         multiplayerRadioBtn.setText("Multiplayer");
-
-        p1NameLabel.setText("Player 1 username:");
-
-        p1NameTxtField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                p1NameTxtFieldActionPerformed(evt);
-            }
-        });
-
-        p1GuestCheckBox.setText("Guest");
-        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                p1GuestCheckBoxActionPerformed(evt);
-            }
-        });
-
-        p2NameLabel.setText("Player 2 username:");
-
-        p2NameTxtField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                p2NameTxtFieldActionPerformed(evt);
-            }
-        });
-
-        p2GuestCheckBox.setText("Guest");
-        p2GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                p2GuestCheckBoxActionPerformed(evt);
-            }
-        });
-
-        firstPlayerLabel.setText("First player:");
-
-        p1RadioButton.setText("Player 1");
-        p1RadioButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                p1RadioButtonActionPerformed(evt);
-            }
-        });
-
-        p2RadioButton.setText("Player 2");
-
-        playButton.setText("Play Game");
-        playButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                playButtonActionPerformed(evt);
+        multiplayerRadioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectedMultiplayer(evt);
             }
         });
 
         returnButton.setText("Return");
-        returnButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 returnButtonActionPerformed(evt);
             }
         });
 
         exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
             }
         });
+
+        displayPanel.setLayout(new java.awt.CardLayout());
+        displayPanel.add(singlePlayer, "first");
+        displayPanel.add(multiplayer, "second");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,38 +91,13 @@ public class GameOptionsPanel extends UIPanel
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(singlePlayerRadioBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(multiplayerRadioBtn)
                 .addGap(56, 56, 56))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(playButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(p1NameLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(p2NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(p1GuestCheckBox))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(firstPlayerLabel)
-                                    .addComponent(p2NameLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(p1NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(p2GuestCheckBox))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(p1RadioButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(p2RadioButton)))))))
-                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,93 +108,45 @@ public class GameOptionsPanel extends UIPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(singlePlayerRadioBtn)
                     .addComponent(multiplayerRadioBtn))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(p2NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(p1NameLabel)
-                    .addComponent(p1GuestCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(displayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(p2NameLabel)
-                            .addComponent(p1NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(p2GuestCheckBox)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(p2RadioButton)
-                    .addComponent(firstPlayerLabel)
-                    .addComponent(p1RadioButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(playButton)
-                        .addGap(19, 19, 19)
-                        .addComponent(returnButton))
+                    .addComponent(returnButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void singlePlayerRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singlePlayerRadioBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_singlePlayerRadioBtnActionPerformed
-
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_returnButtonActionPerformed
-
-    private void p1NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1NameTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_p1NameTxtFieldActionPerformed
-
-    private void p1GuestCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1GuestCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_p1GuestCheckBoxActionPerformed
-
-    private void p2NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2NameTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_p2NameTxtFieldActionPerformed
-
-    private void p2GuestCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2GuestCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_p2GuestCheckBoxActionPerformed
-
-    private void p1RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1RadioButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_p1RadioButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitButtonActionPerformed
     {//GEN-HEADEREND:event_exitButtonActionPerformed
         UIWindow.getInstance().close();
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_playButtonActionPerformed
-    {//GEN-HEADEREND:event_playButtonActionPerformed
+    private void selectedSinglePlayer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedSinglePlayer
         // TODO add your handling code here:
-		
-		
-		//For game board testing.
-		UIWindow.getInstance().setCurrentPanel(new GridPanel(Game.GUEST_NAME, Game.GUEST_NAME, false));
-    }//GEN-LAST:event_playButtonActionPerformed
+        CardLayout card = (CardLayout) displayPanel.getLayout();
+       card.show(displayPanel, "first");
+    }//GEN-LAST:event_selectedSinglePlayer
+
+    private void selectedMultiplayer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedMultiplayer
+        // TODO add your handling code here:
+        CardLayout card = (CardLayout) displayPanel.getLayout();
+       card.show(displayPanel, "second");
+    }//GEN-LAST:event_selectedMultiplayer
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel displayPanel;
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel firstPlayerLabel;
+    private SuperTicTacToe.src.Multiplayer multiplayer;
     private javax.swing.JRadioButton multiplayerRadioBtn;
-    private javax.swing.JCheckBox p1GuestCheckBox;
-    private javax.swing.JLabel p1NameLabel;
-    private javax.swing.JTextField p1NameTxtField;
-    private javax.swing.JRadioButton p1RadioButton;
-    private javax.swing.JCheckBox p2GuestCheckBox;
-    private javax.swing.JLabel p2NameLabel;
-    private javax.swing.JTextField p2NameTxtField;
-    private javax.swing.JRadioButton p2RadioButton;
-    private javax.swing.JButton playButton;
     private javax.swing.JButton returnButton;
+    private SuperTicTacToe.src.SinglePlayer singlePlayer;
     private javax.swing.JRadioButton singlePlayerRadioBtn;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
