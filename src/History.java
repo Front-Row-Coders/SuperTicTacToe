@@ -1,30 +1,54 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;	
 
 /**
  * 
  * @author Jonathan
  */
+
+
 public class History
 {
 	private final List<Player> history;
 	
-	public static final String STORAGE_FILE = "players.txt";
+	public static final String STORAGE_FILE = "players.xml";
+	
+	public static final String ROOT_TAG_NAME = "playerList";
+	
+	public static final String PLAYER_TAG_NAME = "player";
+	
+	public static final String WINS_TAG_NAME = "wins";
+	
+	public static final String LOSSES_TAG_NAME = "losses";
+	
+	public static final String TIES_TAG_NAME = "ties";
+	
+	public static final String USERNAME_TAG_NAME = "username";
+	
+	
 	
 	/**
 	 * Creates a History object.
 	 */
+	
+	
 	public History ()
 	{
 		history = new ArrayList<>();
 	}
 	
+	/*
+	//Does not work with HistoryPanel's implementation.
 	public void displayHistory(Player player)
 	{
 		if (player == null)
@@ -33,8 +57,9 @@ public class History
 		}
 		
 		//create history panel
-		
+		UIWindow.getInstance().setCurrentPanel(new HistoryPanel(player));
 	}
+	*/
 	
 	public void loadHistory()
 	{
@@ -43,31 +68,44 @@ public class History
 		try
 		{
 			File file = new File(STORAGE_FILE);
- 
 			//If file doesn't exist, then create it
 			if (!file.exists()) 
 			{
 				file.createNewFile();
+				return;
 			}
 			
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String line;
-			while ((line = reader.readLine()) != null)
+			SAXBuilder jdomBuilder = new SAXBuilder();
+			Document document = jdomBuilder.build(file);
+			// Buffer Reader is replaced by document
+			//BufferedReader reader = new BufferedReader(new FileReader(file));
+			Element root = document.getRootElement();
+			List<Element> players = root.getChildren(PLAYER_TAG_NAME);
+			
+			//String line;
+			for (Element playerInfo : players)
 			{
-				Scanner parser = new Scanner(line);
-				String username = parser.next();
-				int wins = parser.nextInt();
-				int losses = parser.nextInt();
-				int ties = parser.nextInt();
-				Player player = new Player(username,wins, losses,ties);
-				history.add(player);
+				//Scanner parser = new Scanner(line);
+				try
+				{
+					String username = playerInfo.getChildText(USERNAME_TAG_NAME);
+					int wins = Integer.parseInt(playerInfo.getChildText(WINS_TAG_NAME));
+					int losses = Integer.parseInt(playerInfo.getChildText(LOSSES_TAG_NAME));
+					int ties = Integer.parseInt(playerInfo.getChildText(TIES_TAG_NAME));
+					Player player = new Player(username,wins, losses,ties);
+					history.add(player);
+				}
+				catch(Exception e)
+				{
+					
+				}
 			}
-			reader.close();
+			//reader.close();
 		}
-		catch (Exception e)
+		catch (IOException | JDOMException e)
 		{
 			System.err.format("Exception occurred trying to read '%s'.\n", STORAGE_FILE);
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -87,25 +125,58 @@ public class History
 			{
 				file.createNewFile();
 			}
-	
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			PrintWriter bw = new PrintWriter(fw);
-			for (Player player: history)
+			Element root = new Element(ROOT_TAG_NAME);
+			Document document = new Document(root);
+			
+			//FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			//PrintWriter bw = new PrintWriter(fw);
+			for (Player player : history)
 			{
+				Element playerElement = new Element(PLAYER_TAG_NAME);
+				
+				Element usernameElement = new Element (USERNAME_TAG_NAME);
+				usernameElement.addContent(player.getUsername());
+				playerElement.addContent(usernameElement);
+				 
+				Element winsElement = new Element (WINS_TAG_NAME);
+				winsElement.addContent(Integer.toString(player.getWins()));
+				playerElement.addContent(winsElement);
+				
+				Element lossesElement = new Element (LOSSES_TAG_NAME);
+				lossesElement.addContent(Integer.toString(player.getLosses()));
+				playerElement.addContent(lossesElement);
+				
+				Element tiesElement = new Element (TIES_TAG_NAME);
+				tiesElement.addContent(Integer.toString(player.getTies()));
+				playerElement.addContent(tiesElement);
+				
+				root.addContent(playerElement);				
+				
+				/*
+				bw.print(" ");
 				bw.print(player.getUsername());
 				bw.print(" ");
 				bw.print(player.getWins());
 				bw.print(" ");
 				bw.print(player.getLosses());
 				bw.print(" ");
-				bw.println(player.getTies());		
+				bw.println(player.getTies());
+				*/
 			}
-			bw.close();
+			//bw.close();
+			
+			XMLOutputter xml = new XMLOutputter();
+			xml.setFormat(Format.getPrettyFormat());
+			
+			try (PrintWriter pw = new PrintWriter(new FileWriter(file.getAbsoluteFile())))
+			{
+				pw.print(xml.outputString(document));
+			}
 		}
 		catch(Exception e)
 		{
 			System.err.format("Exception occurred trying to write to '%s'.", STORAGE_FILE);
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
