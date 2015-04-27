@@ -303,11 +303,19 @@ public class Game implements ActionListener
 					playerOne.increaseScore();
 				}
 				
-				//Incase of AI being player two.
-				if(this.playerTwo instanceof AI)
+				if(isGridFull())
 				{
-					((AI)this.playerTwo).makeMove();
-					isPlayerOneTurn = true;
+					gameOver();
+				}
+				else
+				{
+					//Incase of AI being player two.
+					if(this.playerTwo instanceof AI)
+					{
+						((AI)this.playerTwo).makeMove();
+						isPlayerOneTurn = true;
+						this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
+					}
 				}
 			}
 			else
@@ -478,7 +486,13 @@ public class Game implements ActionListener
 	}
 	public boolean wasPointScored()
 	{
-		// UI
+		GridPanel panel = this.getCurrentGridPanel();
+		if(panel != null)
+		{
+			Stone[][] spots = panel.getGridSpots();
+			
+			
+		}
 		return false;
 	}
 
