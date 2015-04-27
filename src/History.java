@@ -111,10 +111,12 @@ public class History
 	
 	public void saveHistory() throws Exception
 	{
+		/*
 		if(history.isEmpty())
 		{
 			return;
 		}
+		*/
 		
 		try
 		{
