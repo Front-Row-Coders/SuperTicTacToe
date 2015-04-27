@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package SuperTicTacToe.src;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Eloy
  */
-public class SinglePlayer extends javax.swing.JPanel {
+public class SinglePlayer extends UIPanel {
+	private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form SinglePlayer
@@ -25,7 +22,8 @@ public class SinglePlayer extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         aiDifficulty = new javax.swing.ButtonGroup();
         firstPlayer = new javax.swing.ButtonGroup();
@@ -46,16 +44,21 @@ public class SinglePlayer extends javax.swing.JPanel {
         firstPlayerLabel.setText("First player:");
 
         p1GuestCheckBox.setText("Guest");
-        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1GuestCheckBoxActionPerformed(evt);
             }
         });
 
         firstPlayer.add(p1RadioButton);
+        p1RadioButton.setSelected(true);
         p1RadioButton.setText("Player 1");
-        p1RadioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1RadioButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1RadioButtonActionPerformed(evt);
             }
         });
@@ -64,11 +67,21 @@ public class SinglePlayer extends javax.swing.JPanel {
         p2RadioButton.setText("AI");
 
         playButton.setText("Play Game");
+        playButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                playButtonActionPerformed(evt);
+            }
+        });
 
         aiDifficulty.add(easyButton);
+        easyButton.setSelected(true);
         easyButton.setText("Easy");
-        easyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        easyButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 easyButtonActionPerformed(evt);
             }
         });
@@ -81,8 +94,10 @@ public class SinglePlayer extends javax.swing.JPanel {
 
         p1NameLabel.setText("Player 1 username:");
 
-        p1NameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1NameTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1NameTxtFieldActionPerformed(evt);
             }
         });
@@ -166,6 +181,50 @@ public class SinglePlayer extends javax.swing.JPanel {
     private void p1NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1NameTxtFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_p1NameTxtFieldActionPerformed
+
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_playButtonActionPerformed
+    {//GEN-HEADEREND:event_playButtonActionPerformed
+		String p1 = this.p1NameTxtField.getText().trim();
+		if(p1.length() <= 0)
+		{
+			JOptionPane.showMessageDialog(this, "Empty player one username value."
+				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		if(p1.equals(Game.AI_NAME) || (!this.p1GuestCheckBox.isSelected() && p1.equals(Game.GUEST_NAME)))
+		{
+			JOptionPane.showMessageDialog(this, "Invalid username one due to reserved name."
+				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		if(!this.p1GuestCheckBox.isSelected())
+		{
+			if(UIWindow.getHistoryInstance().getPlayer(p1) == null)
+			{
+				JOptionPane.showMessageDialog(this, "Username One does not exist."
+				, "Invalid", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}
+		
+		SkillLevel level;
+		if(this.easyButton.isSelected())
+		{
+			level = SkillLevel.Easy;
+		}
+		else if(this.mediumButton.isSelected())
+		{
+			level = SkillLevel.Medium;
+		}
+		else
+		{
+			level = SkillLevel.Hard;
+		}
+		
+		UIWindow.getInstance().setCurrentPanel(new GridPanel(p1, level, this.p1RadioButton.isSelected()));
+    }//GEN-LAST:event_playButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
