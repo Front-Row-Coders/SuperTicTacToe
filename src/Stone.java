@@ -105,10 +105,12 @@ public class Stone extends JButton implements ActionListener
 	{
 		if(color == null)
 		{
-			throw new IllegalArgumentException("color argument is null");
+			this.color = Stone.EMPTY_STATE_COLOR;
 		}
-		
-		this.color = color;
+		else
+		{
+			this.color = color;
+		}
 		
 		this.repaint();
 	}
