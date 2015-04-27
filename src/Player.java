@@ -103,6 +103,16 @@ import javax.swing.JPanel;
  	}
 	
 	/**
+	 * Checks if this player is a guest player, i.e. if this player's 
+	 * username is the reserved username for guest.
+	 * @return The guest status of this player.
+	 */
+	public boolean isGuestPlayer()
+	{
+		return this.getUsername().equals(Game.GUEST_NAME);
+	}
+	
+	/**
 	 * Player method to make a move, called only by Game class after
          * validating move. Creates a new Stone object with the loc argument
          * and the color attribute, gets the current game board panel instance
