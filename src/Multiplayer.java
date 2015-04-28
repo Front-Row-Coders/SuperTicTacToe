@@ -219,7 +219,7 @@ public class Multiplayer extends UIPanel {
 				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-                
+		
 		if(!this.p1GuestCheckBox.isSelected())
 		{
 			if(UIWindow.getHistoryInstance().getPlayer(p1) == null)
@@ -240,7 +240,7 @@ public class Multiplayer extends UIPanel {
 			}
 		}
                 
-                if(p2.equals(p1))
+                if(!this.p1GuestCheckBox.isSelected() && p1.equals(p2))
                 {
                     JOptionPane.showMessageDialog(this, "Please enter two DIFFERENT usernames."
 				, "Error", JOptionPane.ERROR_MESSAGE);
