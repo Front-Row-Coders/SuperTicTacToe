@@ -196,36 +196,36 @@ public class Multiplayer extends UIPanel {
 		String p2 = this.p2NameTxtField.getText().trim();
 		if(p1.length() <= 0)
 		{
-			JOptionPane.showMessageDialog(this, "Empty player one username value."
-				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Please enter a username for Player One."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		if(p2.length() <= 0)
 		{
-			JOptionPane.showMessageDialog(this, "Empty player two username value."
-				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Please enter a username for Player Two."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
 		if(p1.equals(Game.AI_NAME) || (!this.p1GuestCheckBox.isSelected() && p1.equals(Game.GUEST_NAME)))
 		{
-			JOptionPane.showMessageDialog(this, "Invalid username one due to reserved name."
-				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Player One username is reserved. Please enter a different username."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		if(p2.equals(Game.AI_NAME) || (!this.p2GuestCheckBox.isSelected() && p2.equals(Game.GUEST_NAME)))
 		{
-			JOptionPane.showMessageDialog(this, "Invalid username two due to reserved name."
-				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Player Two username is reserved. Please enter a different username."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
+                
 		if(!this.p1GuestCheckBox.isSelected())
 		{
 			if(UIWindow.getHistoryInstance().getPlayer(p1) == null)
 			{
-				JOptionPane.showMessageDialog(this, "Username One does not exist."
-				, "Invalid", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Player One username does not exist."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 		}
@@ -234,11 +234,18 @@ public class Multiplayer extends UIPanel {
 		{
 			if(UIWindow.getHistoryInstance().getPlayer(p2) == null)
 			{
-				JOptionPane.showMessageDialog(this, "Username Two does not exist."
-				, "Invalid", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Player Two username does not exist."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 		}
+                
+                if(p2.equals(p1))
+                {
+                    JOptionPane.showMessageDialog(this, "Please enter two DIFFERENT usernames."
+				, "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 		
 		UIWindow.getInstance().setCurrentPanel(new GridPanel(p1, p2, this.p1RadioButton.isSelected()));
     }//GEN-LAST:event_playButtonActionPerformed
