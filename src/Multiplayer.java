@@ -152,7 +152,7 @@ public class Multiplayer extends UIPanel {
     }//GEN-LAST:event_p1RadioButtonActionPerformed
 
     private void p2NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2NameTxtFieldActionPerformed
-        // TODO add your handling code here:
+        playButtonActionPerformed(evt);
     }//GEN-LAST:event_p2NameTxtFieldActionPerformed
 
     private void p1GuestCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1GuestCheckBoxActionPerformed
@@ -165,7 +165,7 @@ public class Multiplayer extends UIPanel {
     }//GEN-LAST:event_p1GuestCheckBoxActionPerformed
 
     private void p1NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1NameTxtFieldActionPerformed
-        // TODO add your handling code here:
+        playButtonActionPerformed(evt);
     }//GEN-LAST:event_p1NameTxtFieldActionPerformed
 
     private void p2GuestCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2GuestCheckBoxActionPerformed
