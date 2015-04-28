@@ -197,12 +197,6 @@ public class Game implements ActionListener
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
 		this.gameTimer.start();
-		
-		if(!this.isPlayerOneTurn)
-		{
-			((AI)this.playerTwo).makeMove();
-			this.isPlayerOneTurn = true;
-		}
 	}
 	
 	/**
@@ -273,6 +267,15 @@ public class Game implements ActionListener
 		this.gameTimer = new Timer(SECOND, this); // call with delay (timeLimit)
 		this.gameTimer.setActionCommand(TIMER_EVENT_COMMAND);
 		this.gameTimer.start();
+	}
+	
+	public void performPostSetup()
+	{
+		if(!this.isPlayerOneTurn)
+		{
+			((AI)this.playerTwo).makeMove();
+			this.isPlayerOneTurn = true;
+		}
 	}
 	
 	public Color getCurrentPlayersColor()
