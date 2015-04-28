@@ -6,13 +6,13 @@
 public class Location
 {
 	/**
-	 * The x coordinate value (column)
+	 * The row coordinate value (y)
 	 */
-	private final int xPos;
+	private final int rowPos;
 	/**
-	 * The y coordinate value (row)
+	 * The column coordinate value (x)
 	 */
-	private final int yPos;
+	private final int columnPos;
 	
 						//  UP,   UP_RIGHT,  RIGHT, DOWN_RIGHT, DOWN,  DOWN_LEFT, LEFT, UP_LEFT
 	/**
@@ -21,32 +21,37 @@ public class Location
 	public enum DIRECTION {NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST};
 	
 	/**
+	 * The number of directions possible.
+	 */
+	public static final int NUM_OF_DIRECTIONS = DIRECTION.values().length;
+	
+	/**
 	 * Creates a new location object with the specified location values.
-	 * @param x The x coordinate value (column)
-	 * @param y The y coordinate value (row)
+	 * @param row The rowPos value (y)
+	 * @param column The column value (x)
 	 */
-	public Location(int x, int y)
+	public Location(int row, int column)
 	{
-		this.xPos = x;
-		this.yPos = y;
+		this.rowPos = row;
+		this.columnPos = column;
 	}
 	
 	/**
-	 * Gets the x (column) position.
+	 * Gets the row (y) position.
 	 * @return 
 	 */
-	public int getXPos()
+	public int getRowPos()
 	{
-		return this.xPos;
+		return this.rowPos;
 	}
 	
 	/**
-	 * Gets the y (row) position.
+	 * Gets the column (x) position.
 	 * @return 
 	 */
-	public int getYPos()
+	public int getColumnPos()
 	{
-		return this.yPos;
+		return this.columnPos;
 	}
 	
 	/**
@@ -59,55 +64,61 @@ public class Location
 		switch(direction)
 		{
 			case NORTH:
-				if(this.getYPos()-1 >= 0)
+				if(this.getColumnPos()-1 >= 0)
 				{
-					return new Location(this.getXPos(), this.getYPos()-1);
+					return new Location(this.getRowPos(), this.getColumnPos()-1);
 				}
 			break;
 			case NORTH_EAST:
-				if(this.getYPos()-1 >= 0 && this.getXPos()-1 >= 0)
+				if(this.getColumnPos()-1 >= 0 && this.getRowPos()-1 >= 0)
 				{
-					return new Location(this.getXPos()-1, this.getYPos()-1);
+					return new Location(this.getRowPos()-1, this.getColumnPos()-1);
 				}
 			break;
 			case EAST:
-				if(this.getYPos()-1 >= 0 && this.getXPos()-1 >= 0)
+				if(this.getColumnPos()-1 >= 0 && this.getRowPos()-1 >= 0)
 				{
-					return new Location(this.getXPos()-1, this.getYPos()-1);
+					return new Location(this.getRowPos()-1, this.getColumnPos()-1);
 				}
 			break;
 			case SOUTH_EAST:
-				if(this.getYPos()+1 < GridPanel.GRID_HEIGHT && this.getXPos()-1 >= 0)
+				if(this.getColumnPos()+1 < GridPanel.GRID_HEIGHT && this.getRowPos()-1 >= 0)
 				{
-					return new Location(this.getXPos()-1, this.getYPos()+1);
+					return new Location(this.getRowPos()-1, this.getColumnPos()+1);
 				}
 			break;
 			case SOUTH:
-				if(this.getYPos()+1 < GridPanel.GRID_HEIGHT)
+				if(this.getColumnPos()+1 < GridPanel.GRID_HEIGHT)
 				{
-					return new Location(this.getXPos(), this.getYPos()+1);
+					return new Location(this.getRowPos(), this.getColumnPos()+1);
 				}
 			break;
 			case SOUTH_WEST:
-				if(this.getYPos()+1 < GridPanel.GRID_HEIGHT && this.getXPos()+1 < GridPanel.GRID_WIDTH)
+				if(this.getColumnPos()+1 < GridPanel.GRID_HEIGHT && this.getRowPos()+1 < GridPanel.GRID_WIDTH)
 				{
-					return new Location(this.getXPos()+1, this.getYPos()+1);
+					return new Location(this.getRowPos()+1, this.getColumnPos()+1);
 				}
 			break;
 			case WEST:
-				if(this.getXPos()+1 < GridPanel.GRID_WIDTH)
+				if(this.getRowPos()+1 < GridPanel.GRID_WIDTH)
 				{
-					return new Location(this.getXPos()+1, this.getYPos());
+					return new Location(this.getRowPos()+1, this.getColumnPos());
 				}
 			break;
 			case NORTH_WEST:
-				if(this.getYPos()-1 >= 0 && this.getXPos()+1 < GridPanel.GRID_WIDTH)
+				if(this.getColumnPos()-1 >= 0 && this.getRowPos()+1 < GridPanel.GRID_WIDTH)
 				{
-					return new Location(this.getXPos()+1, this.getYPos()-1);
+					return new Location(this.getRowPos()+1, this.getColumnPos()-1);
 				}
 			break;
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Location("+this.getRowPos()+", "+this.getColumnPos()+")";
 	}
 }
