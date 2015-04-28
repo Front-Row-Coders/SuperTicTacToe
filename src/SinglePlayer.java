@@ -171,7 +171,7 @@ public class SinglePlayer extends UIPanel {
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void p1NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1NameTxtFieldActionPerformed
-        // TODO add your handling code here:
+        playButtonActionPerformed(evt);
     }//GEN-LAST:event_p1NameTxtFieldActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_playButtonActionPerformed
