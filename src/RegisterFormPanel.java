@@ -131,28 +131,31 @@ public class RegisterFormPanel extends UIPanel
 	private void registerUser()
 	{
 		String username = usernameTxtField.getText();
-		errorLabel.setText("");
 		if(username == null || username.length() <= 0)
 		{
-			errorLabel.setText("No username entered.");
+                        JOptionPane.showMessageDialog(this, "No username entered."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
 		History history = UIWindow.getHistoryInstance();
 		if(history.createNewPlayer(username) != false)
 		{
-			JOptionPane.showMessageDialog(this, "Successfully created your player account \""+username+"\"");
+			JOptionPane.showMessageDialog(this, "Successfully created your player account \""+username+"\"", "Success!", JOptionPane.PLAIN_MESSAGE);
 			UIWindow.getInstance().setCurrentPanel(new MenuPanel());
 		}
 		else
 		{
 			if(username.equals(Game.AI_NAME) || username.equals(Game.GUEST_NAME))
 			{
-				errorLabel.setText("\""+Game.AI_NAME +"\" and \""+Game.GUEST_NAME +"\" are reserved.");
+                                JOptionPane.showMessageDialog(this, "\""+Game.AI_NAME +"\" and \""+Game.GUEST_NAME +"\" are reserved."
+				, "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
-				errorLabel.setText("The username is already taken.");
+                                JOptionPane.showMessageDialog(this, "The username is already taken."
+				, "Error", JOptionPane.ERROR_MESSAGE);
+                                
 			}
 		}
 	}
