@@ -117,14 +117,14 @@ public class AI extends Player
                      return nextMove;
                  else if((nextMove = checkScorePoint(grid))!=null)
                      return nextMove;
-				 else if((nextMove = checkBlockOpponent(grid))!=null)
-					 return nextMove;
+                 else if((nextMove = checkBlockOpponent(grid))!=null)
+                         return nextMove;
                  else if((nextMove = checkFork(grid))!=null)
                      return nextMove;
                  else if((nextMove = checkBlockOpponentFork(grid))!=null)
                      return nextMove;
                      
-		return nextMove;
+                     return nextMove;
 	}
 	
         /**
@@ -169,23 +169,23 @@ public class AI extends Player
 		 // Check non-corners of top side
 		 for(i=1; i<grid[0].length-1; i++)
 		 {
-			 if(grid[0][i]==null || grid[0][i].isEmptySpot())
+			 if(grid[0][i].isEmptySpot())
 				 return grid[0][i].getStoneLocation();
 		 }
 
 		 // Check left and right sides in between top and bottom corners
 		 for(i=1; i<grid.length-1; i++)
 		 {
-			 if(grid[i][0]==null || grid[0][i].isEmptySpot())
+			 if(grid[i][0].isEmptySpot())
 				 return grid[i][0].getStoneLocation();
-			 else if(grid[i][grid[i].length-1]==null || grid[i][grid[i].length-1].isEmptySpot())
+			 else if(grid[i][grid[i].length-1].isEmptySpot())
 				 return grid[i][grid[i].length-1].getStoneLocation();
 		 }
 
 		 // Check non-corners of bottom side
 		 for(i=1; i<grid[grid.length-1].length-1; i++)
 		 {
-			 if(grid[grid.length-1][i]==null || grid[grid.length-1][i].isEmptySpot())
+			 if(grid[grid.length-1][i].isEmptySpot())
 				 return grid[grid.length-1][i].getStoneLocation();
 		 }
 
@@ -222,24 +222,24 @@ public class AI extends Player
          */
 	private Location checkOppositeCorner(Stone[][] grid)
 	{
-		if((grid[0][0]!=null && !grid[0][0].isEmptySpot()) && !grid[0][0].getColor().equals(this.getColor()))
+		if(!grid[0][0].isEmptySpot() && !grid[0][0].getColor().equals(this.getColor()))
 		{
-			if(grid[grid.length-1][grid[0].length-1]==null || grid[grid.length-1][grid[0].length-1].isEmptySpot())
+			if(grid[grid.length-1][grid[0].length-1].isEmptySpot())
 				return grid[grid.length-1][grid[0].length-1].getStoneLocation();
 		}
-		else if((grid[0][0]!=null && !grid[0][0].isEmptySpot()) && !grid[0][grid[0].length-1].getColor().equals(this.getColor()))
+		else if(!grid[0][0].isEmptySpot() && !grid[0][grid[0].length-1].getColor().equals(this.getColor()))
 		{
-			if(grid[grid.length-1][0]==null || grid[grid.length-1][0].isEmptySpot())
+			if(grid[grid.length-1][0].isEmptySpot())
 				return grid[grid.length-1][0].getStoneLocation();
 		}
-		else if((grid[grid.length-1][0]!=null && !grid[grid.length-1][0].isEmptySpot()) && !grid[grid.length-1][0].getColor().equals(this.getColor()))
+		else if(!grid[grid.length-1][0].isEmptySpot() && !grid[grid.length-1][0].getColor().equals(this.getColor()))
 		{
-			if(grid[0][grid[0].length-1]==null || grid[0][grid[0].length-1].isEmptySpot())
+			if(grid[0][grid[0].length-1].isEmptySpot())
 				return grid[0][grid[0].length-1].getStoneLocation();
 		}
-		else if((grid[grid.length-1][grid[0].length-1]!=null && !grid[grid.length-1][grid[0].length-1].isEmptySpot()) && !grid[grid.length-1][grid[0].length-1].getColor().equals(this.getColor()))
+		else if(!grid[grid.length-1][grid[0].length-1].isEmptySpot() && !grid[grid.length-1][grid[0].length-1].getColor().equals(this.getColor()))
 		{
-			if(grid[0][0]==null || grid[0][0].isEmptySpot())
+			if(grid[0][0].isEmptySpot())
 				return grid[0][0].getStoneLocation();
 		}
 		return null;
