@@ -194,8 +194,8 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 		}
 		
 		Location loc = stone.getStoneLocation();
-		int row = loc.getXPos();
-		int col = loc.getYPos();
+		int row = loc.getRowPos();
+		int col = loc.getColumnPos();
 		
 		if(this.gridSpots[row][col] != null && !this.gridSpots[row][col].isEmptySpot())
 		{
@@ -240,7 +240,7 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 			throw new IllegalArgumentException("loc is null");
 		}
 		
-		return this.gridSpots[loc.getXPos()][loc.getYPos()];
+		return this.gridSpots[loc.getRowPos()][loc.getColumnPos()];
 	}
 	
 	/**
@@ -258,6 +258,12 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 		}
 	}
 	
+	public void updateScores(int scoreOne, int scoreTwo)
+	{
+		this.lblPlayerOneScore.setText(Integer.toString(scoreOne));
+		this.lblPlayerTwoScore.setText(Integer.toString(scoreTwo));
+	}
+	
 	public boolean isSpotOpen(Location loc)
 	{
 		if(loc == null)
@@ -265,8 +271,8 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 			throw new IllegalArgumentException("loc is null");
 		}
 		
-		return (this.gridSpots[loc.getXPos()][loc.getYPos()] == null || 
-				this.gridSpots[loc.getXPos()][loc.getYPos()].isEmptySpot());
+		return (this.gridSpots[loc.getRowPos()][loc.getColumnPos()] == null || 
+				this.gridSpots[loc.getRowPos()][loc.getColumnPos()].isEmptySpot());
 	}
 
 	/*
