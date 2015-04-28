@@ -166,6 +166,25 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 		return copy;
 	}
 	
+	/**
+	 * Gets the stone location placed this turn.
+	 * @return The location of the placed stone this turn or null if none.
+	 */
+	public Location getCurrentPlacedLocation()
+	{
+		for(Stone[] row : this.gridSpots)
+		{
+			for(Stone stone : row)
+			{
+				if(stone.isPlacedThisTurn())
+				{
+					return stone.getStoneLocation();
+				}
+			}
+		}
+		return null;
+	}
+	
 	/*
 	public boolean placeStone(Stone stone)
 	{
