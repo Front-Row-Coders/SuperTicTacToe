@@ -146,7 +146,7 @@ public class RegisterFormPanel extends UIPanel
 		}
 		else
 		{
-			if(username.equals(Game.AI_NAME) || username.equals(Game.GUEST_NAME))
+			if(username.equalsIgnoreCase(Game.AI_NAME) || username.equalsIgnoreCase(Game.GUEST_NAME))
 			{
                                 JOptionPane.showMessageDialog(this, "\""+Game.AI_NAME +"\" and \""+Game.GUEST_NAME +"\" are reserved."
 				, "Error", JOptionPane.ERROR_MESSAGE);
