@@ -42,6 +42,8 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 		//Set the player score labels to their respective turn colors.
 		this.lblPlayerOneName.setForeground(this.gameInstance.getPlayerOne().getColor());
 		this.lblPlayerTwoName.setForeground(this.gameInstance.getPlayerTwo().getColor());
+                this.lblPlayerOneName.setText(username1);
+                this.lblPlayerTwoName.setText(Game.AI_NAME);
 		this.setTurnColor(this.gameInstance.getCurrentPlayersColor());
 		
 		
@@ -105,6 +107,8 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 		//Set the player score labels to their respective turn colors.
 		this.lblPlayerOneName.setForeground(this.gameInstance.getPlayerOne().getColor());
 		this.lblPlayerTwoName.setForeground(this.gameInstance.getPlayerTwo().getColor());
+                this.lblPlayerOneName.setText(username1);
+                this.lblPlayerTwoName.setText(username2);
 		
 		this.setTurnColor(this.gameInstance.getCurrentPlayersColor());
 		
@@ -362,8 +366,7 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 	 */
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         stone1 = new Stone();
         stone0 = new Stone();
@@ -509,9 +512,7 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
         btnForfeit.setText("Forfeit");
         btnForfeit.addActionListener(this);
 
-        lblPlayerOneName.setText("Player One:");
-
-        lblPlayerTwoName.setText("Player Two:");
+        lblPlayerOneName.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -584,33 +585,31 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
                                 .addComponent(stone28, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stone29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(playerTurnComponent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnForfeit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jLabel3))
-                                            .addComponent(lblTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPlayerOneName)
-                                            .addComponent(lblPlayerTwoName))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblPlayerTwoScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                                            .addComponent(lblPlayerOneScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(jLabel1)))))
+                                        .addComponent(jLabel3))
+                                    .addComponent(lblTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(19, 19, 19)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblPlayerOneName)
+                                                .addComponent(lblPlayerTwoName))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(lblPlayerTwoScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                                .addComponent(lblPlayerOneScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)))
+                                        .addComponent(jLabel1)))
+                                .addComponent(playerTurnComponent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnForfeit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(stone30, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -623,7 +622,7 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
                         .addComponent(stone34, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stone35, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -703,28 +702,22 @@ public class GridPanel extends UIPanel implements ActionListener, AncestorListen
 
     // Code for dispatching events from components to event handlers.
 
-    public void actionPerformed(java.awt.event.ActionEvent evt)
-    {
-        if (evt.getSource() == btnForfeit)
-        {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        if (evt.getSource() == btnForfeit) {
             GridPanel.this.btnForfeitActionPerformed(evt);
         }
     }
 
-    public void ancestorAdded(javax.swing.event.AncestorEvent evt)
-    {
-        if (evt.getSource() == GridPanel.this)
-        {
+    public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+        if (evt.getSource() == GridPanel.this) {
             GridPanel.this.formAncestorAdded(evt);
         }
     }
 
-    public void ancestorMoved(javax.swing.event.AncestorEvent evt)
-    {
+    public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
     }
 
-    public void ancestorRemoved(javax.swing.event.AncestorEvent evt)
-    {
+    public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnForfeitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnForfeitActionPerformed
