@@ -271,10 +271,23 @@ public class Game implements ActionListener
 	
 	public void performPostSetup()
 	{
-		if(!this.isPlayerOneTurn)
+		if(!this.isPlayerOneTurn && this.playerTwo instanceof AI)
 		{
 			((AI)this.playerTwo).makeMove();
-			this.isPlayerOneTurn = true;
+			this.togglePlayersTurn();
+		}
+	}
+	
+	private void togglePlayersTurn()
+	{
+		this.isPlayerOneTurn = !this.isPlayerOneTurn;
+		if(this.isPlayerOneTurn)
+		{
+			this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
+		}
+		else
+		{
+			this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
 		}
 	}
 	
@@ -308,8 +321,7 @@ public class Game implements ActionListener
 					this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
 				}
 				
-				isPlayerOneTurn = false;
-				this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
+				this.togglePlayersTurn();
 				
 				if(isGridFull())
 				{
@@ -332,8 +344,7 @@ public class Game implements ActionListener
 							this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
 						}
 						
-						isPlayerOneTurn = true;
-						this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
+						this.togglePlayersTurn();
 					}
 				}
 			}
@@ -354,8 +365,7 @@ public class Game implements ActionListener
 					this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
 				}
 				
-				isPlayerOneTurn = true;
-				this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
+				this.togglePlayersTurn();
 			}
 
 			if(this.isGridFull())
