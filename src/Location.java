@@ -64,51 +64,51 @@ public class Location
 		switch(direction)
 		{
 			case NORTH:
-				if(this.getColumnPos()-1 >= 0)
+				if(this.getRowPos()-1 >= 0)
 				{
-					return new Location(this.getRowPos(), this.getColumnPos()-1);
+					return new Location(this.getRowPos()-1, this.getColumnPos());
 				}
 			break;
 			case NORTH_EAST:
-				if(this.getColumnPos()-1 >= 0 && this.getRowPos()-1 >= 0)
+				if(this.getRowPos()-1 >= 0 && this.getColumnPos()-1 >= 0)
 				{
 					return new Location(this.getRowPos()-1, this.getColumnPos()-1);
 				}
 			break;
 			case EAST:
-				if(this.getColumnPos()-1 >= 0 && this.getRowPos()-1 >= 0)
+				if(this.getColumnPos()-1 >= 0)
 				{
-					return new Location(this.getRowPos()-1, this.getColumnPos()-1);
+					return new Location(this.getRowPos(), this.getColumnPos()-1);
 				}
 			break;
 			case SOUTH_EAST:
-				if(this.getColumnPos()+1 < GridPanel.GRID_HEIGHT && this.getRowPos()-1 >= 0)
+				if(this.getRowPos()+1 < GridPanel.GRID_HEIGHT && this.getColumnPos()-1 >= 0)
 				{
-					return new Location(this.getRowPos()-1, this.getColumnPos()+1);
+					return new Location(this.getRowPos()+1, this.getColumnPos()-1);
 				}
 			break;
 			case SOUTH:
-				if(this.getColumnPos()+1 < GridPanel.GRID_HEIGHT)
+				if(this.getRowPos()+1 < GridPanel.GRID_HEIGHT)
 				{
-					return new Location(this.getRowPos(), this.getColumnPos()+1);
+					return new Location(this.getRowPos()+1, this.getColumnPos());
 				}
 			break;
 			case SOUTH_WEST:
-				if(this.getColumnPos()+1 < GridPanel.GRID_HEIGHT && this.getRowPos()+1 < GridPanel.GRID_WIDTH)
+				if(this.getRowPos()+1 < GridPanel.GRID_WIDTH && this.getColumnPos()+1 < GridPanel.GRID_HEIGHT)
 				{
 					return new Location(this.getRowPos()+1, this.getColumnPos()+1);
 				}
 			break;
 			case WEST:
-				if(this.getRowPos()+1 < GridPanel.GRID_WIDTH)
+				if(this.getColumnPos()+1 < GridPanel.GRID_WIDTH)
 				{
-					return new Location(this.getRowPos()+1, this.getColumnPos());
+					return new Location(this.getRowPos(), this.getColumnPos()+1);
 				}
 			break;
 			case NORTH_WEST:
-				if(this.getColumnPos()-1 >= 0 && this.getRowPos()+1 < GridPanel.GRID_WIDTH)
+				if(this.getRowPos()-1 >= 0 && this.getColumnPos()+1 < GridPanel.GRID_WIDTH)
 				{
-					return new Location(this.getRowPos()+1, this.getColumnPos()-1);
+					return new Location(this.getRowPos()-1, this.getColumnPos()+1);
 				}
 			break;
 		}
