@@ -195,13 +195,13 @@ public class Multiplayer extends UIPanel {
 			return;
 		}
 		
-		if(p1.equals(Game.AI_NAME) || (!this.p1GuestCheckBox.isSelected() && p1.equals(Game.GUEST_NAME)))
+		if(p1.equalsIgnoreCase(Game.AI_NAME) || (!this.p1GuestCheckBox.isSelected() && p1.equalsIgnoreCase(Game.GUEST_NAME)))
 		{
 			JOptionPane.showMessageDialog(this, "Player One username is reserved. Please enter a different username."
 				, "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		if(p2.equals(Game.AI_NAME) || (!this.p2GuestCheckBox.isSelected() && p2.equals(Game.GUEST_NAME)))
+		if(p2.equalsIgnoreCase(Game.AI_NAME) || (!this.p2GuestCheckBox.isSelected() && p2.equalsIgnoreCase(Game.GUEST_NAME)))
 		{
 			JOptionPane.showMessageDialog(this, "Player Two username is reserved. Please enter a different username."
 				, "Error", JOptionPane.ERROR_MESSAGE);

@@ -184,7 +184,7 @@ public class SinglePlayer extends UIPanel {
 			return;
 		}
 		
-		if(p1.equals(Game.AI_NAME) || (!this.p1GuestCheckBox.isSelected() && p1.equals(Game.GUEST_NAME)))
+		if(p1.equalsIgnoreCase(Game.AI_NAME) || (!this.p1GuestCheckBox.isSelected() && p1.equalsIgnoreCase(Game.GUEST_NAME)))
 		{
 			JOptionPane.showMessageDialog(this, "Invalid username one due to reserved name."
 				, "Invalid", JOptionPane.ERROR_MESSAGE);
