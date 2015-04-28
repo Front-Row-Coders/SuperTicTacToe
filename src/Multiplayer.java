@@ -220,6 +220,13 @@ public class Multiplayer extends UIPanel {
 			return;
 		}
 		
+		if(!this.p1GuestCheckBox.isSelected() && p1.equals(p2))
+		{
+			JOptionPane.showMessageDialog(this, "Same username entered for both players."
+				, "Invalid", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		if(!this.p1GuestCheckBox.isSelected())
 		{
 			if(UIWindow.getHistoryInstance().getPlayer(p1) == null)
