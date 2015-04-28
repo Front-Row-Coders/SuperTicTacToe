@@ -206,11 +206,11 @@ public class History
 		{
 			return false;
 		}
-		if(username.equals(Game.AI_NAME))
+		if(username.equalsIgnoreCase(Game.AI_NAME))
 		{
 			return false;
 		}
-		if(username.equals(Game.GUEST_NAME))
+		if(username.equalsIgnoreCase(Game.GUEST_NAME))
 		{
 			return false;
 		}
