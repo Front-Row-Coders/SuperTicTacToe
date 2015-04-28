@@ -298,13 +298,18 @@ public class Game implements ActionListener
 					System.err.println("Failed to make player one move");
 				}
 
+				int numPointsScored = getNumPointsScored();
+				if(numPointsScored > 0)
+				{
+					for(int i = 0; i < numPointsScored; i++)
+					{
+						playerOne.increaseScore();
+					}
+					this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
+				}
+				
 				isPlayerOneTurn = false;
 				this.getCurrentGridPanel().setTurnColor(PLAYER_TWO_COLOR);
-				
-				if(wasPointScored())
-				{
-					playerOne.increaseScore();
-				}
 				
 				if(isGridFull())
 				{
@@ -316,6 +321,17 @@ public class Game implements ActionListener
 					if(this.playerTwo instanceof AI)
 					{
 						((AI)this.playerTwo).makeMove();
+						
+						numPointsScored = getNumPointsScored();
+						if(numPointsScored > 0)
+						{
+							for(int i = 0; i < numPointsScored; i++)
+							{
+								playerTwo.increaseScore();
+							}
+							this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
+						}
+						
 						isPlayerOneTurn = true;
 						this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
 					}
@@ -328,13 +344,18 @@ public class Game implements ActionListener
 					System.err.println("Failed to make player two move");
 				}
 
+				int numPointsScored = getNumPointsScored();
+				if(numPointsScored > 0)
+				{
+					for(int i = 0; i < numPointsScored; i++)
+					{
+						playerTwo.increaseScore();
+					}
+					this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
+				}
+				
 				isPlayerOneTurn = true;
 				this.getCurrentGridPanel().setTurnColor(PLAYER_ONE_COLOR);
-				
-				if(wasPointScored())
-				{
-					playerTwo.increaseScore();
-				}
 			}
 
 			if(this.isGridFull())
@@ -344,6 +365,46 @@ public class Game implements ActionListener
 
 			return true;
 		}
+	}
+	
+	public int getNumPointsScored()
+	{
+		int score = 0;
+		GridPanel panel = this.getCurrentGridPanel();
+		if(panel != null)
+		{
+			Location placedStoneLoc = panel.getCurrentPlacedLocation();
+			Color placedStoneColor = panel.getStone(placedStoneLoc).getColor();
+			if(placedStoneLoc != null)
+			{
+				Location.DIRECTION[] directions = Location.DIRECTION.values();
+				for(Location.DIRECTION direction : directions)
+				{
+					Location oldOtherLoc = placedStoneLoc;
+					Location otherLoc;
+					int count = 1;  //Counts itself as one count alway.
+					while((otherLoc = oldOtherLoc.getAdjacentLocation(direction)) != null)
+					{
+						Stone otherStone = panel.getStone(otherLoc);
+						if(otherStone.getColor().equals(placedStoneColor))
+						{
+							count++;
+						}
+						else
+						{
+							break;
+						}
+						oldOtherLoc = otherLoc;
+					}
+					
+					if(count >= 4)
+					{
+						score++;
+					}
+				}
+			}
+		}
+		return score;
 	}
 
 	public String getWinner()
@@ -487,17 +548,7 @@ public class Game implements ActionListener
 		}
 		return false;
 	}
-	public boolean wasPointScored()
-	{
-		GridPanel panel = this.getCurrentGridPanel();
-		if(panel != null)
-		{
-			Stone[][] spots = panel.getGridSpots();
-			
-			
-		}
-		return false;
-	}
+	
 
 	public Player getPlayerOne()
 	{
