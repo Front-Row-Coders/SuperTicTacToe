@@ -22,8 +22,7 @@ public class SinglePlayer extends UIPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         aiDifficulty = new javax.swing.ButtonGroup();
         firstPlayer = new javax.swing.ButtonGroup();
@@ -39,15 +38,13 @@ public class SinglePlayer extends UIPanel {
         p1NameLabel = new javax.swing.JLabel();
         p1NameTxtField = new javax.swing.JTextField();
 
-        p2NameLabel.setText("Difficulty: ");
+        p2NameLabel.setText("Difficulty:");
 
         firstPlayerLabel.setText("First player:");
 
         p1GuestCheckBox.setText("Guest");
-        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 p1GuestCheckBoxActionPerformed(evt);
             }
         });
@@ -55,10 +52,8 @@ public class SinglePlayer extends UIPanel {
         firstPlayer.add(p1RadioButton);
         p1RadioButton.setSelected(true);
         p1RadioButton.setText("Player 1");
-        p1RadioButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        p1RadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 p1RadioButtonActionPerformed(evt);
             }
         });
@@ -67,10 +62,8 @@ public class SinglePlayer extends UIPanel {
         p2RadioButton.setText("AI");
 
         playButton.setText("Play Game");
-        playButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        playButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
             }
         });
@@ -78,10 +71,8 @@ public class SinglePlayer extends UIPanel {
         aiDifficulty.add(easyButton);
         easyButton.setSelected(true);
         easyButton.setText("Easy");
-        easyButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        easyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 easyButtonActionPerformed(evt);
             }
         });
@@ -94,10 +85,8 @@ public class SinglePlayer extends UIPanel {
 
         p1NameLabel.setText("Player 1 username:");
 
-        p1NameTxtField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        p1NameTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 p1NameTxtFieldActionPerformed(evt);
             }
         });
@@ -107,56 +96,59 @@ public class SinglePlayer extends UIPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(p1NameLabel)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(p1NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(p1GuestCheckBox))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstPlayerLabel)
-                            .addComponent(p2NameLabel))
-                        .addGap(25, 25, 25)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(firstPlayerLabel))
+                            .addComponent(p2NameLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(playButton)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(p1RadioButton)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(p2RadioButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(easyButton)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(mediumButton)
-                                .addGap(20, 20, 20)
-                                .addComponent(hardButton)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hardButton))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(playButton)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(p1NameLabel)
-                    .addComponent(p1NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(p1GuestCheckBox))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(p2NameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mediumButton)
-                        .addComponent(easyButton)
-                        .addComponent(hardButton)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(p1NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(p1GuestCheckBox)
+                    .addComponent(p1NameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mediumButton)
+                    .addComponent(easyButton)
+                    .addComponent(hardButton)
+                    .addComponent(p2NameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstPlayerLabel)
                     .addComponent(p1RadioButton)
-                    .addComponent(p2RadioButton))
-                .addGap(12, 12, 12)
+                    .addComponent(p2RadioButton)
+                    .addComponent(firstPlayerLabel))
+                .addGap(8, 8, 8)
                 .addComponent(playButton)
-                .addGap(18, 18, 18))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,7 +171,7 @@ public class SinglePlayer extends UIPanel {
     }//GEN-LAST:event_easyButtonActionPerformed
 
     private void p1NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1NameTxtFieldActionPerformed
-        // TODO add your handling code here:
+        playButtonActionPerformed(evt);
     }//GEN-LAST:event_p1NameTxtFieldActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_playButtonActionPerformed
