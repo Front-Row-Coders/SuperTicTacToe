@@ -2,17 +2,21 @@
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.event.AncestorListener;
 
 /**
  *
  * @author Jonathan
  */
-public class GridPanel extends UIPanel implements ActionListener
+public class GridPanel extends UIPanel implements ActionListener, AncestorListener
 {
 	private static final long serialVersionUID = 1L;
 	
 	private final Game gameInstance;
 	private Stone[][] gridSpots;
+	
+	public static final int GRID_WIDTH = 6;
+	public static final int GRID_HEIGHT = 6;
 	
 	/**
 	 * 
@@ -32,7 +36,7 @@ public class GridPanel extends UIPanel implements ActionListener
 	{
 		initComponents();
 		
-		this.gridSpots = new Stone[6][6];
+		this.gridSpots = new Stone[GRID_HEIGHT][GRID_WIDTH];
 		this.gameInstance = new Game(username1, skillLevel, isPlayerOneTurn);
 		
 		//Set the player score labels to their respective turn colors.
@@ -95,7 +99,7 @@ public class GridPanel extends UIPanel implements ActionListener
 	{
 		initComponents();
 		
-		this.gridSpots = new Stone[6][6];
+		this.gridSpots = new Stone[GRID_HEIGHT][GRID_WIDTH];
 		this.gameInstance = new Game(username1, username2, isPlayerOneTurn);
 		
 		//Set the player score labels to their respective turn colors.
@@ -382,6 +386,8 @@ public class GridPanel extends UIPanel implements ActionListener
         playerTurnComponent = new PlayerTurnComponent();
         lblPlayerOneName = new javax.swing.JLabel();
         lblPlayerTwoName = new javax.swing.JLabel();
+
+        addAncestorListener(this);
 
         stone1.setStoneLocation(new Location(0,1));
 
@@ -678,12 +684,34 @@ public class GridPanel extends UIPanel implements ActionListener
         {
             GridPanel.this.btnForfeitActionPerformed(evt);
         }
+    }
+
+    public void ancestorAdded(javax.swing.event.AncestorEvent evt)
+    {
+        if (evt.getSource() == GridPanel.this)
+        {
+            GridPanel.this.formAncestorAdded(evt);
+        }
+    }
+
+    public void ancestorMoved(javax.swing.event.AncestorEvent evt)
+    {
+    }
+
+    public void ancestorRemoved(javax.swing.event.AncestorEvent evt)
+    {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnForfeitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnForfeitActionPerformed
     {//GEN-HEADEREND:event_btnForfeitActionPerformed
         this.gameInstance.forfeit();
     }//GEN-LAST:event_btnForfeitActionPerformed
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt)//GEN-FIRST:event_formAncestorAdded
+    {//GEN-HEADEREND:event_formAncestorAdded
+		//Put code here that needs to run after screen is visible.
+		this.gameInstance.performPostSetup();
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
