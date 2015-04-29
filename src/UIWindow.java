@@ -27,6 +27,7 @@ public class UIWindow implements WindowListener
 		
 		this.mainWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.mainWindow.addWindowListener(this);
+		this.mainWindow.setResizable(false);
 		
 		this.currentPanel = (JPanel)this.mainWindow.getContentPane();
 		
