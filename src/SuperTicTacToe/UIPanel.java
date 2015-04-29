@@ -1,16 +1,20 @@
 package SuperTicTacToe;
+
 import javax.swing.JPanel;
 
 /**
- * Parent class for all UI Panels.
+ * Parent class for all UI Panels. Itself, it is just a empty panel.
  * @author Jonathan
  */
 public class UIPanel extends JPanel
 {
+	/**
+	 * Serial code for serialization (not used).
+	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Creates new form UIPanel
+	 * Creates new UIPanel
 	 */
 	public UIPanel()
 	{
