@@ -107,7 +107,7 @@ public class AI extends Player
          * @param grid the current game board
          * @return location of next Easy-mode move
          */
-	private Location determineNextEasyMove(Stone[][] grid)
+	protected Location determineNextEasyMove(Stone[][] grid)
 	{
                 Location nextMove;   
                                  
@@ -139,7 +139,7 @@ public class AI extends Player
          * @see #determineNextEasyMove() 
          * @return location of next Medium-mode move
          */
-	private Location determineNextMediumMove(Stone[][] grid)
+	protected Location determineNextMediumMove(Stone[][] grid)
 	{
 		Location nextMove;
                 
@@ -171,7 +171,7 @@ public class AI extends Player
          * @see #determineNextEasyMove()
          * @return location of next Hard-mode move
          */
-	private Location determineNextHardMove(Stone[][] grid)
+	protected Location determineNextHardMove(Stone[][] grid)
 	{
                 Location nextMove;
 
@@ -195,7 +195,7 @@ public class AI extends Player
                      return null; 
 	}
         
-        private Location findEmptySpot(Stone[][] grid)
+        protected Location findEmptySpot(Stone[][] grid)
         {
             for (Stone[] grid1 : grid) {
                 for (Stone grid11 : grid1) {
@@ -225,7 +225,7 @@ public class AI extends Player
          * @return location of an empty side spot. If there are no empty side
          *         spots, returns null.
          */
-	private Location checkSides(Stone[][] grid)
+	protected Location checkSides(Stone[][] grid)
 	{        
 		 int i;
                  
@@ -261,7 +261,7 @@ public class AI extends Player
          * @return location of an empty corner spot. If there are no empty
          *         corner spots, returns null.
          */
-	private Location checkCorners(Stone[][] grid)
+	protected Location checkCorners(Stone[][] grid)
 	{
 		if(grid[0][0].isEmptySpot())
 			return grid[0][0].getStoneLocation();
@@ -283,7 +283,7 @@ public class AI extends Player
          *         corner occupied by the opponent. If there is no such spot,
          *         returns null.
          */
-	private Location checkOppositeCorner(Stone[][] grid)
+	protected Location checkOppositeCorner(Stone[][] grid)
 	{
 		if(!grid[0][0].isEmptySpot() && !grid[0][0].getColor().equals(this.getColor()))
 		{
@@ -316,7 +316,7 @@ public class AI extends Player
          * @return location of a spot which will complete a scoring
          *         configuration. If there is no such spot, returns null.
          */
-	private Location checkScorePoint(Stone[][] grid)
+	protected Location checkScorePoint(Stone[][] grid)
 	{
 		Location move = null;
 		
@@ -337,7 +337,7 @@ public class AI extends Player
          *         spot, returns null.
          * @see #checkScorePoint(Stone[][]) 
          */
-	private Location checkBlockOpponent(Stone[][] grid)
+	protected Location checkBlockOpponent(Stone[][] grid)
 	{
                 Color opponentColor;
 
@@ -363,7 +363,7 @@ public class AI extends Player
          *         such spot, returns null.
          * @see #checkFork(Stone[][], java.awt.Color) 
          */
-	private Location checkFork(Stone[][] grid)
+	protected Location checkFork(Stone[][] grid)
 	{
 		Location nextMove;
 		if((nextMove = checkFork(grid, this.getColor()))!=null)
@@ -386,7 +386,7 @@ public class AI extends Player
          * @see #checkFork(Stone[][]) 
          * @see #checkBlockOpponentFork(Stone[][]) 
          */
-	private Location checkFork(Stone[][] grid, Color playerColor)
+	protected Location checkFork(Stone[][] grid, Color playerColor)
 	{
 		/* For efficiency, can check if this is at least the (something)th
 		   turn before checking any positions, since at least some turns would
@@ -418,7 +418,7 @@ public class AI extends Player
 		return null;
 	}
         
-        private static Location findScoringOpportunity(Stone[][] grid, Color color) 
+        protected static Location findScoringOpportunity(Stone[][] grid, Color color) 
 		{
 
 		//int returnValue;
@@ -509,7 +509,7 @@ public class AI extends Player
 		return null;
 	}
                 
-        private static int countScoringOpportunities(Stone[][] grid, Color color) {
+        protected static int countScoringOpportunities(Stone[][] grid, Color color) {
 
 		int counter = 0;
 
@@ -610,7 +610,7 @@ public class AI extends Player
          *         a fork. If there is no such spot, returns null.
          * @see #checkFork(Stone[][], java.awt.Color) 
          */
-	private Location checkBlockOpponentFork(Stone[][] grid)
+	protected Location checkBlockOpponentFork(Stone[][] grid)
 	{
 		// Check if opponent can fork using checkFork with opponent color
 		Location nextMove;
@@ -655,7 +655,7 @@ public class AI extends Player
          /*
             Count all three in a rows for 
         */
-        private int countThreeInARow(Stone[][] grid, Color color){
+        protected int countThreeInARow(Stone[][] grid, Color color){
             
             int counter = 0;
             
