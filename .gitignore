@@ -9,3 +9,7 @@ players.txt
 /SuperTicTacToe/nbproject/private/
 /nbproject/private/
 players.xml
+*.html
+dist/javadoc/package-list
+*.js
+dist/javadoc/stylesheet.css
