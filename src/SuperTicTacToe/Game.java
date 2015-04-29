@@ -272,6 +272,10 @@ public class Game implements ActionListener
 		this.gameTimer.start();
 	}
 	
+	/**
+	 * Performs any post setup code that needs to be run (outside of the constructor)
+	 * Currently this check if AI needs to move and if so, lets it make a move.
+	 */
 	public void performPostSetup()
 	{
 		if(!this.isPlayerOneTurn && this.playerTwo instanceof AI)
@@ -281,6 +285,9 @@ public class Game implements ActionListener
 		}
 	}
 	
+	/**
+	 * Toggles the current player turn.
+	 */
 	private void togglePlayersTurn()
 	{
 		this.isPlayerOneTurn = !this.isPlayerOneTurn;
@@ -294,11 +301,21 @@ public class Game implements ActionListener
 		}
 	}
 	
+	/**
+	 * Gets the current player's color.
+	 * @return The current player's color.
+	 */
 	public Color getCurrentPlayersColor()
 	{
 		return (this.isPlayerOneTurn?PLAYER_ONE_COLOR:PLAYER_TWO_COLOR);
 	}
 	
+	/**
+	 * Determines which player needs to make a move and passes the respective player's
+	 * object, the move requested information.
+	 * @param location The move requested.
+	 * @return Success status
+	 */
 	public boolean move(Location location)
 	{
 		if(!this.isMoveValid(location))
@@ -518,6 +535,11 @@ public class Game implements ActionListener
 		return score;
 	}
 
+	/**
+	 * Gets the current winner of the game based on scores.
+	 * @return The username of the winner or an empty string on tie or null if
+	 * game is not currently over.
+	 */
 	public String getWinner()
 	{
 		if(!this.isGameOver)
@@ -542,11 +564,18 @@ public class Game implements ActionListener
 		}
 	}
 	
+	/**
+	 * Runs game over code (non-forfeit game over).
+	 */
 	private void gameOver()
 	{
 		this.gameOver(false);
 	}
 	
+	/**
+	 * Runs game over code. 
+	 * @param isForfeit Whether this is a forfeit or grid full game over.
+	 */
 	private void gameOver(boolean isForfeit)
 	{
 		isGameOver = true;
@@ -626,6 +655,9 @@ public class Game implements ActionListener
 		}
 	}
 	
+	/**
+	 * Causes the game to be forfeited for the current player who turn it is.
+	 */
 	public void forfeit()
 	{
 		if(isPlayerOneTurn)
@@ -642,6 +674,11 @@ public class Game implements ActionListener
 		this.gameOver(true);
 	}
 
+	/**
+	 * Checks if the given location is valid to place a stone at.
+	 * @param location The location to check.
+	 * @return True if it is valid, false otherwise.
+	 */
 	public boolean isMoveValid(Location location)
 	{
 		if(this.isGameOver)
@@ -657,6 +694,10 @@ public class Game implements ActionListener
 		return false;
 	}
 	
+	/**
+	 * Checks if the grid is full or not.
+	 * @return True if it is full, else false.
+	 */
 	public boolean isGridFull()
 	{
 		GridPanel panel = this.getCurrentGridPanel();
@@ -667,24 +708,47 @@ public class Game implements ActionListener
 		return false;
 	}
 	
-
+	/**
+	 * Gets player one.
+	 * @return Player one
+	 */
 	public Player getPlayerOne()
 	{
 		return this.playerOne;
 	}
+	
+	/**
+	 * Gets player two.
+	 * @return Player two
+	 */
 	public Player getPlayerTwo()
 	{
 		return this.playerTwo; 
 	}
+	
+	/**
+	 * Gets if its player one's turn or not.
+	 * @return True if it is player one's turn, false if its player two's turn.
+	 */
 	public boolean getIsPlayerOnesTurn()
 	{
 		 return this.isPlayerOneTurn;
 	}
+	
+	/**
+	 * Gets if the current game is over.
+	 * @return True if the current game is over.
+	 */
 	public boolean getIsGameOver()
 	{
 	 	 return this.isGameOver;
 	}
 	
+	/**
+	 * Gets the current grid panel.
+	 * @return The current grid panel or null if the current panel is not an
+	 * instance of GridPanel.
+	 */
 	private GridPanel getCurrentGridPanel()
 	{
 		if(UIWindow.getInstance().getCurrentPanel() instanceof GridPanel)
@@ -752,6 +816,11 @@ public class Game implements ActionListener
 		return time.toString();
 	}
 	
+	/**
+	 * The actionPerformed event handler. Currently only used
+	 * for the timer events.
+	 * @param e 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
