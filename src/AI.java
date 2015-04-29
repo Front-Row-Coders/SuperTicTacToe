@@ -29,72 +29,72 @@ import java.awt.Color;
  */
 public class AI extends Player
 {
-        /**
-         * An enum indicating the mode of game play. Used to determine which
-         * decision-making function will be called to determine the next move
-         * of the AI.
-         * @see SkillLevel
-         */
+	/**
+	 * An enum indicating the mode of game play. Used to determine which
+	 * decision-making function will be called to determine the next move
+	 * of the AI.
+	 * @see SkillLevel
+	 */
 	private final SkillLevel skillLevel;
 	
-        /**
-         *Default class constructor. 
-         */
-        public AI()
+	/**
+	 *Default class constructor. 
+	 */
+	public AI()
 	{
 		super(Game.AI_NAME);
 		this.skillLevel = SkillLevel.Hard;
 	}
 	
-        /**
-         *Class constructor accepting parameter for skill level of the AI.
-         * @param level specified AI skill level
-         */
-        public AI(SkillLevel level)
+	/**
+	 *Class constructor accepting parameter for skill level of the AI.
+	 * @param level specified AI skill level
+	 */
+	public AI(SkillLevel level)
 	{
 		super(Game.AI_NAME);
 		this.skillLevel = level;
 	}
 	
-        /**
-         *Overloads Player makeMove(Location) function. Gets the game board
-         * (gridSpots) from the current instance of gridPanel through 
-         * getCurrentGridPanel(). Based on skillLevel, passes the board to the 
-         * appropriate function to determine the next (Easy-, Medium-, or 
-         * Hard-mode) AI move. Passes move location to makeMove(Location) to be
-         * placed on the board.
-         * @see Player#makeMove(Location) 
-         */
-        public void makeMove()
-        { 
+	/**
+	 *Overloads Player makeMove(Location) function. Gets the game board
+	 * (gridSpots) from the current instance of gridPanel through 
+	 * getCurrentGridPanel(). Based on skillLevel, passes the board to the 
+	 * appropriate function to determine the next (Easy-, Medium-, or 
+	 * Hard-mode) AI move. Passes move location to makeMove(Location) to be
+	 * placed on the board.
+	 * @see Player#makeMove(Location) 
+	 */
+	public void makeMove()
+	{ 
 		Location moveLoc = null;
-                
-                Stone [][] grid = new Stone[GridPanel.GRID_HEIGHT][GridPanel.GRID_WIDTH];
-                GridPanel panel = this.getCurrentGridPanel();
-                
-                if(panel != null)
-                {   
-                    grid = panel.getGridSpots();
-                
-                    switch(this.skillLevel)
-                    {
-                            case Easy: 
-                                    moveLoc = this.determineNextEasyMove(grid);
-                            break;
-                            case Medium: 
-                                    moveLoc = this.determineNextMediumMove(grid);
-                            break;
-                            case Hard: 
-                                    moveLoc = this.determineNextHardMove(grid);
-                            break;
-                            default:
-                                    System.err.println("Invalid SkillLevel entered in AI.");
-                    }
 
-                    this.makeMove(moveLoc); // call to makeMove(Location loc) defined in Player
-                }
-                else
-                    return;
+		Stone [][] grid;// = new Stone[GridPanel.GRID_HEIGHT][GridPanel.GRID_WIDTH];
+		GridPanel panel = this.getCurrentGridPanel();
+
+		if(panel != null)
+		{   
+			grid = panel.getGridSpots();
+
+			switch(this.skillLevel)
+			{
+					case Easy: 
+							moveLoc = this.determineNextEasyMove(grid);
+					break;
+					case Medium: 
+							moveLoc = this.determineNextMediumMove(grid);
+					break;
+					case Hard: 
+							moveLoc = this.determineNextHardMove(grid);
+					break;
+					default:
+							System.err.println("Invalid SkillLevel entered in AI.");
+			}
+
+			this.makeMove(moveLoc); // call to makeMove(Location loc) defined in Player
+		}
+		//else
+		  //  return;
 	}
         
 	/**
