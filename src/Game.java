@@ -394,7 +394,7 @@ public class Game implements ActionListener
 			if(placedStoneLoc != null)
 			{
 				//Debug code
-				System.out.println("Testing placed "+placedStoneLoc.toString());
+				//System.out.println("Testing placed "+placedStoneLoc.toString());
 				
 				Location.DIRECTION[] directions = Location.DIRECTION_VALUES;
 				for(int i = 0; i < directions.length / 2; i++)
@@ -403,7 +403,7 @@ public class Game implements ActionListener
 					ArrayList<Stone> countedStones = new ArrayList<>();
 					countedStones.add(placedStone);
 					//Debug code
-					System.out.println("Testing Direction: "+direction.name());
+					//System.out.println("Testing Direction: "+direction.name());
 					Location oldOtherLoc = placedStoneLoc;
 					Location otherLoc;
 					int count = 1;  //Counts itself as one count alway
@@ -411,7 +411,7 @@ public class Game implements ActionListener
 					while((otherLoc = oldOtherLoc.getAdjacentLocation(direction)) != null)
 					{
 						//Debug code
-						System.out.println("\tTesting Other "+otherLoc.toString() + " | Old Loc: "+oldOtherLoc.toString());
+						//System.out.println("\tTesting Other "+otherLoc.toString() + " | Old Loc: "+oldOtherLoc.toString());
 						
 						Stone otherStone = panel.getStone(otherLoc);
 						if(otherStone.getColor().equals(placedStoneColor))
@@ -419,12 +419,12 @@ public class Game implements ActionListener
 							count++;
 							countedStones.add(otherStone);
 							//Debug code
-							System.out.println("\t***Same color stone found. Count increased: "+count);
+							//System.out.println("\t***Same color stone found. Count increased: "+count);
 						}
 						else
 						{
 							//Debug code
-							System.out.println("\tNo Point scored in this direction.");
+							//System.out.println("\tNo Point scored in this direction.");
 							break;
 						}
 						oldOtherLoc = otherLoc;
@@ -433,12 +433,12 @@ public class Game implements ActionListener
 					Location.DIRECTION oppositeDirection = Location.getOppositeDirection(direction);
 					oldOtherLoc = placedStoneLoc; //Reset to the placed stone
 					//Debug code
-					System.out.println("\t///Testing Opposite Direction: "+oppositeDirection.name() + " ///");
+					//System.out.println("\t///Testing Opposite Direction: "+oppositeDirection.name() + " ///");
 					//Check in the opposite direction given
 					while((otherLoc = oldOtherLoc.getAdjacentLocation(oppositeDirection)) != null)
 					{
 						//Debug code
-						System.out.println("\tTesting Other "+otherLoc.toString() + " | Old Loc: "+oldOtherLoc.toString());
+						//System.out.println("\tTesting Other "+otherLoc.toString() + " | Old Loc: "+oldOtherLoc.toString());
 						
 						Stone otherStone = panel.getStone(otherLoc);
 						if(otherStone.getColor().equals(placedStoneColor))
@@ -446,12 +446,12 @@ public class Game implements ActionListener
 							count++;
 							countedStones.add(otherStone);
 							//Debug code
-							System.out.println("\t***Same color stone found. Count increased: "+count);
+							//System.out.println("\t***Same color stone found. Count increased: "+count);
 						}
 						else
 						{
 							//Debug code
-							System.out.println("\tNo Point scored in this direction.");
+							//System.out.println("\tNo Point scored in this direction.");
 							break;
 						}
 						oldOtherLoc = otherLoc;
@@ -466,7 +466,7 @@ public class Game implements ActionListener
 							if(stone.isCounted())
 							{
 								//Debug code
-								System.out.println("\t+++Stone already counted: "+stone.getLocation());
+								//System.out.println("\t+++Stone already counted: "+stone.getStoneLocation());
 								
 								alreadyCounted++;
 							}
@@ -478,21 +478,21 @@ public class Game implements ActionListener
 						if(alreadyCounted > 3)
 						{
 							//Debug code
-							System.out.println("\t---Score substraction due to 4-in-a-row counted already");
+							//System.out.println("\t---Score substraction due to 4-in-a-row counted already");
 							
 							scoreSubtraction++;
 						}
 						if(alreadyCounted > 4)
 						{
 							//Debug code
-							System.out.println("\t---Score substraction due to 5-in-a-row counted already");
+							//System.out.println("\t---Score substraction due to 5-in-a-row counted already");
 							
 							scoreSubtraction++;
 						}
 						if(alreadyCounted > 5)
 						{
 							//Debug code
-							System.out.println("\t---Score substraction due to 6-in-a-row counted already");
+							//System.out.println("\t---Score substraction due to 6-in-a-row counted already");
 							
 							scoreSubtraction++;
 						}
@@ -500,7 +500,7 @@ public class Game implements ActionListener
 						score += count - 3 - scoreSubtraction;
 						
 						//Debug code
-						System.out.println("\t***Point Scored! Count: "+count + " Score: "+score+" ***");
+						//System.out.println("\t***Point Scored! Count: "+count + " Score: "+score+" ***");
 						
 						//break; //Turns off multi-directional scoring
 					}
