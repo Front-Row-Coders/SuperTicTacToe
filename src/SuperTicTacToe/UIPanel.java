@@ -1,4 +1,4 @@
-
+package SuperTicTacToe;
 import javax.swing.JPanel;
 
 /**
@@ -24,8 +24,7 @@ public class UIPanel extends JPanel
 	 */
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

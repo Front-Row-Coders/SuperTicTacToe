@@ -1,3 +1,4 @@
+package SuperTicTacToe;
 /**
  * Holds location data for stones and can be used to find adjacent locations.
  * @author Jonathan
