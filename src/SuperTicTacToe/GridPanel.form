@@ -19,186 +19,143 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="stone0" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone1" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone2" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone4" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone5" min="-2" pref="36" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="stone6" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone7" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone8" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone9" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone10" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone11" min="-2" pref="36" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="stone12" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone13" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone14" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone15" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone16" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="stone17" min="-2" pref="36" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="stone18" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stone19" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stone20" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stone21" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stone22" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stone23" min="-2" pref="36" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="stone24" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="stone25" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="stone26" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="stone27" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="stone28" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="stone29" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="stone0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone5" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="stone6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone9" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone10" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="stone11" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="stone24" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone25" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone26" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone27" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone28" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone29" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="stone12" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone13" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone14" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone15" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone16" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone17" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="stone18" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone19" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone20" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone21" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone22" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone23" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="stone30" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone31" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone32" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone33" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone34" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="stone35" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="btnForfeit" alignment="1" max="32767" attributes="0"/>
+                          <Component id="playerTurnComponent" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblTimer" min="-2" pref="94" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblPlayerOneName" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblPlayerTwoName" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lblPlayerTwoScore" pref="20" max="32767" attributes="0"/>
-                                              <Component id="lblPlayerOneScore" pref="20" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblPlayerOneName" max="32767" attributes="0"/>
+                                          <Component id="lblPlayerTwoName" min="-2" pref="82" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblPlayerTwoScore" max="32767" attributes="0"/>
+                                          <Component id="lblPlayerOneScore" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblTimer" min="-2" pref="94" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <Component id="playerTurnComponent" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnForfeit" alignment="1" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="stone30" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="stone31" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="stone32" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="stone33" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="stone34" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="stone35" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel2" pref="119" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stone5" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone4" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone3" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone2" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stone11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone10" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone9" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone8" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone7" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stone17" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone16" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone15" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone14" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone12" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone13" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stone23" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone22" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone21" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone20" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone19" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stone29" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone28" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone27" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone26" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone24" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="stone25" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -209,286 +166,86 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblPlayerTwoScore" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPlayerTwoName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPlayerTwoName" alignment="0" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="lblTimer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblTimer" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="stone0" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="stone6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="stone12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="playerTurnComponent" max="32767" attributes="0"/>
+                      <Component id="playerTurnComponent" min="-2" pref="53" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="stone18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone22" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="stone24" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone25" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone27" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone28" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stone29" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnForfeit" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="stone34" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stone33" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stone32" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stone30" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stone31" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stone35" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="stone30" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stone31" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stone32" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stone33" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stone34" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stone35" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnForfeit" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="Stone" name="stone1">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(0,1)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone0">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(0,0)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone2">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(0,2)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone3">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(0,3)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone4">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(0,4)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone5">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(0,5)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone6">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(1,0)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone7">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(1,1)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone8">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(1,2)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone9">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(1,3)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone10">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(1,4)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone11">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(1,5)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone12">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(2,0)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone13">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(2,1)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone14">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(2,2)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone15">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(2,3)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone16">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(2,4)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone17">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(2,5)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone18">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(3,0)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone19">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(3,1)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone20">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(3,2)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone21">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(3,3)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone22">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(3,4)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone23">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(3,5)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone24">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(4,0)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone25">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(4,1)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone26">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(4,2)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone27">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(4,3)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone28">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(4,4)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone29">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(4,5)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone30">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(5,0)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone31">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(5,1)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone32">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(5,2)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone33">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(5,3)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone34">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(5,4)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="Stone" name="stone35">
-      <Properties>
-        <Property name="stoneLocation" type="Location" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Location(5,5)" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -543,12 +300,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForfeitActionPerformed"/>
       </Events>
     </Component>
-    <Container class="PlayerTurnComponent" name="playerTurnComponent">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JLabel" name="lblPlayerOneName">
       <Properties>
         <Property name="text" type="java.lang.String" value=" "/>
@@ -556,5 +307,191 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblPlayerTwoName">
     </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone0">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone0"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone1"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone2"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone3"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone4"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone5"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone5"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone4"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone3"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone2"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone1"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone0"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone17">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone5"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone16">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone4"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone15">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone3"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone14">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone2"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone13">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone1"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone12">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone0"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone23">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone5"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone22">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone4"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone21">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone3"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone20">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone2"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone19">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone1"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone18">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone0"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone29">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone5"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone28">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone4"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone27">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone3"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone26">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone2"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone25">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone1"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone24">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone0"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone31">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone1"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone30">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone0"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone35">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone5"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone33">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone3"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone34">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone4"/>
+      </Properties>
+    </Component>
+    <Component class="SuperTicTacToe.Stone" name="stone32">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="stone2"/>
+      </Properties>
+    </Component>
+    <Container class="SuperTicTacToe.PlayerTurnComponent" name="playerTurnComponent">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+    </Container>
   </SubComponents>
 </Form>
