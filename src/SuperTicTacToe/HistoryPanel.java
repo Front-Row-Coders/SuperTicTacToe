@@ -2,14 +2,8 @@ package SuperTicTacToe;
 
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * The history panel that display user's game history.
  * @author alice
  */
 public class HistoryPanel extends UIPanel

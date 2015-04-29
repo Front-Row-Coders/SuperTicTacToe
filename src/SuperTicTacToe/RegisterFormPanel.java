@@ -3,7 +3,7 @@ package SuperTicTacToe;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The register for a new player account panel.
  * @author alice
  */
 public class RegisterFormPanel extends UIPanel

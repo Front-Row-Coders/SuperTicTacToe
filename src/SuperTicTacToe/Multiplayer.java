@@ -3,10 +3,11 @@ package SuperTicTacToe;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The Multiplayer game optional subpanel.
  * @author Eloy
  */
-public class Multiplayer extends UIPanel {
+public class Multiplayer extends UIPanel
+{
 	private static final long serialVersionUID = 1L;
 
     /**

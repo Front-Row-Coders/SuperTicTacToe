@@ -3,7 +3,7 @@ package SuperTicTacToe;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * The main menu panel.
  * @author Jonathan
  */
 public class MenuPanel extends UIPanel implements ActionListener

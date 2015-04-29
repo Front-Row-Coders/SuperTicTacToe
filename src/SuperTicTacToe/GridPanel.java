@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.AncestorListener;
 
 /**
- *
+ * The game board that the game is played on.
  * @author Jonathan
  */
 public class GridPanel extends UIPanel implements ActionListener, AncestorListener

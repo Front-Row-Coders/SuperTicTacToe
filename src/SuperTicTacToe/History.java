@@ -14,7 +14,7 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;	
 
 /**
- * 
+ * Holds the player history.
  * @author Jonathan
  */
 

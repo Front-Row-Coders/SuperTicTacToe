@@ -4,7 +4,7 @@ import java.awt.CardLayout;
 
 
 /**
- *
+ * Panel for the game options that must be selected to start a game.
  * @author alice
  */
 public class GameOptionsPanel extends UIPanel
