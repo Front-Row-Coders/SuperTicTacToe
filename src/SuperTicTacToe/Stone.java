@@ -46,7 +46,7 @@ public class Stone extends JButton implements ActionListener
 		super();
 		if(color == null)
 		{
-			throw new IllegalArgumentException("color is null");
+			color = Stone.EMPTY_STATE_COLOR;
 		}
 		/*
 		if(location == null)
