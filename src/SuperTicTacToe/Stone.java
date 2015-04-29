@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -52,9 +53,9 @@ public class Stone extends JButton implements ActionListener
 	private boolean wasPlacedThisTurn;
 	
 	/**
-	 * The status of this stone being counted in a scoring before or not.
+	 * The directions this stone has been counted before.
 	 */
-	private boolean isCounted;
+	private ArrayList<Location.DIRECTION> countedDirections;
 	
 	/**
 	 * Creates a Stone with the empty state color and no location.
@@ -96,7 +97,7 @@ public class Stone extends JButton implements ActionListener
 		this.color = color;
 		this.location = location;
 		this.wasPlacedThisTurn = false;
-		this.isCounted = false;
+		this.countedDirections = new ArrayList<>();
 		
 		//Perform necessary component setup.
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -164,20 +165,22 @@ public class Stone extends JButton implements ActionListener
 	
 	/**
 	 * Gets whether this Stone was counted before in scoring or not.
+	 * @param direction Direction to check for counted scoring before or not.
 	 * @return The status of this stone.
 	 */
-	public boolean isCounted()
+	public boolean isCounted(Location.DIRECTION direction)
 	{
-		return this.isCounted;
+		return this.countedDirections.contains(direction) || 
+				this.countedDirections.contains(Location.getOppositeDirection(direction));
 	}
 	
 	/**
 	 * Sets whether this Stone was counted in scoring already or not.
-	 * @param counted 
+	 * @param direction The direction to set counted in scoring already.
 	 */
-	public void setIsCounted(boolean counted)
+	public void setIsCounted(Location.DIRECTION direction)
 	{
-		this.isCounted = counted;
+		this.countedDirections.add(direction);
 	}
 	
 	/**

@@ -301,6 +301,26 @@ public class Game implements ActionListener
 		}
 	}
 	
+	private void runPointCheck()
+	{
+		int numPointsScored = getNumPointsScored();
+		if(numPointsScored > 0)
+		{
+			for(int i = 0; i < numPointsScored; i++)
+			{
+				if(this.isPlayerOneTurn)
+				{
+					playerOne.increaseScore();
+				}
+				else
+				{
+					playerTwo.increaseScore();
+				}
+			}
+			this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
+		}
+	}
+	
 	/**
 	 * Gets the current player's color.
 	 * @return The current player's color.
@@ -331,15 +351,7 @@ public class Game implements ActionListener
 					System.err.println("Failed to make player one move");
 				}
 
-				int numPointsScored = getNumPointsScored();
-				if(numPointsScored > 0)
-				{
-					for(int i = 0; i < numPointsScored; i++)
-					{
-						playerOne.increaseScore();
-					}
-					this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
-				}
+				this.runPointCheck();
 				
 				this.togglePlayersTurn();
 				
@@ -354,15 +366,7 @@ public class Game implements ActionListener
 					{
 						((AI)this.playerTwo).makeMove();
 						
-						numPointsScored = getNumPointsScored();
-						if(numPointsScored > 0)
-						{
-							for(int i = 0; i < numPointsScored; i++)
-							{
-								playerTwo.increaseScore();
-							}
-							this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
-						}
+						this.runPointCheck();
 						
 						this.togglePlayersTurn();
 					}
@@ -375,15 +379,7 @@ public class Game implements ActionListener
 					System.err.println("Failed to make player two move");
 				}
 
-				int numPointsScored = getNumPointsScored();
-				if(numPointsScored > 0)
-				{
-					for(int i = 0; i < numPointsScored; i++)
-					{
-						playerTwo.increaseScore();
-					}
-					this.getCurrentGridPanel().updateScores(playerOne.getScore(), playerTwo.getScore());
-				}
+				this.runPointCheck();
 				
 				this.togglePlayersTurn();
 			}
@@ -421,8 +417,10 @@ public class Game implements ActionListener
 					Location.DIRECTION direction = directions[i];
 					ArrayList<Stone> countedStones = new ArrayList<>();
 					countedStones.add(placedStone);
+					
 					//Debug code
 					//System.out.println("Testing Direction: "+direction.name());
+					
 					Location oldOtherLoc = placedStoneLoc;
 					Location otherLoc;
 					int count = 1;  //Counts itself as one count alway
@@ -453,6 +451,7 @@ public class Game implements ActionListener
 					oldOtherLoc = placedStoneLoc; //Reset to the placed stone
 					//Debug code
 					//System.out.println("\t///Testing Opposite Direction: "+oppositeDirection.name() + " ///");
+					
 					//Check in the opposite direction given
 					while((otherLoc = oldOtherLoc.getAdjacentLocation(oppositeDirection)) != null)
 					{
@@ -482,7 +481,7 @@ public class Game implements ActionListener
 						int alreadyCounted = 0;
 						for(Stone stone : countedStones)
 						{
-							if(stone.isCounted())
+							if(stone.isCounted(direction))
 							{
 								//Debug code
 								//System.out.println("\t+++Stone already counted: "+stone.getStoneLocation());
@@ -491,7 +490,7 @@ public class Game implements ActionListener
 							}
 							else
 							{
-								stone.setIsCounted(true);
+								stone.setIsCounted(direction);
 							}
 						}
 						if(alreadyCounted > 3)
