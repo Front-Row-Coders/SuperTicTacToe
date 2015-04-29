@@ -21,6 +21,11 @@ public class Location
 	public enum DIRECTION {NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST};
 	
 	/**
+	 * An array of the direction values.
+	 */
+	public static final DIRECTION[] DIRECTION_VALUES = DIRECTION.values();
+	
+	/**
 	 * The number of directions possible.
 	 */
 	public static final int NUM_OF_DIRECTIONS = DIRECTION.values().length;
@@ -52,6 +57,20 @@ public class Location
 	public int getColumnPos()
 	{
 		return this.columnPos;
+	}
+	
+	public static DIRECTION getOppositeDirection(DIRECTION direction)
+	{
+		int oppositeValue = direction.ordinal() + 4;
+		if(oppositeValue >= NUM_OF_DIRECTIONS)
+		{
+			oppositeValue -= NUM_OF_DIRECTIONS;
+		}
+		else if(oppositeValue < 0)
+		{
+			oppositeValue += NUM_OF_DIRECTIONS;
+		}
+		return DIRECTION_VALUES[oppositeValue];
 	}
 	
 	/**

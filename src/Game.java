@@ -377,6 +377,10 @@ public class Game implements ActionListener
 		}
 	}
 	
+	/**
+	 * Gets the number of points scored this turn.
+	 * @return The number of points scored.
+	 */
 	public int getNumPointsScored()
 	{
 		int score = 0;
@@ -387,33 +391,80 @@ public class Game implements ActionListener
 			Color placedStoneColor = panel.getStone(placedStoneLoc).getColor();
 			if(placedStoneLoc != null)
 			{
-				Location.DIRECTION[] directions = Location.DIRECTION.values();
-				for(Location.DIRECTION direction : directions)
+				//Debug code
+				System.out.println("Testing placed "+placedStoneLoc.toString());
+				
+				Location.DIRECTION[] directions = Location.DIRECTION_VALUES;
+				for(int i = 0; i < directions.length / 2; i++)
 				{
+					Location.DIRECTION direction = directions[i];
+					//Debug code
+					System.out.println("Testing Direction: "+direction.name());
 					Location oldOtherLoc = placedStoneLoc;
 					Location otherLoc;
 					int count = 1;  //Counts itself as one count alway.
 					while((otherLoc = oldOtherLoc.getAdjacentLocation(direction)) != null)
 					{
+						//Debug code
+						System.out.println("\tTesting Other "+otherLoc.toString() + " | Old Loc: "+oldOtherLoc.toString());
+						
 						Stone otherStone = panel.getStone(otherLoc);
 						if(otherStone.getColor().equals(placedStoneColor))
 						{
 							count++;
+							//Debug code
+							System.out.println("\t***Same color stone found. Count increased: "+count);
 						}
 						else
 						{
+							//Debug code
+							System.out.println("\tNo Point scored in this direction.");
 							break;
 						}
 						oldOtherLoc = otherLoc;
 					}
 					
-					if(count >= 4)
+					Location.DIRECTION oppositeDirection = Location.getOppositeDirection(direction);
+					oldOtherLoc = placedStoneLoc; //Reset to the placed stone
+					//Debug code
+					System.out.println("\t///Testing Opposite Direction: "+oppositeDirection.name() + " ///");
+					while((otherLoc = oldOtherLoc.getAdjacentLocation(oppositeDirection)) != null)
 					{
-						score++;
+						//Debug code
+						System.out.println("\tTesting Other "+otherLoc.toString() + " | Old Loc: "+oldOtherLoc.toString());
+						
+						Stone otherStone = panel.getStone(otherLoc);
+						if(otherStone.getColor().equals(placedStoneColor))
+						{
+							count++;
+							//Debug code
+							System.out.println("\t***Same color stone found. Count increased: "+count);
+						}
+						else
+						{
+							//Debug code
+							System.out.println("\tNo Point scored in this direction.");
+							break;
+						}
+						oldOtherLoc = otherLoc;
+					}
+					
+					if(count >= 4 && count < 7)
+					{
+						score += count - 3;
+						//Debug code
+						System.out.println("\t***Point Scored! Count: "+count + " Score: "+score+" ***");
+						break;
+					}
+					else if(count >= 7)
+					{
+						System.err.println("Invalid count found. It is greater than 6: "+count);
 					}
 				}
 			}
 		}
+		System.out.println();
+		System.out.println();
 		return score;
 	}
 
