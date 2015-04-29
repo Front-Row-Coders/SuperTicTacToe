@@ -556,7 +556,14 @@ public class Game implements ActionListener
 		if(!playerOne.isGuestPlayer() || !playerTwo.isGuestPlayer())
 		{
 			usernameOne = "\""+playerOne.getUsername()+"\"";
-			usernameTwo = "\""+playerTwo.getUsername()+"\"";
+			if(playerTwo instanceof AI)
+			{
+				usernameTwo = AI_NAME;
+			}
+			else
+			{
+				usernameTwo = "\""+playerTwo.getUsername()+"\"";
+			}
 		}
 		else
 		{
@@ -594,13 +601,13 @@ public class Game implements ActionListener
 					{
 						this.playerOne.increaseWins();
 						this.playerTwo.increaseLosses();
-						gridUI.displayEndGame("Player \""+usernameOne+"\" Wins!");
+						gridUI.displayEndGame("Player "+usernameOne+" Wins!");
 					}
 					else
 					{
 						this.playerOne.increaseLosses();
 						this.playerTwo.increaseWins();
-						gridUI.displayEndGame("Player \""+usernameTwo+"\" Wins!");
+						gridUI.displayEndGame("Player "+usernameTwo+" Wins!");
 					}
 				}
 				else
