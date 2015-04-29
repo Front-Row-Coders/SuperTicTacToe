@@ -196,11 +196,21 @@ public class History
 	
 	public boolean createNewPlayer(String username)
 	{
-		if(username.equals(Game.AI_NAME))
+		if(username == null)
 		{
 			return false;
 		}
-		if(username.equals(Game.GUEST_NAME))
+		
+		username = username.trim();
+		if(username.length() <= 0)
+		{
+			return false;
+		}
+		if(username.equalsIgnoreCase(Game.AI_NAME))
+		{
+			return false;
+		}
+		if(username.equalsIgnoreCase(Game.GUEST_NAME))
 		{
 			return false;
 		}
@@ -208,6 +218,7 @@ public class History
 		{
 			return false;
 		}
+		//Valid username, create it
 		Player player = new Player(username);
 		history.add(player);
 		return true;

@@ -2,17 +2,21 @@
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.event.AncestorListener;
 
 /**
  *
  * @author Jonathan
  */
-public class GridPanel extends UIPanel implements ActionListener
+public class GridPanel extends UIPanel implements ActionListener, AncestorListener
 {
 	private static final long serialVersionUID = 1L;
 	
 	private final Game gameInstance;
 	private Stone[][] gridSpots;
+	
+	public static final int GRID_WIDTH = 6;
+	public static final int GRID_HEIGHT = 6;
 	
 	/**
 	 * 
@@ -32,12 +36,14 @@ public class GridPanel extends UIPanel implements ActionListener
 	{
 		initComponents();
 		
-		this.gridSpots = new Stone[6][6];
+		this.gridSpots = new Stone[GRID_HEIGHT][GRID_WIDTH];
 		this.gameInstance = new Game(username1, skillLevel, isPlayerOneTurn);
 		
 		//Set the player score labels to their respective turn colors.
 		this.lblPlayerOneName.setForeground(this.gameInstance.getPlayerOne().getColor());
 		this.lblPlayerTwoName.setForeground(this.gameInstance.getPlayerTwo().getColor());
+                this.lblPlayerOneName.setText(username1);
+                this.lblPlayerTwoName.setText(Game.AI_NAME);
 		this.setTurnColor(this.gameInstance.getCurrentPlayersColor());
 		
 		
@@ -95,12 +101,14 @@ public class GridPanel extends UIPanel implements ActionListener
 	{
 		initComponents();
 		
-		this.gridSpots = new Stone[6][6];
+		this.gridSpots = new Stone[GRID_HEIGHT][GRID_WIDTH];
 		this.gameInstance = new Game(username1, username2, isPlayerOneTurn);
 		
 		//Set the player score labels to their respective turn colors.
 		this.lblPlayerOneName.setForeground(this.gameInstance.getPlayerOne().getColor());
 		this.lblPlayerTwoName.setForeground(this.gameInstance.getPlayerTwo().getColor());
+                this.lblPlayerOneName.setText(username1);
+                this.lblPlayerTwoName.setText(username2);
 		
 		this.setTurnColor(this.gameInstance.getCurrentPlayersColor());
 		
@@ -162,6 +170,25 @@ public class GridPanel extends UIPanel implements ActionListener
 		return copy;
 	}
 	
+	/**
+	 * Gets the stone location placed this turn.
+	 * @return The location of the placed stone this turn or null if none.
+	 */
+	public Location getCurrentPlacedLocation()
+	{
+		for(Stone[] row : this.gridSpots)
+		{
+			for(Stone stone : row)
+			{
+				if(stone.isPlacedThisTurn())
+				{
+					return stone.getStoneLocation();
+				}
+			}
+		}
+		return null;
+	}
+	
 	/*
 	public boolean placeStone(Stone stone)
 	{
@@ -171,8 +198,8 @@ public class GridPanel extends UIPanel implements ActionListener
 		}
 		
 		Location loc = stone.getStoneLocation();
-		int row = loc.getXPos();
-		int col = loc.getYPos();
+		int row = loc.getRowPos();
+		int col = loc.getColumnPos();
 		
 		if(this.gridSpots[row][col] != null && !this.gridSpots[row][col].isEmptySpot())
 		{
@@ -217,7 +244,28 @@ public class GridPanel extends UIPanel implements ActionListener
 			throw new IllegalArgumentException("loc is null");
 		}
 		
-		return this.gridSpots[loc.getXPos()][loc.getYPos()];
+		return this.gridSpots[loc.getRowPos()][loc.getColumnPos()];
+	}
+	
+	/**
+	 * Changes all stone's to old status (not moved this turn).
+	 * Is suppose to be called before place the new move.
+	 */
+	public void moveMade()
+	{
+		for(Stone[] row : this.gridSpots)
+		{
+			for(Stone stone : row)
+			{
+				stone.setPlacedThisTurn(false);
+			}
+		}
+	}
+	
+	public void updateScores(int scoreOne, int scoreTwo)
+	{
+		this.lblPlayerOneScore.setText(Integer.toString(scoreOne));
+		this.lblPlayerTwoScore.setText(Integer.toString(scoreTwo));
 	}
 	
 	public boolean isSpotOpen(Location loc)
@@ -227,8 +275,8 @@ public class GridPanel extends UIPanel implements ActionListener
 			throw new IllegalArgumentException("loc is null");
 		}
 		
-		return (this.gridSpots[loc.getXPos()][loc.getYPos()] == null || 
-				this.gridSpots[loc.getXPos()][loc.getYPos()].isEmptySpot());
+		return (this.gridSpots[loc.getRowPos()][loc.getColumnPos()] == null || 
+				this.gridSpots[loc.getRowPos()][loc.getColumnPos()].isEmptySpot());
 	}
 
 	/*
@@ -318,8 +366,7 @@ public class GridPanel extends UIPanel implements ActionListener
 	 */
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         stone1 = new Stone();
         stone0 = new Stone();
@@ -367,6 +414,8 @@ public class GridPanel extends UIPanel implements ActionListener
         playerTurnComponent = new PlayerTurnComponent();
         lblPlayerOneName = new javax.swing.JLabel();
         lblPlayerTwoName = new javax.swing.JLabel();
+
+        addAncestorListener(this);
 
         stone1.setStoneLocation(new Location(0,1));
 
@@ -460,12 +509,10 @@ public class GridPanel extends UIPanel implements ActionListener
         jLabel3.setText("Turn");
         jLabel3.setToolTipText("");
 
-        btnForfeit.setText("Forfiet");
+        btnForfeit.setText("Forfeit");
         btnForfeit.addActionListener(this);
 
-        lblPlayerOneName.setText("Player One:");
-
-        lblPlayerTwoName.setText("Player Two:");
+        lblPlayerOneName.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -538,33 +585,31 @@ public class GridPanel extends UIPanel implements ActionListener
                                 .addComponent(stone28, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stone29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(playerTurnComponent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnForfeit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jLabel3))
-                                            .addComponent(lblTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPlayerOneName)
-                                            .addComponent(lblPlayerTwoName))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblPlayerTwoScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                                            .addComponent(lblPlayerOneScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(jLabel1)))))
+                                        .addComponent(jLabel3))
+                                    .addComponent(lblTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(19, 19, 19)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblPlayerOneName)
+                                                .addComponent(lblPlayerTwoName))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(lblPlayerTwoScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                                .addComponent(lblPlayerOneScore, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)))
+                                        .addComponent(jLabel1)))
+                                .addComponent(playerTurnComponent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnForfeit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(stone30, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -577,7 +622,7 @@ public class GridPanel extends UIPanel implements ActionListener
                         .addComponent(stone34, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stone35, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -657,18 +702,34 @@ public class GridPanel extends UIPanel implements ActionListener
 
     // Code for dispatching events from components to event handlers.
 
-    public void actionPerformed(java.awt.event.ActionEvent evt)
-    {
-        if (evt.getSource() == btnForfeit)
-        {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        if (evt.getSource() == btnForfeit) {
             GridPanel.this.btnForfeitActionPerformed(evt);
         }
+    }
+
+    public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+        if (evt.getSource() == GridPanel.this) {
+            GridPanel.this.formAncestorAdded(evt);
+        }
+    }
+
+    public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+    }
+
+    public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnForfeitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnForfeitActionPerformed
     {//GEN-HEADEREND:event_btnForfeitActionPerformed
         this.gameInstance.forfeit();
     }//GEN-LAST:event_btnForfeitActionPerformed
+
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt)//GEN-FIRST:event_formAncestorAdded
+    {//GEN-HEADEREND:event_formAncestorAdded
+		//Put code here that needs to run after screen is visible.
+		this.gameInstance.performPostSetup();
+    }//GEN-LAST:event_formAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,26 +1,143 @@
 /**
- *
+ * Holds location data for stones and can be used to find adjacent locations.
  * @author Jonathan
  * @version 1.0
  */
 public class Location
 {
-	private final int xPos;
-	private final int yPos;
+	/**
+	 * The row coordinate value (y)
+	 */
+	private final int rowPos;
+	/**
+	 * The column coordinate value (x)
+	 */
+	private final int columnPos;
 	
-	public Location(int x, int y)
+						//  UP,   UP_RIGHT,  RIGHT, DOWN_RIGHT, DOWN,  DOWN_LEFT, LEFT, UP_LEFT
+	/**
+	 * The possible directions for adjacent location finding.
+	 */
+	public enum DIRECTION {NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST};
+	
+	/**
+	 * An array of the direction values.
+	 */
+	public static final DIRECTION[] DIRECTION_VALUES = DIRECTION.values();
+	
+	/**
+	 * The number of directions possible.
+	 */
+	public static final int NUM_OF_DIRECTIONS = DIRECTION.values().length;
+	
+	/**
+	 * Creates a new location object with the specified location values.
+	 * @param row The rowPos value (y)
+	 * @param column The column value (x)
+	 */
+	public Location(int row, int column)
 	{
-		this.xPos = x;
-		this.yPos = y;
+		this.rowPos = row;
+		this.columnPos = column;
 	}
 	
-	public int getXPos()
+	/**
+	 * Gets the row (y) position.
+	 * @return 
+	 */
+	public int getRowPos()
 	{
-		return this.xPos;
+		return this.rowPos;
 	}
 	
-	public int getYPos()
+	/**
+	 * Gets the column (x) position.
+	 * @return 
+	 */
+	public int getColumnPos()
 	{
-		return this.yPos;
+		return this.columnPos;
+	}
+	
+	public static DIRECTION getOppositeDirection(DIRECTION direction)
+	{
+		int oppositeValue = direction.ordinal() + 4;
+		if(oppositeValue >= NUM_OF_DIRECTIONS)
+		{
+			oppositeValue -= NUM_OF_DIRECTIONS;
+		}
+		else if(oppositeValue < 0)
+		{
+			oppositeValue += NUM_OF_DIRECTIONS;
+		}
+		return DIRECTION_VALUES[oppositeValue];
+	}
+	
+	/**
+	 * Gets the location adjacent to this location in the specified direction.
+	 * @param direction The direction to get the adjacent location from.
+	 * @return The adjacent location or null if none exists in that direction.
+	 */
+	public Location getAdjacentLocation(DIRECTION direction)
+	{
+		switch(direction)
+		{
+			case NORTH:
+				if(this.getRowPos()-1 >= 0)
+				{
+					return new Location(this.getRowPos()-1, this.getColumnPos());
+				}
+			break;
+			case NORTH_EAST:
+				if(this.getRowPos()-1 >= 0 && this.getColumnPos()-1 >= 0)
+				{
+					return new Location(this.getRowPos()-1, this.getColumnPos()-1);
+				}
+			break;
+			case EAST:
+				if(this.getColumnPos()-1 >= 0)
+				{
+					return new Location(this.getRowPos(), this.getColumnPos()-1);
+				}
+			break;
+			case SOUTH_EAST:
+				if(this.getRowPos()+1 < GridPanel.GRID_HEIGHT && this.getColumnPos()-1 >= 0)
+				{
+					return new Location(this.getRowPos()+1, this.getColumnPos()-1);
+				}
+			break;
+			case SOUTH:
+				if(this.getRowPos()+1 < GridPanel.GRID_HEIGHT)
+				{
+					return new Location(this.getRowPos()+1, this.getColumnPos());
+				}
+			break;
+			case SOUTH_WEST:
+				if(this.getRowPos()+1 < GridPanel.GRID_WIDTH && this.getColumnPos()+1 < GridPanel.GRID_HEIGHT)
+				{
+					return new Location(this.getRowPos()+1, this.getColumnPos()+1);
+				}
+			break;
+			case WEST:
+				if(this.getColumnPos()+1 < GridPanel.GRID_WIDTH)
+				{
+					return new Location(this.getRowPos(), this.getColumnPos()+1);
+				}
+			break;
+			case NORTH_WEST:
+				if(this.getRowPos()-1 >= 0 && this.getColumnPos()+1 < GridPanel.GRID_WIDTH)
+				{
+					return new Location(this.getRowPos()-1, this.getColumnPos()+1);
+				}
+			break;
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Location("+this.getRowPos()+", "+this.getColumnPos()+")";
 	}
 }

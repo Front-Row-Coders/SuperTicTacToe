@@ -34,49 +34,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Component id="singlePlayerRadioBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
               <Component id="multiplayerRadioBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="playButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="p1NameLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="p2NameTxtField" min="-2" pref="123" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="p1GuestCheckBox" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="firstPlayerLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="p2NameLabel" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="p1NameTxtField" min="-2" pref="123" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="p2GuestCheckBox" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="p1RadioButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="p2RadioButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="displayPanel" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,38 +55,11 @@
                   <Component id="singlePlayerRadioBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="multiplayerRadioBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="p2NameTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="p1NameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="p1GuestCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="displayPanel" pref="170" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="p2NameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="p1NameTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="p2GuestCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="p2RadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="firstPlayerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="p1RadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="playButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="returnButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="returnButton" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="exitButton" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -145,8 +83,11 @@
         <Property name="text" type="java.lang.String" value="Single Player"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="singlePlayerRadioBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectedSinglePlayer"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="singlePlayerRadioBtn.setSelected(true);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JRadioButton" name="multiplayerRadioBtn">
       <Properties>
@@ -155,67 +96,8 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Multiplayer"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="p1NameLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Player 1 username:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="p1NameTxtField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p1NameTxtFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="p1GuestCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guest"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p1GuestCheckBoxActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="p2NameLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Player 2 username:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="p2NameTxtField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p2NameTxtFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="p2GuestCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guest"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p2GuestCheckBoxActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="firstPlayerLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="First player:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="p1RadioButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Player 1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p1RadioButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="p2RadioButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Player 2"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="playButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Play Game"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectedMultiplayer"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="returnButton">
@@ -234,5 +116,25 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JPanel" name="displayPanel">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+      <SubComponents>
+        <Component class="SinglePlayer" name="singlePlayer2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="first"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Multiplayer" name="multiplayer2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="second"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
