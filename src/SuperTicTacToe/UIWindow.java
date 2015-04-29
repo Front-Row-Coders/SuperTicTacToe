@@ -1,7 +1,14 @@
 package SuperTicTacToe;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -9,7 +16,7 @@ import javax.swing.JPanel;
  * The window class for Super Tic-Tac-Toe
  * @author Jonathan
  */
-public class UIWindow implements WindowListener
+public class UIWindow implements WindowListener, ActionListener
 {
 	/**
 	 * The main/only JFrame (window) for this program.
@@ -32,6 +39,8 @@ public class UIWindow implements WindowListener
 	 */
 	private static UIWindow currentInstance;
 	
+	public static final String ABOUT_COMMAND = "about_command";
+	
 	/**
 	 * Creates a instance of UIWindow to display on the computer. Does not 
 	 * make the window visible after construction. Must call show afterwards.
@@ -48,6 +57,8 @@ public class UIWindow implements WindowListener
 		this.currentPanel = (JPanel)this.mainWindow.getContentPane();
 		
 		this.history = new History();
+		
+		this.setupJMenuBar();
 		
 		//Load initial menu panel.
 		this.setCurrentPanel(new MenuPanel());
@@ -74,6 +85,24 @@ public class UIWindow implements WindowListener
 	public static History getHistoryInstance()
 	{
 		return getInstance().history;
+	}
+	
+	/**
+	 * Setups up the JMenuBar for this window.
+	 */
+	private void setupJMenuBar()
+	{
+		JMenuBar menuBar = new JMenuBar();
+		
+		JMenu infoMenu = new JMenu("Info");
+		JMenuItem aboutItem = new JMenuItem("About");
+		aboutItem.setActionCommand(ABOUT_COMMAND);
+		aboutItem.addActionListener(this);
+		infoMenu.add(aboutItem);
+		
+		menuBar.add(infoMenu);
+		
+		this.mainWindow.setJMenuBar(menuBar);
 	}
 	
 	/**
@@ -225,6 +254,23 @@ public class UIWindow implements WindowListener
 		//Not Used Currently.
 	}
 
+	/**
+	 * The actionPerformed event handler for this UIWindow. 
+	 * @param e ActionEvent information.
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		String command = e.getActionCommand();
+		
+		if(command.equals(ABOUT_COMMAND))
+		{
+			JOptionPane.showMessageDialog(this.mainWindow, 
+					"Super Tic-Tac-Toe - v1.0\nTeam: Jonathan G., Alice T., Ngan D., Eloy P., Michael M.", 
+					"About", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
 	/**
 	 * The entry point for this program.
 	 * @param args the command line arguments
