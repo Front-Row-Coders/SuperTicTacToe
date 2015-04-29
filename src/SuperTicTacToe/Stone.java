@@ -143,6 +143,15 @@ public class Stone extends JButton implements ActionListener
 		//Draw the color. 
 		graphics.setColor(this.getColor());
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+		/*
+		//Paints a oval on counted squares.
+		if(this.countedDirections.size() > 0)
+		{
+			graphics.setColor(Color.WHITE);
+			graphics.fillOval(this.getWidth()/2, this.getHeight()/2, 10, 10);
+		}
+		*/
 	}
 	
 	/**
@@ -181,6 +190,7 @@ public class Stone extends JButton implements ActionListener
 	public void setIsCounted(Location.DIRECTION direction)
 	{
 		this.countedDirections.add(direction);
+		//this.repaint();
 	}
 	
 	/**

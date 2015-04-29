@@ -191,6 +191,9 @@ public class Game implements ActionListener
 		this.playerOne.setColor(PLAYER_ONE_COLOR);
 		this.playerTwo.setColor(PLAYER_TWO_COLOR);
 		
+		this.playerOne.setScore(0);
+		this.playerTwo.setScore(0);
+		
 		this.timeLimit = DEFAULT_TIME_LIMIT;
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
@@ -260,6 +263,9 @@ public class Game implements ActionListener
 		
 		this.playerOne.setColor(PLAYER_ONE_COLOR);
 		this.playerTwo.setColor(PLAYER_TWO_COLOR);
+		
+		this.playerOne.setScore(0);
+		this.playerTwo.setScore(0);
 		
 		this.isPlayerOneTurn = isPlayerOneTurn;
 		
