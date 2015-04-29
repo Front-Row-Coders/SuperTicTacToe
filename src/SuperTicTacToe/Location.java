@@ -137,6 +137,34 @@ public class Location
 	}
 	
 	@Override
+	public boolean equals(Object other)
+	{
+		if(this == other)
+		{
+			return true;
+		}
+		
+		if(other instanceof Location)
+		{
+			Location otherLoc = (Location)other;
+			if(otherLoc.getRowPos() == this.getRowPos() && otherLoc.getColumnPos() == this.getColumnPos())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int hash = 7;
+		hash = 59 * hash + this.rowPos;
+		hash = 59 * hash + this.columnPos;
+		return hash;
+	}
+	
+	@Override
 	public String toString()
 	{
 		return "Location("+this.getRowPos()+", "+this.getColumnPos()+")";
