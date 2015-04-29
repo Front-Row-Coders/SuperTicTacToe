@@ -60,6 +60,11 @@ public class Location
 		return this.columnPos;
 	}
 	
+	/**
+	 * Gets the direction opposite of the given direction.
+	 * @param direction The direction to get the opposite of.
+	 * @return The opposite direction.
+	 */
 	public static DIRECTION getOppositeDirection(DIRECTION direction)
 	{
 		int oppositeValue = direction.ordinal() + 4;
@@ -136,6 +141,12 @@ public class Location
 		return null;
 	}
 	
+	/**
+	 * Checks whether the given object is the same object, i.e. if this location
+	 * and the given location have the same row and column value.
+	 * @param other The object to check for equality to this one.
+	 * @return True if equal, else false.
+	 */
 	@Override
 	public boolean equals(Object other)
 	{
@@ -155,6 +166,10 @@ public class Location
 		return false;
 	}
 
+	/**
+	 * Gets a hash code for this object based on row and column values.
+	 * @return A hash code for this object.
+	 */
 	@Override
 	public int hashCode()
 	{
@@ -164,6 +179,10 @@ public class Location
 		return hash;
 	}
 	
+	/**
+	 * Gets a string representation of this object. Ex: Location(0, 0)
+	 * @return A string representation of this object.
+	 */
 	@Override
 	public String toString()
 	{
