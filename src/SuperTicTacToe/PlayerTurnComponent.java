@@ -12,6 +12,9 @@ import javax.swing.JComponent;
  */
 public class PlayerTurnComponent extends JComponent
 {
+	/**
+	 * Serial code for serialization (not used).
+	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**
