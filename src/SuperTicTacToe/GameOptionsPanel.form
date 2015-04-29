@@ -120,14 +120,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="SinglePlayer" name="singlePlayer2">
+        <Component class="SuperTicTacToe.SinglePlayer" name="singlePlayer1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="first"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Multiplayer" name="multiplayer2">
+        <Component class="SuperTicTacToe.Multiplayer" name="multiplayer1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="second"/>

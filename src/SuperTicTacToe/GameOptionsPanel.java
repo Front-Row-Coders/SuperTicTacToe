@@ -36,8 +36,8 @@ public class GameOptionsPanel extends UIPanel
         returnButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         displayPanel = new javax.swing.JPanel();
-        singlePlayer2 = new SinglePlayer();
-        multiplayer2 = new Multiplayer();
+        singlePlayer1 = new SuperTicTacToe.SinglePlayer();
+        multiplayer1 = new SuperTicTacToe.Multiplayer();
 
         titleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         titleLabel.setText("Game Options");
@@ -82,8 +82,8 @@ public class GameOptionsPanel extends UIPanel
         });
 
         displayPanel.setLayout(new java.awt.CardLayout());
-        displayPanel.add(singlePlayer2, "first");
-        displayPanel.add(multiplayer2, "second");
+        displayPanel.add(singlePlayer1, "first");
+        displayPanel.add(multiplayer1, "second");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,10 +153,10 @@ public class GameOptionsPanel extends UIPanel
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton exitButton;
-    private Multiplayer multiplayer2;
+    private SuperTicTacToe.Multiplayer multiplayer1;
     private javax.swing.JRadioButton multiplayerRadioBtn;
     private javax.swing.JButton returnButton;
-    private SinglePlayer singlePlayer2;
+    private SuperTicTacToe.SinglePlayer singlePlayer1;
     private javax.swing.JRadioButton singlePlayerRadioBtn;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables

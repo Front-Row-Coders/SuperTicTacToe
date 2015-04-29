@@ -23,7 +23,8 @@ public class Multiplayer extends UIPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         firstPlayer = new javax.swing.ButtonGroup();
         p1RadioButton = new javax.swing.JRadioButton();
@@ -40,8 +41,10 @@ public class Multiplayer extends UIPanel {
         firstPlayer.add(p1RadioButton);
         p1RadioButton.setSelected(true);
         p1RadioButton.setText("Player 1");
-        p1RadioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1RadioButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1RadioButtonActionPerformed(evt);
             }
         });
@@ -51,30 +54,38 @@ public class Multiplayer extends UIPanel {
 
         p1NameLabel.setText("Player 1 username:");
 
-        p2NameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p2NameTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p2NameTxtFieldActionPerformed(evt);
             }
         });
 
         p1GuestCheckBox.setText("Guest");
-        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1GuestCheckBoxActionPerformed(evt);
             }
         });
 
         p2NameLabel.setText("Player 2 username:");
 
-        p1NameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p1NameTxtField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p1NameTxtFieldActionPerformed(evt);
             }
         });
 
         p2GuestCheckBox.setText("Guest");
-        p2GuestCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        p2GuestCheckBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 p2GuestCheckBoxActionPerformed(evt);
             }
         });
@@ -82,8 +93,10 @@ public class Multiplayer extends UIPanel {
         firstPlayerLabel.setText("First player:");
 
         playButton.setText("Play Game");
-        playButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        playButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 playButtonActionPerformed(evt);
             }
         });
